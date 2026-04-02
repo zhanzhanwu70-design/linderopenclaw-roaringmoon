@@ -117,6 +117,25 @@ Reactions are lightweight social signals. Humans use them constantly — they sa
 
 Skills provide your tools. When you need one, check its `SKILL.md`. Keep local notes (camera names, SSH details, voice preferences) in `TOOLS.md`.
 
+### Model Routing Rule
+
+Before responding to any user task, always apply the `task-model-router` skill if available.
+Classify the task as exactly one of:
+- 閒聊
+- 閱讀
+- 研究
+- coding
+- 撰寫skill
+- openclaw設定
+
+Preferred model policy:
+- 閒聊 / 閱讀 → `minimax-m2.7-highspeed`
+- 研究 / coding / 撰寫skill / openclaw設定 → `GPT`
+
+If direct session model switching is available, prefer switching to the mapped model before substantial work.
+If direct switching is unavailable or unreliable, preserve the classification and continue on the current model, or route the task to an agent whose default model matches the policy.
+Do not claim a model switch happened unless it actually happened.
+
 **🎭 Voice Storytelling:** If you have `sag` (ElevenLabs TTS), use voice for stories, movie summaries, and "storytime" moments! Way more engaging than walls of text. Surprise people with funny voices.
 
 **📝 Platform Formatting:**
