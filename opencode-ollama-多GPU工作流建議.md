@@ -418,3 +418,30 @@ Ollama 很適合當本地模型入口，
 | 主力 Coding / Analysis | Gemma 4 31B | 2×5090 或 2×PRO6000 |
 | 高強度 Reasoning / 數學 / 科學 | OpenReasoning-Nemotron-32B | 2×PRO6000 |
 | 通用對話 / 輕量任務 | Qwen3.5 35B MoE | RTX4000 SFF |
+
+## Jetson AGX Thor T5000（2026-04-07 新增）
+
+根據 Linder 提供的 datasheet，新增 Jetson AGX Thor T5000 至硬體配置：
+
+### 關鍵規格
+- AI Performance: 2070 FP4 TFLOPS
+- GPU: 2560-core NVIDIA Blackwell，96 Tensor Cores
+- CPU: 14-core Arm Neoverse-V3AE
+- Memory: **128 GB LPDDR5X**，273 GB/s
+- Storage: 1 TB NVMe M.2
+- Power: 40W–130W
+
+### VRAM 等級
+128GB RAM，幾乎可以FP16跑所有開源大模型，包括 Gemma 4 31B 和 OpenReasoning-Nemotron-32B。
+
+### 更新後的四卡分工
+
+| 設備 | VRAM | 建議跑什麼 | 量化 |
+|-----|------|-----------|------|
+| **Jetson AGX Thor T5000** | 128GB | OpenReasoning-Nemotron-32B 或 Gemma 4 31B | FP16 或 Q8 |
+| **2× RTX PRO 6000 96G** | 192GB | 任意旗艦模型 | FP16 或 Q8 |
+| **2× RTX 5090 32G** | 64GB | Gemma 4 31B 或 Qwen3.5 MoE | Q4 或 Q8 |
+| **RTX4000 SFF 40G** | 40GB | Reader/Router 快模型 | Q8 |
+
+### 結論
+Jetson AGX Thor T5000 是目前最強的邊緣設備，應作為主要推理卡。
