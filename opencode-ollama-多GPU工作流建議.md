@@ -375,3 +375,46 @@ Ollama 很適合當本地模型入口，
 - `本地 coding 工作站那份文件`
 
 我就可以直接讀這份繼續修改。
+
+## 計畫使用模型（三卡分流，各自承擔一個模型）
+
+根據目前討論，確定使用的模型為：
+
+| 模型 | 類型 | 總參數 | Active | 強項 |
+|------|------|--------|--------|------|
+| **Qwen3.5 35B A3B MoE** | MoE | ~35B | ~3B | 通用推理 / 性價比極高 |
+| **Gemma 4 31B** | Dense | 30.7B | 全量 | 頂尖 coding / reasoning |
+| **OpenReasoning-Nemotron-32B** | Dense | 32B | 全量 | 專精 reasoning（數學/程式/科學） |
+
+來源：NVIDIA OpenReasoning-Nemotron-32B 是 Qwen2.5-32B 的衍生模型，後訓練用於推理，有 GenSelect 多代理模式。
+
+### VRAM 需求估算（單 GPU 跑一個模型）
+
+| 模型 | FP16 | Q8 | Q4_K_XL |
+|------|------|-----|---------|
+| Qwen3.5 35B A3B MoE | ~45GB | ~22GB | ~12GB |
+| Gemma 4 31B | ~62GB | ~35GB | ~18GB |
+| OpenReasoning-Nemotron-32B | ~64GB | ~35GB | ~18GB |
+
+### 三卡分工建議
+
+| GPU | VRAM | 建議模型 | 量化 |
+|-----|------|---------|------|
+| **RTX4000 SFF 40G** | 40GB | Qwen3.5 35B MoE 或 Gemma 4 26B MoE | Q8（~22-28GB） |
+| **2× RTX 5090 32G** | 64GB 總和 | Gemma 4 31B 或 OpenReasoning-Nemotron | Q4（~18GB），或 Q8 需單卡有足夠 VRAM |
+| **2× RTX PRO 6000 96G** | 192GB 總和 | 任意模型，可全速 FP16 | FP16 或 Q8（~35GB），餘裕充足 |
+
+### 量化方向推測
+
+- **RTX4000 SFF**：Q8 或 Q4，40GB 可容納 Q8 的 Gemma 26B MoE 或 Q8 的 Qwen3.5 MoE
+- **2× RTX 5090**：Q4 最實際（~18GB），Q8 需要更精細的卡間分配
+- **2× RTX PRO 6000 96G**：Q8 舒適，FP16 可行
+
+### 任務分工（預測）
+
+| 任務 | 建議模型 | 對應GPU |
+|------|---------|---------|
+| 通用快任務 / Reader / Router | Qwen3.5 35B MoE | RTX4000 SFF |
+| 主力 Coding / Analysis | Gemma 4 31B | 2×5090 或 2×PRO6000 |
+| 高強度 Reasoning / 數學 / 科學 | OpenReasoning-Nemotron-32B | 2×PRO6000 |
+| 通用對話 / 輕量任務 | Qwen3.5 35B MoE | RTX4000 SFF |
