@@ -1,27 +1,21 @@
-更新日期：2026-05-08（晚間）
+更新日期：2026-05-09（晚間）
 
 ---
 
 ## 今日新發現
 
-### 1. `DeepSeek-TUI`
-- **描述：** A terminal-based coding agent for DeepSeek models.
-- **分析：** 界面友好，本地操作，對想要輕量級 coding agent 的用戶值得關注。
+目前搜尋範圍內無重大新發現，但以下項目仍值得持續追蹤：
 
-### 2. `aidlc-workflows`（awslabs）
-- **描述：** AI-Driven Life Cycle adaptive workflow steering rules for AI coding agents.
-- **分析：** 提供了一個執行框架，支援 AI 工作流的適應性。
-
-### 3. `9router`（decolua）
-- **描述：** Unlimited FREE AI coding with route optimization.
-- **分析：** 提供多元化的模型連接機制，適合資源有限的環境。
+- **Ollama Router**: 機制上已經更新，對本地 AI 使用者有其吸引力。
+- **LiteLLM + LangGraph**: 原生支援工作流分段的設計，仍具高度潛力。
+- **AutoGen**: 繼續尋求更多的實作顯示其應用範疇。
+- **Multi-model routing toolkits**: 隨著需求增加，值得長期觀察。
 
 ---
 
 ## 對既有結論的修正
 
-1. **LangGraph + MCP** 的組合持續被強化，`orchestra` 展現了完整整合的潛力。
-2. **DeepSeek-TUI** 等輕量工具證明了只需終端即可有效工作。
+目前未發現需特別修正的結論，上一日建議之 `orchestra` 依然具備較高價值。
 
 ---
 
