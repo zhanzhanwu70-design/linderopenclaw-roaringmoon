@@ -1,17 +1,32 @@
-# 本地多模型 Task Manager 研究
+# 本地多模型 Task Manager 每日研究 - 2026-05-22
 
-## 今日更新 (2026-05-21)
+## 今日新發現
 
-### 今日新發現
-- **Claude-plugins-official**: An Anthropics directory housing Claude Code Plugins to extend agent capabilities and orchestrate workflows.
-- **Forge**: A new Python framework that enables self-hosted LLM tool-calling and multi-step agentic workflows, aligning with local coding agent development.
-- **OpenViking**: Provides unified management for AI agents via a context database, a potential asset for context-based multi-model routing.
+1. **ZeroShield AI Mesh Firewall**: This centralized AI security gateway focuses on LLM and RAG traffic management, with multi-model routing control and compliance observability. [GitHub Project](https://github.com/vartulzeroshieldai/AIMeshFirewall)
 
-### 對既有結論的修正
-- The rise of community-driven solutions like Forge signifies potential shifts towards more open, customizable orchestration models.
+2. **Forkscout**: An autonomous AI agent with multi-model routing, persistence, budget tracking, and self-evolution features. [GitHub Project](https://github.com/Forkscout/forkscout)
 
-### 目前最推薦的開源方向
-- **Forge** appears to stand out as an emergent tool for constructing local agent workflows, promising flexibility and ease of integration.
+3. **Super Productivity**: A task management app with integrations for Jira, GitLab, GitHub, and more, offering advanced features like Timeboxing. [GitHub Project](https://github.com/super-productivity/super-productivity)
 
-### 是否建議修改工作流 / 模型路由策略
-- Explore the integration of Forge into existing workflows to enhance flexibility and scalability in task orchestration.
+4. **Stagewise**: An open-source agentic IDE to create and orchestrate coding agents using favorite models across providers. [GitHub Project](https://github.com/stagewise-io/stagewise)
+
+5. **Mission Control**: A self-hosted AI agent orchestration platform for dispatching tasks and running multi-agent workflows. [GitHub Project](https://github.com/builderz-labs/mission-control)
+
+## 修正既有結論
+
+- None significantly affected by today's findings.
+
+## 目前最推薦的開源方向
+
+It is recommended to further explore **Stagewise** and **Mission Control** due to their focus on multi-model orchestration and task management efficiency.
+
+## 是否建議修改工作流 / 模型路由策略
+
+- Current strategy remains valid.
+- Continue to evaluate **Stagewise** for potential integration opportunities.
+
+## 值得持續追蹤的項目
+
+- **AGENTS.md** - Review updates to methodologies on agent orchestration. 
+
+---
