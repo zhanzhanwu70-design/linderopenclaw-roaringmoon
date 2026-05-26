@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Tool Realtime Display 運作機制</title>
+<style>
+body { font-family: system-ui; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+h1 { color: #4a9eff; border-bottom: 2px solid #4a9eff; padding-bottom: 10px; }
+h2 { color: #2d7dd2; margin-top: 30px; }
+h3 { color: #1a5fa8; margin-top: 20px; }
+.code-block { background: #1e1e1e; color: #d4d4d4; padding: 15px; border-radius: 8px; overflow-x: auto; font-size: 13px; }
+.code-block .comment { color: #6a9955; }
+.code-block .keyword { color: #569cd6; }
+.code-block .string { color: #ce9178; }
+.code-block .function { color: #dcdcaa; }
+.flow { background: #f5f5f5; padding: 15px; border-left: 4px solid #4a9eff; margin: 15px 0; }
+.keyword { background: #fff3cd; padding: 2px 6px; border-radius: 4px; }
+table { border-collapse: collapse; width: 100%; margin: 15px 0; }
+th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+th { background: #4a9eff; color: white; }
+tr:nth-child(even) { background: #f9f9f9; }
+</style>
+</head>
+<body>
+
+<h1>🔧 Tool Realtime Display 運作機制</h1>
+
+<h2>📋 事件流程總覽</h2>
+
+<div class="flow">
+<strong>觸發時機：</strong>當 LLM 執行任何 tool 時<br>
+<strong>事件類型：</strong>tool.start → tool.update → tool.end
+</div>
+
+<h2>🔄 完整呼叫鏈</h2>
+
+<pre class="code-block">
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 第一層：工具執行事件產生                                                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 檔案：selection-BeP8qtCb.js                                                 │
+│                                                                             │
+│   LLM 執行 tool_call                                                        │
+│         ↓                                                                   │
+│   handleToolExecutionStart(ctx, evt)                                        │
+│         ↓                                                                   │
+│   ctx.params.onAgentEvent?.({ stream: "tool", phase: "start", ... })       │
+│         ↓                                                                   │
+│   handleToolExecutionUpdate(ctx, evt)  ─── 每個 update 都會觸發             │
+│         ↓                                                                   │
+│   handleToolExecutionEnd(ctx, evt)                                          │
+│         ↓                                                                   │
+│   ctx.params.onAgentEvent?.({ stream: "tool", phase: "end", ... })        │
+└─────────────────────────────────────────────────────────────────────────────┘
+         ↓
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 第二層：Event Handler 建立                                                   │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 檔案：dispatch-acp-HFOhX_U-.js                                              │
+│                                                                             │
+│   createAcpReplyProjector({                                                 │
+│     shouldSendToolSummaries: params.shouldSendToolSummaries,  ← 關鍵開關   │
+│     deliver: delivery.deliver,                                             │
+│     ...                                                                     │
+│   })                                                                        │
+│         ↓                                                                   │
+│   projector.onEvent(evt)  // 處理所有事件                                   │
+│         ↓                                                                   │
+│   emitToolSummary(event)  // 只在 tool_call 類型事件觸發                    │
+│         ↓                                                                   │
+│   if (!params.shouldSendToolSummaries) return;  ← 被跳過的條件             │
+│         ↓                                                                   │
+│   params.deliver("tool", { text: toolSummary }, deliveryMeta)             │
+└─────────────────────────────────────────────────────────────────────────────┘
+         ↓
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 第三層：Delivery Dispatcher                                                 │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 檔案：dispatch-8E8vi2HV.js                                                 │
+│                                                                             │
+│   createReplyDispatcher({                                                   │
+│     deliver: (kind, payload, meta) => { ... }                               │
+│   })                                                                        │
+│         ↓                                                                   │
+│   dispatcher.sendToolResult(payload)  // 進入佇列                           │
+│         ↓                                                                   │
+│   enqueue("tool", payload)  // 排入 sendChain                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+         ↓
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 第四層：實際發送到 Discord                                                   │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 檔案：Discord plugin                                                        │
+│                                                                             │
+│   deliverOutboundPayloads({ to: channelId, ... })                         │
+│         ↓                                                                   │
+│   Discord API: channel.messages.create({ content })                        │
+└─────────────────────────────────────────────────────────────────────────────┘
+</pre>
+
+<h2>🚫 shouldSendToolSummaries 判斷邏輯</h2>
+
+<div class="code-block">
+<span class="comment">// 檔案：dispatch-8E8vi2HV.js:609</span>
+<span class="comment">// 這是控制是否發送 tool summaries 的關鍵開關</span>
+
+<span class="keyword">const</span> shouldSendVerboseProgressMessages = 
+  !((ctx.Surface === <span class="string">"slack"</span> || ctx.Provider === <span class="string">"slack"</span>) && ctx.ChatType !== <span class="string">"direct"</span>);
+
+<span class="keyword">const</span> shouldSendToolSummaries = shouldSendVerboseProgressMessages;
+<span class="keyword">const</span> shouldSendToolStartStatuses = shouldSendVerboseProgressMessages;
+</div>
+
+<h3>條件分析</h3>
+
+<table>
+<tr><th>Channel</th><th>ChatType</th><th>結果</th><th>原因</th></tr>
+<tr><td>Discord</td><td>direct</td><td style="color:green">✅ 發送</td><td>第一條件 = true</td></tr>
+<tr><td>Discord</td><td>group</td><td style="color:green">✅ 發送</td><td>已修改（移除 group 限制）</td></tr>
+<tr><td>Discord</td><td>channel</td><td style="color:green">✅ 發送</td><td>第一條件 = true</td></tr>
+<tr><td>Slack</td><td>direct</td><td style="color:green">✅ 發送</td><td>Slack + direct 不被排除</td></tr>
+<tr><td>Slack</td><td>channel/group</td><td style="color:red">❌ 不發送</td><td>Slack + non-direct 被排除</td></tr>
+</table>
+
+<h2>📁 主要檔案與函式</h2>
+
+<h3>1. selection-BeP8qtCb.js（事件產生層）</h3>
+
+<pre class="code-block">
+<span class="comment">// handleToolExecutionStart - 工具開始執行</span>
+<span class="keyword">function</span> <span class="function">handleToolExecutionStart</span>(ctx, evt) {
+  ctx.params.onAgentEvent?.({
+    stream: <span class="string">"tool"</span>,
+    data: { phase: <span class="string">"start"</span>, name: toolName, toolCallId, args }
+  });
+}
+
+<span class="comment">// handleToolExecutionUpdate - 工具執行更新</span>
+<span class="keyword">function</span> <span class="function">handleToolExecutionUpdate</span>(ctx, evt) {
+  ctx.params.onAgentEvent?.({
+    stream: <span class="string">"tool"</span>,
+    data: { phase: <span class="string">"update"</span>, name: toolName, toolCallId, partialResult }
+  });
+}
+
+<span class="comment">// handleToolExecutionEnd - 工具執行結束</span>
+<span class="keyword">async function</span> <span class="function">handleToolExecutionEnd</span>(ctx, evt) {
+  ctx.params.onAgentEvent?.({
+    stream: <span class="string">"tool"</span>,
+    data: { phase: <span class="string">"end"</span>, name: toolName, toolCallId, result }
+  });
+}
+</pre>
+
+<h3>2. dispatch-acp-HFOhX_U-.js（事件投影層）</h3>
+
+<pre class="code-block">
+<span class="comment">// emitToolSummary - 產生 tool summary 並發送</span>
+<span class="keyword">const</span> emitToolSummary = <span class="keyword">async</span> (event) => {
+  <span class="keyword">if</span> (!params.shouldSendToolSummaries) <span class="keyword">return</span>;  <span class="comment">// 🚫 檢查開關</span>
+  <span class="keyword">if</span> (!isAcpTagVisible(settings, event.tag)) <span class="keyword">return</span>;
+  
+  <span class="keyword">const</span> renderedToolSummary = renderToolSummaryText(event);
+  <span class="keyword">const</span> toolSummary = truncateText(renderedToolSummary, ...);
+  
+  <span class="comment">// 發送到頻道</span>
+  <span class="keyword">await</span> params.deliver(<span class="string">"tool"</span>, { text: toolSummary }, deliveryMeta);
+};
+</pre>
+
+<h3>3. dispatch-8E8vi2HV.js（Dispatch 層）</h3>
+
+<pre class="code-block">
+<span class="comment">// createReplyDispatcher - 管理發送佇列</span>
+<span class="keyword">function</span> <span class="function">createReplyDispatcher</span>(options) {
+  <span class="keyword">let</span> sendChain = Promise.resolve();  <span class="comment">// 串接 promise chain</span>
+  
+  <span class="keyword">const</span> enqueue = (kind, payload) => {
+    sendChain = sendChain.then(<span class="keyword">async</span> () => {
+      <span class="keyword">await</span> options.deliver(normalized, { kind });
+    });
+    <span class="keyword">return true</span>;
+  };
+  
+  <span class="keyword">return</span> {
+    sendToolResult: (payload) => enqueue(<span class="string">"tool"</span>, payload),
+    sendBlockReply: (payload) => enqueue(<span class="string">"block"</span>, payload),
+    sendFinalReply: (payload) => enqueue(<span class="string">"final"</span>, payload),
+  };
+}
+</pre>
+
+<h2>🔑 關鍵參數傳遞</h2>
+
+<pre class="code-block">
+tryDispatchAcpReplyHook(event, ctx)
+    ↓ event.shouldSendToolSummaries
+acp-runtime-backend-jVzdOuJX.js:38
+    ↓ shouldSendToolSummaries
+tryDispatchAcpReply({ shouldSendToolSummaries, ... })
+    ↓
+dispatch-acp.runtime.js
+    ↓ shouldSendToolSummaries
+createAcpReplyProjector({ shouldSendToolSummaries, ... })
+    ↓ params.shouldSendToolSummaries
+emitToolSummary() → params.deliver("tool", ...)
+</pre>
+
+<h2>⚡ Realtime vs Final Only 模式</h2>
+
+<div class="code-block">
+<span class="comment">// deliveryMode 設定位置（dispatch-acp-HFOhX_U-.js）</span>
+settings.deliveryMode === <span class="string">"live"</span>     → 即時發送，字元累積後立即 deliver
+settings.deliveryMode === <span class="string">"final_only"</span> → 等待 done 事件才一次發出
+
+<span class="comment">// 當 deliveryMode === "final_only" 時的緩衝機制</span>
+<span class="keyword">const</span> pendingToolDeliveries = [];
+<span class="comment">// tool summary 先推到 pendingToolDeliveries</span>
+pendingToolDeliveries.push({ payload: { text: toolSummary }, meta: deliveryMeta });
+<span class="comment">// 等 done 或 error 事件時才一口氣發送</span>
+<span class="keyword">await</span> flush(true);  <span class="comment">// 強制 flush pendingToolDeliveries</span>
+</div>
+
+<h2>🎯 流程圖：一次 Tool Call 的完整生命週期</h2>
+
+<pre class="code-block">
+1. [LLM] 模型決定執行 tool
+         ↓
+2. [Gateway] 收到 tool_call 指令
+         ↓
+3. [selection-BeP8qtCb.js] handleToolExecutionStart()
+         ↓ emitAgentEvent({ stream: "tool", phase: "start", ... })
+4. [dispatch-acp-HFOhX_U-.js] onEvent() 接收事件
+         ↓ emitToolSummary(event)
+5. [dispatch-acp-HFOhX_U-.js] shouldSendToolSummaries 檢查
+         ↓ true → renderToolSummaryText()
+6. [dispatch-8E8vi2HV.js] createReplyDispatcher.sendToolResult()
+         ↓ enqueue("tool", payload)
+7. [Discord Plugin] deliverOutboundPayloads()
+         ↓
+8. [Discord API] channel.messages.create()
+         ↓
+9. [User] 在 Discord 看到 tool 即時顯示
+</pre>
+
+<h2>🔍 Debug 技巧</h2>
+
+<pre class="code-block">
+<span class="comment">// 查看目前 channel 的 shouldSendToolSummaries 狀態</span>
+<span class="comment">// 從 ctx.Surface, ctx.Provider, ctx.ChatType 判斷</span>
+
+<span class="comment">// 關鍵判斷點（dispatch-8E8vi2HV.js:609）</span>
+ctx.Surface === "discord" || ctx.Provider === "discord"
+    → ChatType === "group" 不會被排除（已修改）
+
+<span class="comment">// 確認 delivertyMode</span>
+<span class="comment">// "live" = 即時, "final_only" = 等 done 才發送</span>
+</pre>
+
+</body>
+</html>
