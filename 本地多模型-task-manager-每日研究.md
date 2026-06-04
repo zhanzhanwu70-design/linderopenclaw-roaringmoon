@@ -90,3 +90,75 @@
 - OpenHands docs/repo：SDK/CLI/local GUI/REST API、local LLM recommendation Qwen3.6-35B-A3B。
 - CrewAI Flows、Mastra Workflows、AutoGen docs：workflow/state/event-driven/multi-agent runtime 定位。
 - GitHub API metadata snapshot 2026-06-01：opencode、ollama、LiteLLM、LangGraph、AutoGen、CrewAI、Mastra、OpenHands、aider、Temporal 均仍活躍或具高社群關注。
+
+---
+
+### 日期: 2026-06-03
+
+### 今日新發現
+- **OpenCode repo 名稱/歸屬需修正：目前 GitHub API 回傳為 `anomalyco/opencode`，不是前次記錄的 `sst/opencode`。** 2026-06-03 仍高度活躍，約 169k stars，當日有 push。這不改變「OpenCode 作 coding executor」的結論，但來源標註要更新。
+- **OpenCode agents 文件確認它已具備「輕量 agent profile/subagent」能力**：內建 primary agents `Build` / `Plan`，以及 subagents `General` / `Explore` / `Scout`。其中 `Plan` 預設把 file edits 與 bash 設為 ask，`Explore`/`Scout` 偏 read-only，`General` 可跑複雜多步任務。這表示 OpenCode 可承擔部分「任務角色切換」，但仍不是完整 task manager：缺 queue、跨 worktree orchestration、可觀測 retry、全域模型選擇策略。
+- **OpenCode provider/config 文件確認 local/router 接法很順**：支援 75+ providers、local models、任意 provider `baseURL` override，且 config precedence 支援 project config、`.opencode`、`OPENCODE_CONFIG_CONTENT`。這讓「OpenCode → LiteLLM proxy → Ollama/cloud fallback」很容易產品化。
+- **LiteLLM routing / Ollama provider 仍是最成熟的 routing layer**：docs 再次確認支援 load-balance、queueing、cooldown、fallback、timeout、retry、Redis usage/cooldown；Ollama provider 支援 `ollama/*`，且官方建議使用 `ollama_chat/*` 以取得較好回應，也支援 JSON mode / tool calling（模型能力仍要個別確認）。
+- **Mastra Workflows 的定位更清楚**：官方文件明確說 workflows 是用結構化 steps 控制多步任務，不依賴單一 agent 推理；支援 step input/output schema、data flow、suspend/resume、streaming，並可呼叫 agents/tools。若未來要做 TypeScript 版 task manager，Mastra 比 CrewAI/LangGraph 更貼近 OpenCode/Node 生態。
+- **CrewAI Flows 文件確認它和 LiteLLM 相容**：Flow example 直接用 `litellm.completion`；它提供 state management、event-driven workflow、branch/loop。對 Python 快速實驗仍可用，但跟 OpenCode/Node CLI 生態的整合成本略高於 Mastra。
+- **OpenHands local LLM 指引仍維持高門檻**：2026-05-21 docs 建議 Qwen3.6-35B-A3B，並明說 local LLM 可能功能受限、建議 GPU；硬體至少偏 24GB VRAM / Apple Silicon 64GB unified memory 等級。這支持「OpenHands 暫列重型 runtime，不作 MVP 第一層」的判斷。
+- **新增候選：`ucav/mozart-router`（約 6 stars，2026-05-25 push）**。README 自稱 local conductor for AI agents，會 auto-detect Ollama/OpenClaw/OpenCode/LiteLLM/OpenRouter/LM Studio/vLLM/NIM，做 task classification、secret scan、cost estimate、quality/cost/latency/privacy/context/reliability scoring、fallback/circuit breaker、route explanation。可信度仍低（新、小），但概念非常貼近我們想做的「routing policy layer」。
+- **新增候選：`pockanoodles/Mahoraga`（約 9 stars，2026-05-20 push）**。以 LinUCB contextual bandit 做 heterogeneous agent routing，支援 Ollama、Codex CLI、Aider、Gemini CLI、Goose、OpenCode；會用 capability bucket、context vector、品質評估、episodic memory、retry/escalation。這是今天最值得追蹤的「自學式路由」設計參考，但不宜直接依賴。
+- **新增候選：`aiagentflow/aiagentflow`（約 41 stars，2026-05-24 push）**。local-first CLI，多 agent pipeline：Architect → Coder → Reviewer → Security → Tester → Fixer → Judge → Ship；支援 provider/model per role、Ollama、worktree isolation、plan review gate、parallel batch、project memory。比 Vibestrate 更像可試跑的本地 coding task manager 候選。
+- **Vibestrate 仍符合方向但成熟度未變**：`guyshonshon/vibestrate` 今日仍有 push，但 stars 仍很低。它的 plan → build → review → verify、isolated worktree、驅動既有 coding-agent CLIs 的設計值得借鑑，不建議當核心依賴。
+
+### 對既有結論的修正
+- **修正 1：OpenCode 不是只有 `plan/build` 二分，而是已有 agents/subagents 結構。** 這讓 MVP 可以先利用 OpenCode 原生 `Plan` / `Build` / `Explore` / `Scout` 作角色分工；外部 task manager 主要補「排程、路由、隔離、驗證、紀錄」。
+- **修正 2：路由策略可拆成兩層，而不是全交給 LiteLLM。** LiteLLM 很適合 provider/model gateway 與 fallback；但「任務分類、隱私掃描、角色選擇、agent CLI 選擇、驗證 gate」更像 Mozart/Mahoraga/aiagentflow 這種 orchestration policy layer。
+- **修正 3：Mastra 的優先級上升。** 若主軸是 opencode + ollama，TypeScript/Node 的 Mastra Workflows 比 Python 框架更容易整合 CLI、JSON config、`.opencode` 目錄與 npm 發佈；LangGraph 仍強但不是最短路徑。
+- **修正 4：小 repo 不宜忽視但要分級。** Mozart、Mahoraga、aiagentflow、Vibestrate 不一定成熟，但它們集中反映同一個新趨勢：本地 coding agent 不只需要 model proxy，而需要「可解釋的 task/router supervisor」。
+
+### 目前最推薦的開源方向
+1. **MVP 主線：OpenCode + Ollama + LiteLLM + 自製薄 task manager。**
+   - OpenCode：coding executor / Plan-Build-Explore-Scout agent shell。
+   - Ollama：local model serving。
+   - LiteLLM：OpenAI-compatible gateway、fallback、routing、usage/cooldown。
+   - 自製薄層：task spec、role selection、privacy gate、worktree isolation、validation command、audit log。
+2. **設計參考：Mozart Router + Mahoraga + aiagentflow + Vibestrate。**
+   - Mozart：policy/routing explanation、secret scan、cost/privacy/context scoring。
+   - Mahoraga：bandit-based adaptive routing、quality feedback loop。
+   - aiagentflow：role pipeline、provider/model per role、plan review、worktree isolation。
+   - Vibestrate：plan/build/review/verify supervisor loop。
+3. **第二階段 workflow engine：Mastra Workflows 優先，LangGraph/CrewAI 次之。**
+   - 若要 npm/TypeScript 原生：Mastra。
+   - 若要 Python research / graph state：LangGraph。
+   - 若要快速 Python flows + role-playing crews：CrewAI。
+   - 若要 durable execution / long-running retry / human wait：Temporal，但暫不作 MVP 核心。
+4. **重型 coding runtime：OpenHands 保持候選。** 適合完整 GUI/REST/SDK 與重型 coding agent，但 local LLM 硬體與模型品質門檻高。
+
+### 是否建議修改工作流 / 模型路由策略
+- **建議修改：是，但保持小步。** 不要直接導入大型 workflow engine；先加一層「policy router + task spec」。
+- 建議把 routing 從三個 alias 擴成「任務類型 + 角色 + 資安等級」：
+  - `scan/explore`：OpenCode `Explore` 或 `Scout` + `local-fast`，read-only。
+  - `plan/architecture`：OpenCode `Plan` + `strong-code` 或 `local-code` fallback。
+  - `implementation`：OpenCode `Build` 或 aider + `local-code` / `strong-code`。
+  - `review/security`：不同模型、不同 agent，優先 read-only，必要時 cloud fallback 但需 privacy gate。
+  - `verify`：非 LLM；固定跑 tests/typecheck/build/lint，結果回寫 audit log。
+- 新增 policy 欄位建議：`privacy_level`、`requires_write`、`context_size`、`expected_runtime`、`validation_command`、`fallback_chain`、`human_approval_gate`、`worktree_mode`。
+- 若任務涉及 secrets、`.env`、private keys、客戶資料：router 必須禁止 cloud fallback，或要求明確 human approval。
+
+### 值得持續追蹤的項目
+- OpenCode 是否把 agents/subagents 暴露成更穩定的 non-interactive dispatch API。
+- LiteLLM A2A Gateway 是否能成熟到統一 agent invocation，而不只是 model proxy。
+- Mozart Router 是否持續更新，尤其 OpenClaw/OpenCode auto-detect 與 secret scan 是否可靠。
+- Mahoraga 的 bandit routing 是否有實際 benchmark / regression tests，而非 README 概念。
+- aiagentflow 是否能穩定驅動真實 repo，尤其 worktree isolation、plan review gate、model-per-role config。
+- Qwen/DeepSeek/Kimi/GLM/MiniMax 類 local coding MoE 模型在 OpenCode/OpenHands/aider 上的實測表現。
+
+### 今日摘要
+今天有實質新進展：OpenCode 自身的 agents/subagents 能力比前次理解更完整，因此 MVP 不必先做複雜 multi-agent engine；可以先用 OpenCode 的 `Plan` / `Build` / `Explore` / `Scout`，外面加一層薄 task manager。最值得新增追蹤的是 Mozart Router、Mahoraga、aiagentflow：它們都指向同一個趨勢——本地 coding workflow 的缺口不是「再多一個模型 proxy」，而是「可解釋、可審核、帶隱私 gate 的 task/router supervisor」。目前仍推薦 **OpenCode + Ollama + LiteLLM + 自製薄 orchestration layer**，並把 Mastra Workflows 作為第二階段 TypeScript workflow engine 候選。
+
+### 來源/查核記錄
+- GitHub API snapshot 2026-06-03：`anomalyco/opencode`、`ollama/ollama`、`BerriAI/litellm`、`langchain-ai/langgraph`、`microsoft/autogen`、`crewAIInc/crewAI`、`mastra-ai/mastra`、`temporalio/temporal`、`OpenHands/OpenHands`、`Aider-AI/aider`、`guyshonshon/vibestrate`。
+- OpenCode docs：agents/subagents、config precedence、provider `baseURL`、75+ providers/local models。
+- LiteLLM docs：routing/load balancing、fallback/retry/cooldown/Redis、Ollama provider / `ollama_chat` 建議。
+- Mastra docs：workflows overview、step schema、suspend/resume、streaming、agent/tool steps。
+- CrewAI docs：Flows、state management、event-driven workflow、branch/loop、LiteLLM example。
+- OpenHands docs：local LLM recommendation Qwen3.6-35B-A3B、local limitations/hardware guidance。
+- GitHub search / README review：`ucav/mozart-router`、`pockanoodles/Mahoraga`、`aiagentflow/aiagentflow`、`guyshonshon/vibestrate`。
