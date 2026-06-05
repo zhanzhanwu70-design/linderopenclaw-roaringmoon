@@ -162,3 +162,74 @@
 - CrewAI docs：Flows、state management、event-driven workflow、branch/loop、LiteLLM example。
 - OpenHands docs：local LLM recommendation Qwen3.6-35B-A3B、local limitations/hardware guidance。
 - GitHub search / README review：`ucav/mozart-router`、`pockanoodles/Mahoraga`、`aiagentflow/aiagentflow`、`guyshonshon/vibestrate`。
+
+---
+
+### 日期: 2026-06-04
+
+### 今日新發現
+- **OpenCode repo 歸屬/活躍度再確認**：GitHub API 今日顯示 `opencode-ai/opencode` 已 archived，活躍主 repo 仍是 `anomalyco/opencode`，約 169.9k stars，2026-06-04 21:30 UTC 有 push。這修正了可能從舊 namespace 取資料的風險；後續查核應優先看 `anomalyco/opencode` 與官方 docs。
+- **OpenCode Agents docs 今日仍確認 agent/subagent 是可用的內建分工單位**：primary agents 有 `Build` / `Plan`，subagents 有 `General` / `Explore` / `Scout`，另有 context compaction / title / summary 等 hidden agents。`Explore` / `Scout` read-only、`Plan` 預設 writes/bash ask、`Build` 全工具，這很適合被外部 task manager 當作角色映射層，而不是從零自建所有 agent 行為。
+- **LiteLLM routing 仍是模型 gateway 首選**：routing docs 今日仍明確列出 load balancing、queueing、cooldown、fallback、timeout、retry、Redis usage/cooldown，以及 weighted / rate-limit aware / latency / least-busy / lowest-cost / custom routing。結論不變：LiteLLM 負責「模型部署與 fallback」，不要讓它背負整個「任務語意分類與驗證 gate」。
+- **新增候選：`berkayturanci/ai-jury`**（約 1 star，2026-06-04 push）。它不是完整 coding task manager，而是「cross-vendor multi-agent review jury」：驅動 Claude Code、Codex CLI、Google Antigravity，加上 Ollama/OpenAI-compatible local model，對同一 PR/diff/issue 做平行 review、互相 rebuttal，再由 chair synthesize verdict；主打 sandboxed/read-only、CI gating、large-diff chunking。對我們最有價值的是「異質模型審查/仲裁」模式，可作為 review/security/final verdict 階段設計參考。
+- **新增候選：`kcsinclair/kaos-control`**（約 4 stars，2026-06-03 push）。它是自架 Claude Code orchestrator，重點是 markdown-on-disk lifecycle、YAML frontmatter、role-gated SDLC、per-agent sandbox、PreToolUse hook audit、per-role model assignment（含 local Ollama）、token spend log、Web UI/DevOps pipeline。雖然核心偏 Claude Code 不是 OpenCode，但「artefact-as-task + lifecycle state machine + audited tool gate」非常貼近我們 task manager 應補的那一層。
+- **新增候選：`VikingOwl91/gnoma`**（約 1 star，2026-06-04 push）。Go 寫的 provider-agnostic coding assistant，支援 Anthropic/OpenAI/Gemini/Mistral/Ollama/llama.cpp 與 subprocess CLIs；有 multi-armed bandit router、`prefer=local|cloud|auto`、Tier-0 小模型分類、secret scanner、content boundary、no phone-home、MCP/skills/hooks/plugins。它和 Mahoraga 一樣屬於「自學/可解釋路由」設計參考，但成熟度仍低。
+- **新增候選：`XAIHT/Tlamatini`**（約 5 stars，2026-06-04 push / README v1.14.0）。local-first developer assistant，Ollama、本地 RAG（FAISS+BM25）、多工具 multi-turn operator、視覺 workflow designer、ACPX 可委派 Claude Code/Cursor/Codex/Gemini CLI/Qwen。它太龐雜、不適合當 MVP 依賴，但證明「local-first + workflow canvas + external coding CLI delegation」這條路正在出現。
+- **小 repo 訊號更集中**：GitHub search 今日還看到 `dxa-deimos`、`Nexora-agent`、`claude-agent-team`、`Overseer`、`loom`、`electrictown` 等多個低 star 專案，都在談 multi-model routing、local-first coding agent、SDLC supervisor、MCP/hook/sandbox。多數不宜直接採用，但共同趨勢非常明確：大家都在補「coding-agent CLI 之外的 supervisor / policy / audit layer」。
+- **主流框架活躍度無重大反轉**：`BerriAI/litellm`、`ollama/ollama`、`langchain-ai/langgraph`、`crewAIInc/crewAI`、`mastra-ai/mastra`、`temporalio/temporal`、`OpenHands/OpenHands` 今日仍有更新；`Aider-AI/aider` 最近 push 為 2026-05-22，仍活躍但今日沒有新訊號改變定位。
+
+### 對既有結論的修正
+- **修正 1：OpenCode namespace 必須明確標準化。** 之前已修正為 `anomalyco/opencode`，今天再補充：`opencode-ai/opencode` 是 archived 舊/非主 repo，不應作為活躍度判斷來源。
+- **修正 2：review 階段應升級為「異質模型 jury」，不只是單一 reviewer。** ai-jury 的設計提醒我們：review/security/test interpretation 最容易受單模型盲點影響，建議至少用不同模型或不同 CLI agent 交叉審查，最後由 chair/strong model 合併 verdict。
+- **修正 3：task manager 的資料模型應從單純 YAML routing table 升級為 artefact lifecycle。** kaos-control 顯示 markdown/YAML frontmatter 作任務來源，加 lineage、stage、approval gate、acceptance criteria，比單次 CLI wrapper 更容易長期維護與審計。
+- **修正 4：bandit/adaptive routing 值得保留在中期路線，但不該進 MVP。** Mahoraga/gnoma 都主打 multi-armed bandit；這對長期成本/品質最佳化有價值，但第一版應先做 deterministic policy + audit log，等有足夠 run history 再學習。
+- **修正 5：視覺 workflow / full IDE 類方案不應影響第一階段選型。** Tlamatini 類工具功能多，但範圍太大；目前只拿其 ACPX / workflow canvas / local-first delegation 概念當參考。
+
+### 目前最推薦的開源方向
+1. **MVP 主線維持：OpenCode + Ollama + LiteLLM + 自製薄 task manager。**
+   - OpenCode：負責 Plan / Build / Explore / Scout 角色化 coding shell。
+   - Ollama：本地模型 serving 與 privacy-preserving baseline。
+   - LiteLLM：模型 alias、fallback、timeout、retry、usage/cooldown、router observability。
+   - 自製薄層：task artefact、role/model/executor mapping、privacy gate、worktree isolation、validation command、audit log。
+2. **把 task spec 升級成 markdown/YAML artefact lifecycle。**
+   - 建議資料夾：`tasks/inbox`、`tasks/planning`、`tasks/ready`、`tasks/running`、`tasks/review`、`tasks/done`、`tasks/blocked`。
+   - 每個 task frontmatter 至少包含：`id`、`stage`、`privacy_level`、`requires_write`、`role`、`executor`、`model_alias`、`fallback_chain`、`worktree`、`validation_command`、`approval_gate`、`lineage`、`created_by`、`audit_log`。
+3. **第二階段候選排序微調：Mastra Workflows 仍優先；Temporal 只在 durable execution 需求明確時加入。**
+   - Mastra：Node/TypeScript 生態，較容易接 OpenCode CLI、`.opencode` config、LiteLLM HTTP。
+   - LangGraph/CrewAI：適合 Python research / graph/crew experiments。
+   - Temporal：適合長時間、可恢復、可重試、人類等待很多的 production workflow；MVP 暫不需要。
+4. **review/security 階段新增設計參考：ai-jury。**
+   - 可以設計成 `review_panel`: `local-code` + `strong-code` + `security-model`，read-only parallel review，最後 chair 合併。
+5. **中期 tracking：Mahoraga + gnoma 的 bandit routing。**
+   - 等本地 task manager 有 run history（成功率、test pass、review defect、latency、token/cost）後，再用 bandit/score routing 自動調整模型選擇。
+
+### 是否建議修改工作流 / 模型路由策略
+- **建議修改：是，小幅但重要。** 今日不建議換主棧；建議把路由策略從「角色 -> model alias」擴成「task artefact lifecycle + deterministic policy + review jury」。
+- 新版路由建議：
+  - `intake/triage`：local-fast；輸出 task frontmatter，不寫 repo。
+  - `scan/explore`：OpenCode `Explore` / `Scout` + local-fast/local-code；read-only；禁止 cloud fallback，除非只查公開 docs。
+  - `plan/architecture`：OpenCode `Plan` + local-code 或 strong-code；writes/bash 維持 ask。
+  - `implementation`：OpenCode `Build` 或 aider + local-code/strong-code；必須 worktree isolation。
+  - `review/security`：異質模型 panel；至少一個非 executor 模型；read-only；高隱私任務禁止 cloud。
+  - `verify`：非 LLM；固定跑 test/typecheck/build/lint；結果寫回 audit log。
+  - `ship/merge`：human approval gate；不要讓 agent 自動 merge/push。
+- LiteLLM aliases 建議保留 `local-fast` / `local-code` / `strong-code`，新增邏輯 alias：`review-local`、`review-strong`、`private-only`。其中 `private-only` 的 fallback chain 只能含 Ollama/本機 OpenAI-compatible 端點。
+
+### 值得持續追蹤的項目
+- OpenCode 是否提供穩定 non-interactive agent/subagent dispatch API 或更完整 session control。
+- LiteLLM A2A Gateway / agent invocation 是否成熟到能統一 OpenCode/OpenHands/LangGraph 類 agent，而非只管 LLM calls。
+- kaos-control 的 lifecycle artefact / sandbox hook 是否能抽象到 OpenCode 或通用 CLI agent。
+- ai-jury 是否能穩定用於 PR/diff review，尤其 false-positive filtering 與 CI gate。
+- gnoma / Mahoraga 的 bandit router 是否有真實 benchmark、可重現評估、長期品質回饋資料結構。
+- aiagentflow / Vibestrate 是否出現可穩定試跑的 release 或實戰案例。
+- Qwen / DeepSeek / Kimi / GLM / MiniMax 等本地 coding 模型在 OpenCode + Ollama 上的長上下文、tool-use、patch reliability 表現。
+
+### 今日摘要
+今天有實質新進展，但不是推翻主結論，而是把設計補強：活躍 OpenCode repo 應固定看 `anomalyco/opencode`，`opencode-ai/opencode` 已 archived；OpenCode agent/subagent + LiteLLM routing 的主線仍成立。新增最有價值的觀察是 **ai-jury 的異質模型審查模式**、**kaos-control 的 artefact lifecycle + sandbox/audit gate**、以及 **gnoma/Mahoraga 的 bandit routing 思路**。目前仍推薦 **OpenCode + Ollama + LiteLLM + 自製薄 orchestration layer**，但建議把第一版 task manager 從簡單 routing table 升級成 markdown/YAML task lifecycle，並把 review/security 做成不同模型的 read-only jury。
+
+### 來源/查核記錄
+- GitHub API snapshot 2026-06-04：`opencode-ai/opencode` archived；`anomalyco/opencode`、`BerriAI/litellm`、`ollama/ollama`、`langchain-ai/langgraph`、`microsoft/autogen`、`crewAIInc/crewAI`、`mastra-ai/mastra`、`temporalio/temporal`、`OpenHands/OpenHands`、`Aider-AI/aider`、`guyshonshon/vibestrate`、`ucav/mozart-router`、`pockanoodles/Mahoraga`、`aiagentflow/aiagentflow`。
+- OpenCode docs：Agents / built-in Build, Plan, General, Explore, Scout / permissions / hidden agents。
+- LiteLLM docs：Router load balancing、queueing、cooldown、fallback、timeout、retry、Redis、routing strategies。
+- README review 2026-06-04：`berkayturanci/ai-jury`、`kcsinclair/kaos-control`、`VikingOwl91/gnoma`、`XAIHT/Tlamatini`。
+- GitHub search 2026-06-04：local coding agent / Ollama orchestration / multi-model routing 類低 star 新專案訊號。
