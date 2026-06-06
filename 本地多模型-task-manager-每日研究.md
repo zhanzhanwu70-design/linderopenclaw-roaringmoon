@@ -233,3 +233,83 @@
 - LiteLLM docs：Router load balancing、queueing、cooldown、fallback、timeout、retry、Redis、routing strategies。
 - README review 2026-06-04：`berkayturanci/ai-jury`、`kcsinclair/kaos-control`、`VikingOwl91/gnoma`、`XAIHT/Tlamatini`。
 - GitHub search 2026-06-04：local coding agent / Ollama orchestration / multi-model routing 類低 star 新專案訊號。
+
+---
+
+### 日期: 2026-06-05
+
+### 今日新發現
+- **主流主線今日仍高度活躍，沒有被新框架取代。** GitHub API 快照 2026-06-05 22:00 UTC：`anomalyco/opencode` 約 170.5k stars、今日 push；`BerriAI/litellm` 約 49.4k stars、今日 push；`ollama/ollama` 約 173.3k stars、今日 push；`OpenHands/OpenHands`、`mastra-ai/mastra`、`crewAIInc/crewAI`、`langchain-ai/langgraph`、`temporalio/temporal` 也都有今日更新。`opencode-ai/opencode` 仍 archived，不應作為活躍 OpenCode 來源。
+- **OpenCode Agents docs 再確認：它已可當「角色化 coding shell」，但不是 task manager。** 文件列出 primary agents `Build` / `Plan` 與 subagents `General` / `Explore` / `Scout`；`Explore` / `Scout` read-only，`Plan` 預設 edits/bash ask，`Build` 全工具。新增/確認重點是：OpenCode agent 可透過 JSON 或 `.opencode/agents/` markdown 配置自訂 prompt、model、permission，因此外部 task manager 可以把角色映射到 OpenCode agent，而不是每次硬塞 prompt。
+- **OpenCode config precedence 對 runtime routing 很友善。** 文件確認 config merge/precedence 包含 remote、global、custom path、project、`.opencode`、`OPENCODE_CONFIG_CONTENT` inline runtime override。這支持「task manager 每次根據任務生成臨時 OpenCode config / agent model mapping」的設計。
+- **LiteLLM routing 結論不變：可靠模型 gateway，不是語意 orchestrator。** 官方 routing docs 今日仍列 load balancing、queueing、cooldown、fallback、timeout、retry、Redis tpm/rpm usage/cooldown、weighted/rate-limit/latency/least-busy/cost/custom routing。適合負責 provider/model alias 與 resilience，但 task lifecycle、privacy gate、worktree、review jury 還是應在上層。
+- **新增候選：`scottgl9/skelm`（約 23 stars，2026-06-05 push）。** README 定位是 typed TypeScript pipelines、default-deny permissions、gateway-owned privileged actions，可支援短任務、agent loop、cron、webhook、多日 human approval workflow。它不是 OpenCode 專用，但很貼近「安全、可測、可審計的 workflow engine」；值得作為 Mastra 之外的 TypeScript workflow candidate，尤其是 default-deny gateway/permission 思路。
+- **新增候選：`Suraj1235/open-dynamic-workflows`（0 stars，2026-06-05 push）。** README 核心句是「script is the orchestrator, not the model」，面向 OpenCode、Codex、Antigravity、VS Code，local daemon、BYO model、QuickJS/WASM sandbox、無 telemetry。成熟度目前很低，但概念非常準：讓本地 script 執行模型規劃出的 swarm/workflow，避免把 orchestration 權限交給單一 LLM。
+- **新增候選：`aegntic/compound-engineering`（0 stars，2026-06-05 push）。** 提供跨 Claude Code / Copilot / OpenCode 的 portable skills/commands/workflows，強調 `/constitution → /ideate → /plan → /deepen-plan → work → review → ship`、specialized reviewers、docs/solutions 知識沉澱。它偏「workflow/skill pack」而非 router，但提醒我們：task manager 不只要執行，還要把解法與 reviewer knowledge 留在 repo。
+- **新增候選：`tusharmewara/loom` ecosystem（homebrew formula 2026-06-01 push）。** 目標是在 Claude Code、jcode、Cursor、Goose、OpenCode、crush 間共享 skills、MCP servers、sessions，並可選擇每個 task 用哪個 agent。它不是直接多模型 router，但指向「跨 coding-agent CLI 共享上下文/工具/技能」這個後續需求。
+- **其他低 star 訊號仍集中在同一趨勢。** `yash249114/loom` 主打 local-first multi-model coding agent、auto routing、3-tier fallback、verification loop；`meganerd/electrictown` 主打 provider-agnostic role routing/fallback/cost tracking；`skgandikota/coracle` 主打 drop-in OpenAI-compatible scheduler 給 OpenCode/Claude Code/Codex/Cursor 使用。這些目前不宜當核心依賴，但共同證明「本地個人機器上的 router/scheduler/supervisor」正在變成一類工具。
+- **既有小候選今天仍有更新：** `vibestrate`、`ai-jury`、`kaos-control`、`Tlamatini` 今日都有 push；`mozart-router`、`Mahoraga`、`aiagentflow` 暫無新 push。`ai-jury` 描述更明確：stdlib-only Python CLI，驅動 native coding-agent CLIs + local model 做 diff/PR/issue review jury、debate、verify、synthesize verdict，local-first secure by default。
+
+### 對既有結論的修正
+- **修正 1：第一版 task manager 應更偏「script/state-machine orchestrator」，不要讓 LLM 自己當 workflow engine。** open-dynamic-workflows 與 skelm 都支持這點：模型可以產生 plan，但真正的排程、權限、sandbox、狀態遷移、驗證應由本地 deterministic script/engine 管。
+- **修正 2：Mastra 仍是 TypeScript workflow 首選之一，但不是唯一候選。** skelm 的 default-deny permissions / gateway pattern 對本地 coding agent 更安全；若 MVP 只需 typed pipeline + permission gate，可與 Mastra 並列評估。Mastra 優勢是成熟 AI app/agent 生態與 step schema/suspend/resume/streaming；skelm 優勢是安全 gateway 與長任務權限模型。
+- **修正 3：OpenCode agent config 應納入路由輸出，而不是只輸出 model alias。** task manager 應能為每個 task 生成/選擇 OpenCode agent：`explore` / `plan` / `build` / `reviewer`，並指定 permission、model、prompt；再由 LiteLLM alias 提供實際模型。
+- **修正 4：knowledge compounding 應進入 task lifecycle。** compound-engineering 顯示每次任務的 plan、review、solution 都應變成 repo 內可搜尋 artifact；這比只留 token log 更有長期價值。
+- **修正 5：跨 agent CLI ecosystem 可列為後續需求。** Loom 類 shared layer 提醒我們，長期可能不只 OpenCode/Ollama，也會同時用 aider、Codex CLI、Claude Code、Goose、Cursor；但 MVP 仍應先鎖 OpenCode + aider/verify commands，避免範圍爆炸。
+
+### 目前最推薦的開源方向
+1. **MVP 主線維持：OpenCode + Ollama + LiteLLM + 自製薄 task manager。**
+   - OpenCode：角色化 coding executor（Build / Plan / Explore / Scout + 自訂 reviewer agents）。
+   - Ollama：local/private serving baseline。
+   - LiteLLM：統一 provider/model alias、fallback、timeout、retry、routing observability。
+   - 自製薄層：deterministic task lifecycle、OpenCode config/agent selection、worktree isolation、validation command、privacy gate、audit/solution artifact。
+2. **第一版不要上 full autonomous multi-agent swarm；先做「script orchestrates, model proposes」。**
+   - LLM 產生 plan/task breakdown。
+   - 本地 script 檢查 frontmatter、privacy、permissions、worktree、validation。
+   - script 決定哪些 OpenCode agent / model alias / CLI executor 可用。
+   - verify/review/ship 都有明確 gate。
+3. **第二階段 workflow engine 候選排序微調：Mastra + skelm 並列 TypeScript 候選。**
+   - Mastra：step schema、data flow、suspend/resume、streaming，AI app 生態成熟。
+   - skelm：typed pipeline、default-deny permissions、gateway-controlled privileged actions，安全/長任務觀念更貼近本地 coding agent。
+   - LangGraph/CrewAI：Python research 或 graph/crew 實驗仍可用。
+   - Temporal：等 durable execution、人類等待、跨日 retry 需求明確才導入。
+4. **review/security 仍建議採異質模型 jury。** ai-jury 持續更新，適合當 read-only panel / chair verdict 設計參考，不建議目前把它當唯一核心依賴。
+5. **中期才評估 adaptive/bandit routing。** Mahoraga/gnoma 方向有價值，但先累積 run history（成功率、測試通過、review defect、latency、token/cost）再讓 routing 學習。
+
+### 是否建議修改工作流 / 模型路由策略
+- **建議修改：是，小幅升級。** 主棧不換，但把 router 輸出從 `model_alias` 擴成 `executor + opencode_agent + permission_profile + model_alias + validation + artifact_policy`。
+- 建議新版 task frontmatter 增加：
+  - `opencode_agent`: `explore | scout | plan | build | reviewer | custom`
+  - `permission_profile`: `read_only | ask_writes | worktree_write | no_shell | allow_tests_only`
+  - `orchestrator_policy`: `script_driven | human_approval_required | jury_required`
+  - `artifact_policy`: `save_plan | save_diff | save_review | save_solution_note`
+  - `privacy_fallback`: `local_only | cloud_allowed_after_redaction | cloud_allowed_with_approval`
+- 建議路由策略：
+  - `intake/triage`：local-fast，script 只產 task artifact。
+  - `repo_scan`：OpenCode `Explore`/`Scout` + read_only + local-fast/local-code。
+  - `plan`：OpenCode `Plan` + ask_writes/no_shell + local-code/strong-code。
+  - `implementation`：OpenCode `Build` 或 aider + worktree_write + local-code，失敗再 strong-code。
+  - `review/security`：read-only jury；至少一個非 executor 模型；private 任務 local-only。
+  - `verify`：非 LLM command；test/typecheck/build/lint 結果寫 artifact。
+  - `ship`：human approval，不自動 merge/push。
+
+### 值得持續追蹤的項目
+- OpenCode 是否提供穩定 non-interactive dispatch/session API，讓外部 task manager 更容易啟動指定 agent/subagent。
+- LiteLLM A2A Gateway 是否真正成熟到可統一 agent invocation，而非只統一 LLM calls。
+- skelm 是否出現 OpenCode / CLI agent integration example，尤其 permission gateway 是否能包住 shell/file/network/MCP。
+- open-dynamic-workflows 是否有可跑範例、OpenCode adapter、sandbox 實作與 tests。
+- compound-engineering 是否能跨 OpenCode 穩定安裝/使用，尤其 review/solution artifact 是否可抽出成通用模板。
+- ai-jury 的 PR/diff review false-positive 控制、CI gate 實測。
+- vibestrate / aiagentflow / kaos-control 是否出現真實專案實戰報告。
+- 本地 coding 模型（Qwen/DeepSeek/Kimi/GLM/MiniMax）在 OpenCode + Ollama 的 tool-use、patch reliability、長上下文表現。
+
+### 今日摘要
+今天有實質新進展，但不是推翻主結論，而是讓 MVP 設計更具體：仍推薦 **OpenCode + Ollama + LiteLLM + 自製薄 task manager**。新增重點是 `skelm` 的 default-deny typed workflow、`open-dynamic-workflows` 的「script is the orchestrator, not the model」、`compound-engineering` 的 artifact/knowledge compounding。建議工作流小幅修改：task manager 不只選模型，還要選 OpenCode agent、permission profile、validation gate、artifact policy；模型負責提出 plan，真正 orchestration 由本地 script/state machine 控制。
+
+### 來源/查核記錄
+- GitHub API snapshot 2026-06-05 22:00 UTC：`anomalyco/opencode`、`opencode-ai/opencode`、`BerriAI/litellm`、`ollama/ollama`、`langchain-ai/langgraph`、`microsoft/autogen`、`crewAIInc/crewAI`、`mastra-ai/mastra`、`temporalio/temporal`、`OpenHands/OpenHands`、`Aider-AI/aider`、`guyshonshon/vibestrate`、`ucav/mozart-router`、`pockanoodles/Mahoraga`、`aiagentflow/aiagentflow`、`berkayturanci/ai-jury`、`kcsinclair/kaos-control`、`VikingOwl91/gnoma`、`XAIHT/Tlamatini`。
+- OpenCode docs 2026-06-05：Agents / primary agents / subagents / JSON + markdown agent config / permissions；Config precedence / `.opencode` / `OPENCODE_CONFIG_CONTENT`。
+- LiteLLM routing docs 2026-06-05：load balancing、queueing、cooldown、fallback、timeout、retry、Redis usage/cooldown、routing strategies。
+- Mastra workflows docs 2026-06-05：step schema、data flow、suspend/resume、streaming、agent/tool execution in step。
+- CrewAI Flows docs 2026-06-05：event-driven workflow、state management、branch/loop、LiteLLM completion example。
+- GitHub search / README review 2026-06-05：`scottgl9/skelm`、`Suraj1235/open-dynamic-workflows`、`aegntic/compound-engineering`、`tusharmewara/homebrew-loom`、`mx-Liu123/AgentCommander`、`yash249114/loom`、`meganerd/electrictown`、`skgandikota/coracle`。
