@@ -313,3 +313,83 @@
 - Mastra workflows docs 2026-06-05：step schema、data flow、suspend/resume、streaming、agent/tool execution in step。
 - CrewAI Flows docs 2026-06-05：event-driven workflow、state management、branch/loop、LiteLLM completion example。
 - GitHub search / README review 2026-06-05：`scottgl9/skelm`、`Suraj1235/open-dynamic-workflows`、`aegntic/compound-engineering`、`tusharmewara/homebrew-loom`、`mx-Liu123/AgentCommander`、`yash249114/loom`、`meganerd/electrictown`、`skgandikota/coracle`。
+
+---
+
+### 日期: 2026-06-06
+
+### 今日新發現
+- **主流主線今天仍活躍，沒有出現足以取代 MVP 主棧的新框架。** GitHub API 快照 2026-06-06 22:00 UTC：`anomalyco/opencode` 約 170.8k stars、今日 push；`BerriAI/litellm` 約 49.5k stars、今日 push；`ollama/ollama` 約 173.4k stars、今日 push；`mastra-ai/mastra`、`temporalio/temporal`、`OpenHands/OpenHands`、`crewAIInc/crewAI`、`XAIHT/Tlamatini`、`scottgl9/skelm`、`Suraj1235/open-dynamic-workflows` 也都有今日更新。`Aider-AI/aider` 最近 push 仍停在 2026-05-22，但社群關注仍高。
+- **OpenCode Agents / Config 文件再次確認：OpenCode 很適合被外部 task manager 當作「可配置 executor shell」。** Agents 文件明確說 agent 可自訂 prompt、model、tool access；內建 `Build` / `Plan` / `General` / `Explore` / `Scout`。Config precedence 確認 `OPENCODE_CONFIG_CONTENT` inline runtime override 在標準 config 之上，這讓 task manager 可依任務動態生成 agent/model/permission 配置，而不必污染 repo 長期設定。
+- **skelm 的優先級上升：它不是只是一個候選 workflow engine，而是明確列出 `opencode` backend。** README 範例用 `agent({ backend: 'opencode', permissions: ... })`，並強調 typed TypeScript pipelines、default-deny permissions、gateway-owned privileged actions、durable wait/resume、persistent workflows、SQLite/file system local-first。這與我們要的「script/state-machine 管 orchestration，OpenCode 管 coding executor」高度吻合。
+- **open-dynamic-workflows 今天仍更新，且把「script-as-orchestrator」模式具體化。** README 描述：模型只負責寫一次 `execute(context)` plan，local daemon 在 QuickJS/WASM sandbox 中執行 `agent` / `parallel` / `pipeline` / `verify` / `loop` / `checkpoint`；SQLite WAL 保存狀態，可 resume；critic/quorum 用來降低 false positives；支援 Ollama 與任意 OpenAI-compatible endpoint。成熟度仍低，但它是目前最貼近「模型不要 babysit swarm，由本地 runtime 執行」的設計參考。
+- **LiteLLM routing 文件結論維持：它是可靠模型 gateway，不是完整 task semantics orchestrator。** 今日文件仍列出 load balancing、queueing、cooldown、fallback、timeout、retry、Redis tpm/rpm usage/cooldown，以及 weighted / rate-limit aware / latency / least-busy / lowest-cost / custom routing。上層仍需要 policy/task lifecycle 來決定何時用哪個 executor/agent/permission profile。
+- **Mastra Workflows 仍是成熟 TypeScript workflow 候選。** 文件強調用 structured steps 而非單 agent reasoning 控制多步任務，支援 input/output schema、data flow、suspend/resume、streaming，step 可呼叫 agents/tools。相較 skelm，Mastra 生態與 AI app integration 較成熟；skelm 的安全 gateway / default-deny 更貼近本地 coding-agent 風險模型。
+- **CrewAI Flows / LangGraph / AutoGen / Temporal 定位沒有重大變化。** CrewAI Flows 仍適合 Python event-driven/state/branch/loop 快速實驗；LangGraph 仍是 graph/state/control 強者；AutoGen 今日 repo push 訊號不強但框架定位仍是 event-driven multi-agent；Temporal 仍適合 durable long-running production workflow，但 MVP 導入成本偏高。
+- **OpenHands local LLM 文件未改變核心警訊：本地 agentic coding 模型仍有硬體與品質門檻。** 2026-05-21 文件仍建議 Qwen3.6-35B-A3B 作為第一個 local model，並明說 local LLM 功能可能受限、建議 GPU，24GB VRAM / Apple Silicon 64GB unified memory 等級更合理。這支持「OpenHands 是重型 runtime 候選，不是第一版薄 task manager」的判斷。
+- **Tlamatini 今天仍更新，但更像 full local assistant / workflow canvas，不適合 MVP 主依賴。** v1.17.x README 強調 Windows 本地安裝、Ollama、FAISS+BM25、ACPX 委派 Claude Code/Cursor/Codex/Gemini/Qwen、視覺 workflow designer、multi-turn operator。可借鑑「外部 coding-agent CLIs as tools」與「local-first toolbelt」理念，但範圍與授權/平台假設不適合作為 opencode+ollama MVP 核心。
+- **既有小候選今天沒有全面突破。** `vibestrate`、`ai-jury`、`kaos-control` 最近仍停在 2026-06-05；`mozart-router`、`Mahoraga`、`aiagentflow` 暫無新 push。它們仍是設計參考：review jury、artefact lifecycle、bandit routing、role pipeline，但目前不宜作核心依賴。
+
+### 對既有結論的修正
+- **修正 1：skelm 從「一般 TypeScript 候選」升級為「最值得做 adapter/prototype 的候選」。** 原因是它已在 README 以 `backend: 'opencode'` 示範 agent step，並把 permissions/network/fs/MCP/exec 都放在 gateway 控制下；這比單純 workflow library 更像本研究需要的安全 task manager 層。
+- **修正 2：第一版 task manager 可分兩條 implementation path。** 若要最快落地：自製薄 script + markdown/YAML task lifecycle；若要直接站在現成 runtime 上：優先試 skelm，再試 Mastra。兩者不互斥：自製 task artifact 可先定義資料模型，之後由 skelm/Mastra runner 執行。
+- **修正 3：OpenCode runtime config 應被視為 task manager 的輸出物。** 不是只呼叫 `opencode`，而是為每個 task 產生/選擇 `OPENCODE_CONFIG_CONTENT` 或 `.opencode/agents/*.md`，把 agent、model、permission、prompt 都作為可審計 artifact。
+- **修正 4：review/verify primitive 應內建在 orchestrator，而不是靠 LLM prompt 自覺。** open-dynamic-workflows 的 `verify` / critic quorum 概念與 ai-jury 的 panel 都指向同一件事：review 要是 workflow step，不是「請同一個模型再檢查一次」。
+- **修正 5：不要被 full-workshop 工具牽走 MVP 範圍。** Tlamatini 類工具展示了 local-first + many tools + workflow canvas 的可能性，但 MVP 仍應保持 CLI/script/task-file 可 diff、可測、可審計。
+
+### 目前最推薦的開源方向
+1. **MVP 主線不變：OpenCode + Ollama + LiteLLM + 薄 task manager。**
+   - OpenCode：coding executor / agent shell（Build / Plan / Explore / Scout + 自訂 reviewer）。
+   - Ollama：local/private model serving baseline。
+   - LiteLLM：model alias、fallback、retry、timeout、usage/cooldown、observability。
+   - 薄 task manager：task lifecycle、policy routing、OpenCode config generation、permission profile、worktree isolation、validation/review artifact。
+2. **第一個現成 runtime prototype 建議試 skelm。**
+   - 理由：TypeScript、typed pipeline、opencode backend、default-deny gateway、durable wait/resume、local-first storage，和本研究目標高度貼合。
+   - 風險：新專案、stars 少、需要實測 opencode backend 成熟度與 permission enforcement 是否真的包住 shell/file/network/MCP。
+3. **Mastra 作為成熟 TypeScript workflow 方案並列第二。**
+   - 若重點是 AI app 生態、structured steps、schema、stream/suspend/resume，Mastra 仍很強。
+   - 若重點是本地 coding-agent 安全邊界、default-deny permissions、gateway-owned privileged actions，skelm 更貼切。
+4. **open-dynamic-workflows 作為架構靈感，不作第一依賴。**
+   - 借鑑：model writes plan once、script runs swarm、sandboxed JS、checkpoint/resume、verify quorum。
+   - 暫不依賴：成熟度低、stars 少、需更多實戰案例。
+5. **OpenHands 保持重型 runtime 候選。** 適合 GUI/REST/SDK/完整 agent runtime，但 local LLM 硬體門檻高，不適合第一版輕量 opencode+ollama task manager。
+
+### 是否建議修改工作流 / 模型路由策略
+- **建議修改：是，小幅升級但不換主棧。** 今日建議把「runner 選型」加入策略：`runner = shell_script | skelm | mastra | temporal`，而不是只選 `executor/model`。
+- 建議新版 task frontmatter / routing output：
+  - `runner`: `thin-script | skelm | mastra | manual`
+  - `executor`: `opencode | aider | verify-command | jury-panel`
+  - `opencode_agent`: `explore | scout | plan | build | reviewer | custom`
+  - `permission_profile`: `read_only | ask_writes | worktree_write | no_shell | tests_only | network_limited`
+  - `model_alias`: `local-fast | local-code | strong-code | review-local | review-strong | private-only`
+  - `privacy_fallback`: `local_only | cloud_allowed_after_redaction | cloud_allowed_with_approval`
+  - `validation_command`: concrete deterministic command, not LLM self-rating
+  - `review_policy`: `none | single_non_executor | jury_quorum`
+  - `artifact_policy`: `save_plan | save_config | save_prompt | save_diff | save_review | save_solution_note | save_run_log`
+- 建議路由分層：
+  1. **Policy layer**：讀 task artifact，判斷 privacy/write/network/context/risk。
+  2. **Runner layer**：簡單任務用 thin-script；需要 durable/persistent/default-deny gateway 時試 skelm；產品化 AI app workflow 再試 Mastra。
+  3. **Executor layer**：OpenCode agent / aider / verify command / review jury。
+  4. **Model gateway layer**：LiteLLM alias -> Ollama/local/cloud fallback。
+  5. **Validation layer**：test/typecheck/build/lint + review jury + human approval gate。
+
+### 值得持續追蹤的項目
+- OpenCode 是否推出更穩定的 non-interactive agent/subagent dispatch API、session API、或 machine-readable run output。
+- skelm 的 opencode backend 是否有更多 examples/tests，尤其 gateway permission 是否能真正限制 exec/filesystem/network/MCP。
+- open-dynamic-workflows 是否出現可重現 demo、adapter、test suite、以及 OpenCode/Ollama 真實 repo 案例。
+- Mastra workflows 是否更容易接 OpenCode CLI / LiteLLM / local artifact store。
+- LiteLLM A2A Gateway 是否從 model gateway 成熟到 agent invocation gateway。
+- ai-jury / kaos-control 是否能提供可抽出的 review jury / markdown lifecycle 實戰模板。
+- 本地 coding 模型（Qwen3.x/3.6、DeepSeek、Kimi、GLM、MiniMax）在 OpenCode + Ollama 的 tool-use、patch reliability、長上下文與 review precision 實測。
+
+### 今日摘要
+今天有實質新進展，但不是推翻主線：仍推薦 **OpenCode + Ollama + LiteLLM + 薄 task manager**。最大更新是 **skelm 優先級上升**：它已明確支援 `opencode` backend，並提供 typed pipeline、default-deny permissions、gateway 控制 privileged actions、durable wait/resume，值得作為第一個現成 runtime prototype。另一個重點是 **open-dynamic-workflows** 持續更新，強化「model plans once, local script orchestrates」這個方向。建議工作流小幅升級：router 不只輸出模型與 executor，也輸出 `runner`、OpenCode runtime config、permission profile、review policy、artifact policy；verification 必須是獨立 workflow step，而不是模型自評。
+
+### 來源/查核記錄
+- GitHub API snapshot 2026-06-06 22:00 UTC：`anomalyco/opencode`、`BerriAI/litellm`、`ollama/ollama`、`langchain-ai/langgraph`、`microsoft/autogen`、`crewAIInc/crewAI`、`mastra-ai/mastra`、`temporalio/temporal`、`OpenHands/OpenHands`、`Aider-AI/aider`、`guyshonshon/vibestrate`、`ucav/mozart-router`、`pockanoodles/Mahoraga`、`aiagentflow/aiagentflow`、`berkayturanci/ai-jury`、`kcsinclair/kaos-control`、`VikingOwl91/gnoma`、`XAIHT/Tlamatini`、`scottgl9/skelm`、`Suraj1235/open-dynamic-workflows`、`aegntic/compound-engineering`、`skgandikota/coracle`、`meganerd/electrictown`、`yash249114/loom`。
+- OpenCode docs 2026-06-06：Agents / built-in Build, Plan, General, Explore, Scout / JSON + markdown agent config / permissions；Config precedence / `OPENCODE_CONFIG_CONTENT` runtime override。
+- LiteLLM routing docs 2026-06-06：load balancing、queueing、cooldown、fallback、timeout、retry、Redis usage/cooldown、routing strategies。
+- Mastra workflows docs 2026-06-06：structured steps、schema、data flow、suspend/resume、streaming、agent/tool execution。
+- CrewAI Flows docs 2026-06-06：event-driven workflow、state management、branch/loop、LiteLLM completion example。
+- OpenHands local LLM docs 2026-06-06：Qwen3.6-35B-A3B recommendation、local LLM limitations、GPU/hardware guidance。
+- README review 2026-06-06：`scottgl9/skelm`、`Suraj1235/open-dynamic-workflows`、`XAIHT/Tlamatini`。
