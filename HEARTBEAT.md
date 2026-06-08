@@ -57,14 +57,25 @@ EOF"
 
 #### Step 4: 執行任務（研究、寫作、分析等）
 
-#### Step 5: 任務完成 → 標記等待 CEO 檢視（自己就是 CEO，所以直接標記 done）
+#### Step 5: 任務完成 → 寫入 EvoMap solution_summary
 ```bash
+# 在同一個 flock 事務裡：先寫 solution_summary 到 pool，再標記 done
 flock ~/.openclaw/task-queue/.lock -c "python3 << 'EOF'
 import json
+import subprocess
 with open('/tmp/task_queue_read.json') as f:
     d = json.load(f)
 for t in d['tasks']:
     if t['id'] == '<task_id>':
+        result = t.get('result', '') or '<任務摘要>'
+        task_id = t['id']
+        ag = 'roaringmoon'
+        subprocess.run([
+            'python3', '/home/node/.openclaw/task-queue/heartbeat_check.py',
+            '--agent', ag,
+            '--write-solution', task_id,
+            '--summary', result
+        ])
         t['status'] = 'done'
         t['completed_at'] = $(date +%s)
         t['ceo_reviewed_at'] = $(date +%s)

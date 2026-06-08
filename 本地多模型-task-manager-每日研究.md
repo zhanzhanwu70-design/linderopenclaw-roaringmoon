@@ -393,3 +393,87 @@
 - CrewAI Flows docs 2026-06-06：event-driven workflow、state management、branch/loop、LiteLLM completion example。
 - OpenHands local LLM docs 2026-06-06：Qwen3.6-35B-A3B recommendation、local LLM limitations、GPU/hardware guidance。
 - README review 2026-06-06：`scottgl9/skelm`、`Suraj1235/open-dynamic-workflows`、`XAIHT/Tlamatini`。
+
+---
+
+### 日期: 2026-06-07
+
+### 今日新發現
+- **主線活躍度仍強，沒有出現足以取代 MVP 主棧的新框架。** GitHub API 快照 2026-06-07 22:00 UTC：`anomalyco/opencode` 約 171.2k stars、今日 push；`ollama/ollama` 約 173.5k stars、今日 push；`BerriAI/litellm` 約 49.6k stars、今日 push；`langchain-ai/langgraph`、`mastra-ai/mastra`、`temporalio/temporal`、`OpenHands/OpenHands` 也都有今日更新。`opencode-ai/opencode` 仍 archived，不應用來判斷 OpenCode 活躍度。
+- **OpenCode Agents / Config 結論再確認，且更適合被 task manager 動態配置。** Agents 文件確認 primary agents `Build` / `Plan`、subagents `General` / `Explore` / `Scout`；agent 可自訂 prompt、model、tool access、temperature、permission。Config precedence 仍包含 `.opencode` 與 `OPENCODE_CONFIG_CONTENT` runtime override，這支持「每個 task 產生可審計 OpenCode config / agent mapping」的設計。
+- **skelm 繼續升級為最值得 prototype 的現成 runtime 候選。** README 明確列出 `backend: 'opencode'`、`@skelm/opencode` backend、default-deny permissions、gateway-owned exec/network/filesystem/MCP、typed TypeScript pipelines、durable wait/resume、persistent chat workflow、SQLite/filesystem local-first、hash-chained audit journal。這和「OpenCode 負責 coding executor，script/runtime 負責 orchestration 與權限」高度吻合。
+- **open-dynamic-workflows 今天最重要的新訊號：OpenCode plugin / keyless native mode。** README 描述 OpenCode adapter 可作為 drop-in plugin，在 OpenCode 內透過 plugin SDK / `session.prompt` 使用既有 OpenCode model，不需 daemon、不需第二組 API key；並聲稱已在 OpenCode 1.2.27 live validated，93 round-trips 完成 multi-agent run。這若屬實，對 opencode + ollama 主軸非常關鍵：可把「dynamic workflow engine」內嵌到 OpenCode，而不是外掛一個需要另行配 key 的 daemon。仍需實測，因 repo stars 很低。
+- **LiteLLM routing 文件新增/確認 routing groups 與 traffic mirroring 對模型策略有用。** 除了既有 load balance、queueing、cooldown、fallback、timeout、retry、Redis tpm/rpm usage/cooldown，今日查到 routing groups 可針對不同 model group 套用不同 routing strategy；traffic mirroring 可做 silent experiments。這支持下一版 router 把 `local-fast` / `local-code` / `strong-code` / `review-*` 分成不同策略，並用 mirror 收集候選本地模型品質資料。
+- **ai-jury 今天仍活躍，review jury 方向更具體。** README 顯示它是 stdlib-only Python CLI，驅動 Claude Code / Codex / Antigravity native CLIs + Ollama/OpenAI-compatible local model，做 diff/PR/issue review、debate、verify、chair synthesis 或 panel vote；支援 sandbox/read-only、CI gating、large-diff chunking、incremental review、suggested patches，並有 coverage/CodeQL/PyPI badges與方向性 benchmark。仍不宜當核心 orchestrator，但可作 `review_policy: jury_quorum` 參考實作。
+- **新增候選：`RBraga01/a-team`（約 4 stars，2026-06-07 push）。** 它是「一個資料夾式工程團隊」：25 specialist agents、18 workflow skills、lead orchestrator、hard quality gates、pipeline auditor、`.opencode/` integration。價值是 agent roster / hooks / quality gate / pipeline auditor 模板；缺點是偏 agent/skill pack，不是模型 router 或 durable runtime。
+- **新增候選：`izhiwen/AiPlus`（約 1 star，2026-06-07 push）。** 面向 Codex / Claude Code / OpenCode 的 local CLI meta-layer，重點是 project memory、role-based dispatch、handoff/compact reminder、status、self-correct、tamper-evident dispatch log、key injection。可作「本地 project memory + routing audit」設計參考，但目前不替代 LiteLLM / OpenCode / skelm。
+- **新增候選：`halbritt/striatum`（約 3 stars，2026-06-07 push）。** README 描述 local workflow runner for terminal AI coding agents，支援 implement → review → repair → synthesize loops、leases、verdicts、audit chains、daemon-owned Postgres、repo durable artifacts、terminal-command provider wrappers。它偏重型、需要 Postgres/daemon，但「verdicts + leases + audit-chain + terminal wrapper」是中期 production runner 的好參考。
+- **新增候選：`earlvanze/sage-router`（約 2 stars，2026-06-06 push）。** Local-first model gateway，支援 OpenAI/Anthropic/Gemini-compatible endpoints、Ollama auto-discovery、intent/complexity/requirements/thinking-level scoring、fallback chain、debug headers。它與 LiteLLM 角色重疊；價值是「semantic intent router」設計，但成熟度與安全性需審查，暫不替代 LiteLLM。
+- **可疑/低信任訊號：`RandallRO/axon`。** GitHub 搜尋描述看似 local zero-trust orchestration，但 README 指向 raw zip download、內容像一般 Windows installer 宣傳，與本研究關聯弱且供應鏈風險高；不納入候選。
+
+### 對既有結論的修正
+- **修正 1：open-dynamic-workflows 的優先級小幅上升，但仍是「需實測的高潛力設計參考」。** 昨天只把它視為 script-as-orchestrator 靈感；今天它聲稱已有 OpenCode plugin keyless native mode，若實測成立，會比外部 daemon 更貼合 opencode + ollama。但因 repo 很新、stars 少，不能直接升為主依賴。
+- **修正 2：LiteLLM 不只做 fallback，也可作「實驗收集層」。** routing groups + traffic mirroring 讓我們可以在不影響主流程的情況下鏡像到新本地模型，累積 review/verify 結果後再調整路由。
+- **修正 3：task manager 候選可以分成三層，不應混在一起比較。** (a) runtime/gateway：skelm、Mastra、Temporal、Striatum；(b) dynamic workflow pattern：open-dynamic-workflows；(c) agent/team/process packs：A Team、AiPlus、compound-engineering。MVP 應選 runtime + pattern，process pack 只抽模板。
+- **修正 4：review jury 已從「加分項」變成第一版應保留的 routing policy 欄位。** 不一定導入 ai-jury，但 task schema 應先有 `review_policy: none | single_non_executor | jury_quorum | panel_vote`，避免未來重改資料模型。
+- **修正 5：安全/供應鏈審查要納入小 repo 評估流程。** 今天的 axon 類結果提醒：低 star 新 repo 很容易包裝成 orchestration/router，但 README 若要求下載 raw binary/zip、與描述不一致，應直接降級或排除。
+
+### 目前最推薦的開源方向
+1. **MVP 主線維持：OpenCode + Ollama + LiteLLM + 薄 task manager。**
+   - OpenCode：coding executor / role shell（Build / Plan / Explore / Scout + custom reviewer）。
+   - Ollama：local/private model serving baseline。
+   - LiteLLM：model alias、fallback、retry、timeout、routing groups、traffic mirroring、usage/cooldown。
+   - 薄 task manager：task lifecycle、policy routing、OpenCode runtime config generation、permission profile、worktree isolation、validation/review artifact。
+2. **第一個現成 runtime prototype：skelm。**
+   - 理由：TypeScript、opencode backend、default-deny gateway、durable/persistent workflow、local-first storage、audit journal。
+   - 驗證重點：`@skelm/opencode` 是否可穩定指定 OpenCode agent/model/permission；gateway 是否真的限制 shell/filesystem/network/MCP；run log 是否足夠做審計。
+3. **第一個 OpenCode-native dynamic workflow 實驗：open-dynamic-workflows plugin。**
+   - 理由：若 OpenCode plugin 可直接用 host model / Ollama config，會大幅降低整合摩擦。
+   - 驗證重點：plugin 安裝、OpenCode 版本相容、Ollama/local model 支援、sandbox/permission、large fan-out crash-resume 是否需要 daemon。
+4. **review/security 設計參考：ai-jury。**
+   - 不必直接綁定，但把 jury quorum / panel vote / chair synthesis / CI gate / large-diff chunking 納入 schema。
+5. **中期 production runner 參考：Striatum。**
+   - 若未來需要 daemon-owned state、leases、verdicts、Postgres、audit-chain，Striatum 的架構值得研究；MVP 暫時太重。
+
+### 是否建議修改工作流 / 模型路由策略
+- **建議修改：是，策略小幅升級，不換主棧。**
+- 建議新增兩個 routing 維度：
+  - `integration_mode`: `external_runner | opencode_plugin | cli_wrapper`。用來區分 skelm/Mastra、open-dynamic-workflows plugin、純 shell wrapper。
+  - `experiment_policy`: `none | litellm_mirror | shadow_review | benchmark_only`。用 LiteLLM traffic mirroring 或 shadow review 收集新模型品質，不直接影響 production result。
+- 建議新版 routing output 保留昨天欄位並補強：
+  - `runner`: `thin-script | skelm | mastra | striatum | manual`
+  - `integration_mode`: `external_runner | opencode_plugin | cli_wrapper`
+  - `executor`: `opencode | aider | verify-command | jury-panel`
+  - `opencode_agent`: `explore | scout | plan | build | reviewer | custom`
+  - `permission_profile`: `read_only | ask_writes | worktree_write | no_shell | tests_only | network_limited`
+  - `model_alias`: `local-fast | local-code | strong-code | review-local | review-strong | private-only`
+  - `litellm_strategy_group`: `fast | code | review | fallback | experimental-mirror`
+  - `privacy_fallback`: `local_only | cloud_allowed_after_redaction | cloud_allowed_with_approval`
+  - `validation_command`: deterministic command
+  - `review_policy`: `none | single_non_executor | jury_quorum | panel_vote`
+  - `experiment_policy`: `none | litellm_mirror | shadow_review | benchmark_only`
+  - `artifact_policy`: `save_plan | save_config | save_prompt | save_diff | save_review | save_solution_note | save_run_log | save_route_decision`
+- 建議下輪實作順序：
+  1. 先做 thin-script + task markdown schema，不綁 runtime。
+  2. 對同一個 task 跑 skelm prototype 與 open-dynamic-workflows OpenCode plugin smoke test。
+  3. LiteLLM 設定 routing groups，並對一個非關鍵 review 任務開 traffic mirroring。
+  4. review 階段先做 single non-executor reviewer，再擴成 jury quorum。
+
+### 值得持續追蹤的項目
+- OpenCode 是否提供更穩定 non-interactive dispatch/session API、machine-readable run output、plugin model API 文件。
+- skelm `@skelm/opencode` backend 實測成熟度與 permission gateway 是否能覆蓋 OpenCode agent 的 shell/file/network/MCP 行為。
+- open-dynamic-workflows OpenCode plugin 的 keyless native mode 是否可重現，尤其在 Ollama/local model 下是否可靠。
+- LiteLLM routing groups / traffic mirroring 在 coding-agent 場景下的 observability 與評估資料如何落地。
+- ai-jury 的 benchmark 是否擴大到更多 fixtures、是否能穩定降低 false positives。
+- Striatum 是否持續更新，尤其 terminal-agent wrapper、leases/verdicts/audit-chain 是否有可跑 demo。
+- Sage Router / Mozart / Mahoraga / gnoma 類 semantic/adaptive routers 是否出現可重現 benchmark，而不只是 README 宣稱。
+- 本地 coding 模型（Qwen、DeepSeek、Kimi、GLM、MiniMax）在 OpenCode + Ollama 的 patch reliability、tool-use、長上下文、review precision 實測。
+
+### 今日摘要
+今天有實質新進展，但主線不變：仍推薦 **OpenCode + Ollama + LiteLLM + 薄 task manager**。最大新增是 **open-dynamic-workflows 聲稱已有 OpenCode plugin / keyless native mode**，可直接透過 OpenCode 既有模型跑 dynamic workflow；若實測成立，會是 opencode+ollama 路線的重要加速器。**skelm 仍是第一個現成 runtime prototype 候選**，因為它明確支援 opencode backend、typed pipeline、default-deny gateway、durable/persistent workflow。另補強 LiteLLM 的定位：除了 fallback，也應用 routing groups + traffic mirroring 做本地模型 shadow experiment。建議工作流新增 `integration_mode` 與 `experiment_policy`，但暫時不要換主棧或導入重型 Striatum/Temporal。
+
+### 來源/查核記錄
+- GitHub API snapshot 2026-06-07 22:00 UTC：`anomalyco/opencode`、`opencode-ai/opencode`、`BerriAI/litellm`、`ollama/ollama`、`langchain-ai/langgraph`、`microsoft/autogen`、`crewAIInc/crewAI`、`mastra-ai/mastra`、`temporalio/temporal`、`OpenHands/OpenHands`、`Aider-AI/aider`、`scottgl9/skelm`、`Suraj1235/open-dynamic-workflows`、`berkayturanci/ai-jury`、`RBraga01/a-team`、`izhiwen/AiPlus`、`halbritt/striatum`、`earlvanze/sage-router` 等。
+- OpenCode docs 2026-06-07：Agents / Build, Plan, General, Explore, Scout / JSON + markdown agent config / permissions；Config precedence / `.opencode` / `OPENCODE_CONFIG_CONTENT`。
+- LiteLLM routing docs 2026-06-07：load balancing、queueing、cooldown、fallback、timeout、retry、Redis usage/cooldown、routing strategies、routing groups、traffic mirroring。
+- README review 2026-06-07：`scottgl9/skelm`、`Suraj1235/open-dynamic-workflows`、`berkayturanci/ai-jury`、`RBraga01/a-team`、`izhiwen/AiPlus`、`halbritt/striatum`、`earlvanze/sage-router`、`RandallRO/axon`。
