@@ -565,3 +565,83 @@
 - OpenCode docs 2026-06-08：Agents / Build, Plan, General, Explore, Scout / agent JSON + Markdown config / model、temperature、steps、permissions；Config precedence / `OPENCODE_CONFIG_CONTENT` / managed config。
 - LiteLLM routing docs 2026-06-08：routing strategies、routing groups、traffic mirroring、deployment ordering、weighted failover、fallback/retry/cooldown/Redis usage。
 - README review 2026-06-08：`scottgl9/skelm`、`halbritt/striatum`、`Suraj1235/open-dynamic-workflows`、`berkayturanci/ai-jury`、`JuReyms/Palabre`、`keakon/chord`、`tiny-intelligence/localcoding`、`skgandikota/coracle`、`izhiwen/AiPlus`、`guyshonshon/vibestrate`、`earlvanze/sage-router`、`kherrera6219/theFactory`。
+
+---
+
+### 日期: 2026-06-09
+
+### 今日新發現
+- **主線活躍度仍強，沒有出現足以取代 MVP 主棧的新框架。** GitHub API 快照 2026-06-09 22:00 UTC：`anomalyco/opencode` 約 172.1k stars、今日 push；`BerriAI/litellm` 約 49.8k stars、今日 push；`ollama/ollama` 約 173.7k stars、今日 push；`langchain-ai/langgraph`、`crewAIInc/crewAI`、`mastra-ai/mastra`、`temporalio/temporal`、`OpenHands/OpenHands` 今日也都有更新。`Aider-AI/aider` 最近 push 仍停在 2026-05-22，但社群關注與 terminal coding agent 角色仍穩。
+- **OpenCode Agents / Config 結論維持，且足以支撐 per-task runtime config。** 官方 docs 今日確認 primary agents `Build` / `Plan`、subagents `General` / `Explore` / `Scout`；agent 可用自訂 prompt、model、tool access；`Plan` 預設 edits/bash ask，`Explore`/`Scout` read-only。Config precedence 仍包含 `.opencode` 與 `OPENCODE_CONFIG_CONTENT` inline runtime override，表示 task manager 可以把任務策略編譯成一次性的 OpenCode agent/model/permission config。
+- **LiteLLM 仍是模型 gateway 首選，但今日更應強調「硬限流/可觀測 routing」。** Load balancing docs 明確列出 `simple-shuffle`、`least-busy`、`usage-based-routing`、`latency-based-routing`、`cost-based-routing`，並支援 `enforce_model_rate_limits` 將 RPM/TPM 變成 pre-call hard limit。這對 local Ollama/小 GPU 特別重要：不只要 fallback，也要避免同時 fan-out 把本機模型打爆。
+- **skelm 今日仍是第一個現成 runtime prototype 候選。** `scottgl9/skelm` 今日 push，約 25 stars；README 仍明確展示 `agent({ backend: 'opencode', permissions: ... })`、typed TypeScript pipelines、default-deny permissions、gateway-owned exec/network/filesystem/MCP、durable wait/resume、persistent workflows。它仍最貼近「OpenCode 作 executor，runtime/gateway 作 orchestration 與權限邊界」。
+- **Striatum 今日持續更新，從「中期參考」更像 production-state runner 藍圖。** `halbritt/striatum` 今日 22:00 UTC push；README 明確描述 terminal coding agent workflow runner，提供 multi-lane implement → review → repair → synthesize loops、leases、verdicts、daemon-owned Postgres、hash-chained audit log、repo durable Markdown artifacts、`corpus export` redacted JSONL。它太重，不建議 MVP 導入，但它的 `leases/verdicts/evidence/corpus export` 應提前進 schema 思考。
+- **Palabre 今日持續更新，定位更清楚：read-only debate / decision-review sidecar。** `JuReyms/Palabre` 今日 push；README 說它可驅動 Claude Code、Codex CLI、Gemini CLI、Antigravity、OpenCode via `opencode run`、Ollama local HTTP，並提供 versioned JSON / NDJSON event stream、Markdown export。這非常適合 `debate_policy` 或 architecture/plan critique，不應作 implementation runner。
+- **AiPlus 今日升級為「process/memory/audit pack」參考。** `izhiwen/AiPlus` 今日 push；README 強調 project memory、role-based dispatch、handoff/compact reminder、status、self-correct、tamper-evident hash-chain dispatch log、local JSONL memory。它不是 model router/runtime，但可借鑑「memory → dispatch → team → handoff → status → self-correct → audit」七段式流程，尤其是 long-session handoff 與 project memory。
+- **新增較成熟的桌面/IDE 類候選：`generalaction/emdash`。** 約 4.8k stars、今日 push；README 定位為 desktop app，能在多個 git worktree 並行跑 Claude Code、Codex、OpenCode、Gemini、Amp 等 coding agents，支援 ticket ingestion、diff review、PR/CI/merge、local 或 SSH remote machines。它不是本地 Ollama router，也不是薄 CLI task manager，但證明「worktree-per-agent + parallel coding agent management + review/merge UI」已在產品化；可作 UI/ops 層長期參考。
+- **新增/重看 CAST：`ek33450505/claude-agent-team`。** 約 6 stars、今日 push；雖偏 Claude Code，不是 OpenCode/Ollama 主線，但 README 提到 hook enforcement、SQLite audit trail、typed agent registry、23 agents、model tier assignment、1199 BATS tests、commit/push hard-block。其價值是 hook-gated lifecycle / local audit / role frontmatter contract，可抽象成 OpenCode task manager 的安全與品質 gate 模板。
+- **其他今日新訊號多為低 star process/swarm 包。** 如 `Agentic-Vibe-Fleet`、`Termy`、`gaviero`、`GODMODE` 等，方向集中在 terminal coding-agent orchestration / multi-agent IDE / cross-model debate，但目前成熟度、供應鏈可信度或與 opencode+ollama 的貼合度不足，只列觀察，不納入主候選。
+
+### 對既有結論的修正
+- **修正 1：MVP 主棧不變，但 `resource_policy` 應升級為一級欄位。** LiteLLM hard RPM/TPM limits 與 routing strategy 提醒我們，本地 Ollama 不是無限資源；task manager 應能標記 `low_ram_single_slot`、`no_parallel_llm`、`rate_limit_group`，避免 parallel review/debate 壓垮本地模型。
+- **修正 2：Striatum 的 schema 概念值得提前吸收。** 之前只把 Striatum 當 production runner 參考；今天建議把 `lease`、`verdict`、`evidence_bundle`、`corpus_export`、`audit_chain` 這些概念先放進中期資料模型，哪怕 MVP 仍用 markdown/YAML + thin-script。
+- **修正 3：Palabre/AiPlus/CAST/Emdash 不能混成 runner 比較。** Palabre 是 debate sidecar，AiPlus/CAST 是 process + gate + audit pack，Emdash 是 desktop ops/worktree UI，skelm/Striatum 才是 runner/runtime 類；比較時應分層，避免選型混亂。
+- **修正 4：桌面 UI / remote machine orchestration 是長期 ops 層，不是 MVP 必需。** Emdash 類工具值得追蹤，但目前主需求是 opencode+ollama task manager；先把可 diff、可審核、可測的 CLI/task-file 層做好，再考慮 UI。
+- **修正 5：Claude/Codex 生態的 hook/agent registry 設計可借鑑，但不能直接套用。** CAST 類工具的 commit/push hard-block、typed agent registry、SQLite audit 很有價值；但因 OpenCode permission/config 已有原生 surface，OpenCode 路線應優先編譯到 OpenCode config，而不是複製 Claude Code hook 假設。
+
+### 目前最推薦的開源方向
+1. **MVP 主線維持：OpenCode + Ollama + LiteLLM + 薄 task manager。**
+   - OpenCode：coding executor / role shell / per-agent permission config。
+   - Ollama：local/private model serving baseline。
+   - LiteLLM：model alias、fallback、routing strategy、hard rate limits、usage/cooldown、shadow/mirror experiments。
+   - 薄 task manager：task lifecycle、policy routing、OpenCode runtime config generation、permission map、resource policy、worktree isolation、validation/review/debate artifact。
+2. **第一個現成 runtime prototype 仍是 skelm。**
+   - 優先驗證 `@skelm/opencode` backend、permission gateway、per-step fs/network/exec/MCP boundaries、durable wait/resume、audit journal。
+3. **中期 production-state runner 參考：Striatum。**
+   - 不建議 MVP 上 Postgres/daemon，但建議借鑑 leases、verdicts、evidence-backed artifacts、hash-chain audit、redacted JSONL corpus export。
+4. **review/debate/process sidecars：ai-jury + Palabre + AiPlus/CAST。**
+   - ai-jury：diff/PR verdict jury。
+   - Palabre：architecture/plan debate + NDJSON/Markdown export。
+   - AiPlus/CAST：project memory、handoff、role registry、hook/quality gate、audit log 模板。
+5. **長期 ops/UI 參考：Emdash。**
+   - 若未來要多人/多 repo/遠端機器/票務入口/PR merge UI，可研究 Emdash；目前不應替代 CLI-first task manager。
+
+### 是否建議修改工作流 / 模型路由策略
+- **建議修改：是，小幅但重要；不換主棧。** 今天建議把 `resource_policy`、`rate_limit_group`、`verdict/evidence`、`ops_ui_candidate` 這些概念納入 schema/roadmap。
+- 建議 routing/task schema 補強：
+  - `resource_policy`: `normal | low_ram_single_slot | no_parallel_llm | allow_parallel_review | remote_runner_ok`
+  - `rate_limit_group`: `local-ollama-small | local-ollama-code | cloud-fallback | review-mirror`
+  - `runner`: `thin-script | skelm | mastra | striatum | manual`
+  - `integration_mode`: `external_runner | opencode_plugin | cli_wrapper | debate_cli | desktop_ops`
+  - `executor`: `opencode | aider | verify-command | jury-panel | debate-panel`
+  - `opencode_permission_map`: `{ read, edit, bash, external_directory, webfetch, websearch, task, skill, doom_loop }`
+  - `review_policy`: `none | single_non_executor | jury_quorum | panel_vote`
+  - `debate_policy`: `none | two_agent_debate | multi_agent_debate | chair_synthesis`
+  - `verdict_policy`: `none | record_pass_fail | record_needs_revision | synthesize_final_verdict`
+  - `artifact_policy`: `save_plan | save_config | save_prompt | save_diff | save_review | save_debate | save_verdict | save_evidence_bundle | save_solution_note | save_run_log | save_route_decision`
+- 建議下一輪實測順序：
+  1. 先把 OpenCode permission map schema 固化，並產一份 `OPENCODE_CONFIG_CONTENT` 範例。
+  2. LiteLLM 設 `local-code` / `review-local` 的 hard RPM/TPM 或 single-slot policy，避免本地 fan-out。
+  3. 用同一個低風險 repo task 跑 thin-script baseline 與 skelm minimal opencode backend smoke test。
+  4. Palabre 只作 plan/debate sidecar，輸出 NDJSON/Markdown，不讓它改 repo。
+  5. 把 review 結果寫成 `verdict + evidence_bundle`，為未來 Striatum/production runner 保留相容欄位。
+
+### 值得持續追蹤的項目
+- OpenCode 是否推出更穩定 non-interactive dispatch/session API、machine-readable run output、plugin model API、permission map 文件更新。
+- skelm `@skelm/opencode` backend 實測是否真的可控 OpenCode agent 的 shell/filesystem/network/MCP 行為。
+- Striatum 是否出現輕量 demo 或不需 Postgres 的模式；其 leases/verdicts/audit-chain/corpus export 能否抽成通用 schema。
+- Palabre NDJSON v1 是否穩定，是否適合直接接入 task artifact / debate transcript。
+- LiteLLM hard rate limit、routing groups、traffic mirroring 如何和 local Ollama capacity / validation result 綁成模型品質資料集。
+- AiPlus/CAST 的 memory/handoff/hook-gate/audit 設計能否抽出成 OpenCode-compatible templates。
+- Emdash 的 OpenCode support、worktree lifecycle、remote machine orchestration、PR/CI review UI 是否成熟到能作 ops layer。
+- 本地 coding 模型（Qwen、DeepSeek、Kimi、GLM、MiniMax）在 OpenCode + Ollama 的 patch reliability、tool-use、長上下文、review precision、低 RAM single-slot 表現。
+
+### 今日摘要
+今天有實質新進展，但主線不變：仍推薦 **OpenCode + Ollama + LiteLLM + 薄 task manager**。最大更新是策略更偏「資源與證據治理」：LiteLLM 的 hard RPM/TPM limit 應用來保護本地 Ollama；Striatum 的 leases/verdicts/evidence/corpus export 應納入中期 schema；Palabre 適合作 read-only debate sidecar；AiPlus/CAST 可借鑑 memory/handoff/hook-gate/audit；Emdash 則代表長期 ops/UI 層。建議工作流小幅修改：新增 `resource_policy`、`rate_limit_group`、`verdict_policy`、`evidence_bundle`；下一步仍應先做 thin-script schema + skelm opencode backend smoke test，不要急著導入重型 daemon 或桌面平台。
+
+### 來源/查核記錄
+- GitHub API snapshot 2026-06-09 22:00 UTC：`anomalyco/opencode`、`BerriAI/litellm`、`ollama/ollama`、`langchain-ai/langgraph`、`microsoft/autogen`、`crewAIInc/crewAI`、`mastra-ai/mastra`、`temporalio/temporal`、`OpenHands/OpenHands`、`Aider-AI/aider`、`scottgl9/skelm`、`Suraj1235/open-dynamic-workflows`、`berkayturanci/ai-jury`、`halbritt/striatum`、`JuReyms/Palabre`、`keakon/chord`、`tiny-intelligence/localcoding`、`skgandikota/coracle`、`izhiwen/AiPlus`、`guyshonshon/vibestrate`、`earlvanze/sage-router`、`RBraga01/a-team`、`ucav/mozart-router`、`pockanoodles/Mahoraga`、`aiagentflow/aiagentflow`、`VikingOwl91/gnoma`、`XAIHT/Tlamatini`。
+- GitHub search 2026-06-09：`opencode ollama orchestration`、`local coding agent orchestrator ollama`、`terminal AI coding agents orchestration` 等查詢；新增觀察 `generalaction/emdash`、`ek33450505/claude-agent-team`、`kacperpietrzyk/Termy`、`neich/gaviero` 等。
+- OpenCode docs 2026-06-09：Agents / Build, Plan, General, Explore, Scout；Config precedence / `.opencode` / `OPENCODE_CONFIG_CONTENT`。
+- LiteLLM docs 2026-06-09：load balancing strategies、deployment ordering、`enforce_model_rate_limits` hard RPM/TPM limit。
+- README review 2026-06-09：`scottgl9/skelm`、`halbritt/striatum`、`JuReyms/Palabre`、`izhiwen/AiPlus`、`ek33450505/claude-agent-team`、`generalaction/emdash`。
