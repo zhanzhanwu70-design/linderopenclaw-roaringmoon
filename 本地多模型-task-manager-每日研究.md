@@ -725,3 +725,74 @@
 - OpenCode docs 2026-06-10：Agents / Build, Plan, General, Explore, Scout / JSON + Markdown agent config / permissions；Config precedence / `.opencode` / `OPENCODE_CONFIG_CONTENT`。
 - LiteLLM docs 2026-06-10：routing/load balancing、queueing、cooldown、fallback、timeout、retry、Redis usage/cooldown、routing strategies。
 - README review 2026-06-10：`scottgl9/skelm`、`halbritt/striatum`、`JuReyms/Palabre`、`Mybono/ai-orchestrator`、`mercurialsolo/claudectl`、`sstraus/tuicommander`、`superset-sh/superset`、`aegntic/compound-engineering`、`asdadcfgh-maker/dxa-deimos`。
+
+
+---
+
+### 日期: 2026-06-11
+
+### 今日新發現
+- **主線活躍度仍強，沒有出現足以取代 MVP 主棧的新框架。** GitHub API 快照 2026-06-11 22:00 UTC：`anomalyco/opencode` 約 173.2k stars、今日 push；`BerriAI/litellm` 約 50.1k stars、今日 push；`ollama/ollama` 約 173.9k stars、今日 push；`langchain-ai/langgraph`、`crewAIInc/crewAI`、`mastra-ai/mastra`、`temporalio/temporal`、`OpenHands/OpenHands` 也都有今日更新。`Aider-AI/aider` 最近 push 仍停在 2026-05-22，但終端 coding agent 角色仍可作 executor 候選。
+- **skelm 今日訊號再強化：它不只是 workflow engine，而是「gateway-owned trust boundary」。** README 今日確認 typed TypeScript pipelines、`agent({ backend: 'opencode' })`、default-deny permissions、gateway-owned exec/network/filesystem/MCP、per-agent isolated filesystem roots、CONNECT proxy 限制 network egress、hash-chained audit journal、SQLite/filesystem local-first、durable wait/resume、persistent workflow、scheduler/webhook/queue/file-watch triggers。這比一般 orchestration framework 更貼近本地 coding agent 的安全需求。
+- **ai-jury 今日活躍且可信度小幅上升。** README 顯示 CI、CodeQL、PyPI、99% coverage gate、live smoke tests、directional benchmark；它驅動 Claude Code / Codex / Antigravity native CLIs + Ollama/OpenAI-compatible local model，做 diff/PR/issue review、rebuttal、verify、chair synthesis 或 panel vote。這讓 `review_policy: jury_quorum | panel_vote` 更值得成為第一版 schema 欄位，而不是後補功能。
+- **Palabre 今日活躍，NDJSON v1 public integration API 是關鍵。** README 確認支援 Claude Code、Codex CLI、Gemini CLI、Antigravity、OpenCode via `opencode run`、Ollama local HTTP；它提供 `--renderer ndjson` / `--json`，並把 NDJSON v1 視為 public integration API。這讓它比單純 debate CLI 更適合作為 `debate_policy` sidecar，輸出可被 task manager 收進 artifact。
+- **Sage Router 今日活躍，但定位仍應是「semantic router 參考」，不是 LiteLLM 替代。** README 描述 local-first/self-hosted gateway、OpenAI/Anthropic/Gemini API formats、Ollama auto-discovery、intent/complexity/requirements/thinking-level scoring、debuggable route headers、local-first hard filters、fallback chain。它比 LiteLLM 更語意化，但成熟度與授權/安全仍需審查；目前可借鑑 route explanation、hard requirement filters、debug headers，不建議取代 LiteLLM production gateway。
+- **CAST 今日升級為更成熟的「hook-gated control plane」參考。** `ek33450505/claude-agent-team` 今日 push，約 6 stars；README 顯示 v7.4.1、23 agents、1276 BATS tests、35-table local SQLite audit DB、hook enforcement、typed agent registry、raw `git commit` / `git push` hard-block、Agent Dispatch Manifest、`owns_files` 防並行寫衝突、local Ollama cheap-mode。雖偏 Claude Code，但其 hook/gate/audit/ownership 模型很值得抽象到 OpenCode task manager。
+- **ops/UI 層繼續升溫，但仍不該進 MVP 核心。** `generalaction/emdash` 今日約 4.8k stars、`superset-sh/superset` 約 11.7k stars、`sstraus/tuicommander` 約 80 stars，皆今日 push；它們強化「多 worktree、多 coding agent、parallel execution、diff/review/merge UI」是長期趨勢，但不處理 local Ollama semantic routing / permission schema，應等 CLI/task-file 層穩定後再評估。
+- **小型候選今日仍有動態但未推翻分層。** `striatum` 今日仍更新，繼續作 production-state runner 參考；`chord` 今日更新，提供 local-first coding shell / model pool / headless JSONL / context trimming 參考；`vibestrate`、`a-team`、`Tlamatini` 今日也有 push，但仍分別屬 supervised flow / process pack / full assistant，不宜替代 MVP 主棧。
+- **GitHub Search API 今日被 rate limit。** 已完成既有候選的 repo metadata 與 README 查核；新增 repo 搜尋未完整展開，因此今天結論偏「既有候選狀態更新 + README 深查」，不是完整新候選掃描。
+
+### 對既有結論的修正
+- **修正 1：skelm 的優先級維持第一，且評估焦點要改成 permission enforcement 實測。** 昨天已建議 skelm 作 prototype；今天更明確：真正要測的不是能不能跑 OpenCode，而是 gateway 是否能確實約束 exec、network、filesystem、MCP、worktree roots，並保留可驗證 audit journal。
+- **修正 2：review/debate artifacts 應使用可機讀格式，而不只是 Markdown。** ai-jury 的 verdict/report 與 Palabre 的 NDJSON v1 都提醒：task manager 應能收 `review_events.jsonl`、`debate_events.ndjson`、`verdict.json`，再生成人類可讀 Markdown。
+- **修正 3：semantic model routing 不應混入 task orchestration。** Sage Router 顯示 intent/complexity/thinking-level scoring 很有用，但這一層應作「route explanation / model preselector」；task lifecycle、permission、worktree、validation、human approval 仍應由上層 deterministic task manager 控制。
+- **修正 4：parallel coding 必須有 file ownership / write conflict model。** CAST 的 `owns_files` 與 Emdash/Superset worktree-per-agent 訊號都指向同一件事：若允許並行 agent 寫 code，schema 需包含 `owned_paths` / `conflict_policy` / worktree isolation，不能只靠 prompt 約束。
+- **修正 5：今天沒有新工具足以推翻「thin-script schema 先行」。** 既有候選持續活躍，但最安全路線仍是先把可 diff 的 task artifact、permission map、evidence/verdict schema 固化，再接 skelm/Mastra/Striatum/ops UI。
+
+### 目前最推薦的開源方向
+1. **MVP 主線維持：OpenCode + Ollama + LiteLLM + 薄 task manager。**
+   - OpenCode：coding executor / role shell / per-task agent config。
+   - Ollama：local/private worker model serving。
+   - LiteLLM：model gateway、fallback、hard limits、routing groups、shadow/mirror experiment。
+   - 薄 task manager：task lifecycle、policy routing、OpenCode runtime config generation、permission map、resource policy、owned paths、worktree isolation、validation/review/debate/evidence artifacts。
+2. **第一個現成 runtime prototype：skelm。** 優先測 `@skelm/opencode` backend、default-deny gateway、network/filesystem/exec/MCP enforcement、hash-chain audit、durable wait/resume。
+3. **review/debate sidecars：ai-jury + Palabre。** ai-jury 用於 diff/PR verdict jury；Palabre 用於 architecture/plan debate。兩者第一版都應 read-only，輸出 JSON/NDJSON/Markdown artifact，不允許直接寫 repo。
+4. **semantic router 參考：Sage Router，但 LiteLLM 仍是 production gateway。** 借 route explanation、intent/complexity/thinking-level、hard requirement filters；不要用它替換 LiteLLM，除非後續安全與穩定性實測通過。
+5. **control-plane / production runner 參考：CAST + Striatum。** CAST 提供 hook gate、typed agent registry、SQLite audit、file ownership；Striatum 提供 leases/verdicts/evidence/corpus export。MVP 先抽 schema，不上重型 daemon。
+6. **長期 ops/UI 層：Emdash / Superset / TUICommander。** 等 CLI workflow 穩定後再評估 UI/remote-machine/PR merge 層。
+
+### 是否建議修改工作流 / 模型路由策略
+- **建議修改：是，小幅但有料；不換主棧。** 今日建議把「可機讀 review/debate event」與「write ownership/conflict policy」納入 schema。
+- 建議 routing/task schema 補強：
+  - `owned_paths`: `['src/foo/**', 'tests/foo/**']`
+  - `conflict_policy`: `exclusive_worktree | owned_paths_only | review_required_on_overlap | no_parallel_writes`
+  - `review_artifact_format`: `markdown | json | jsonl | verdict_json`
+  - `debate_artifact_format`: `markdown | ndjson_v1 | json`
+  - `route_explanation`: `{ intent, complexity, requirements, thinking_level, selected_chain, rejected_reasons[] }`
+  - `permission_enforcement_target`: `opencode_native | skelm_gateway | shell_wrapper | manual_review`
+  - 保留既有：`dependency_graph`、`handoff_mode`、`resource_policy`、`rate_limit_group`、`runner`、`executor`、`opencode_permission_map`、`review_policy`、`debate_policy`、`verdict_policy`、`policy_learning_log`、`knowledge_policy`、`artifact_policy`。
+- 建議下一輪實測順序：
+  1. thin-script schema 加上 `owned_paths` / `conflict_policy` / `review_artifact_format` / `debate_artifact_format`。
+  2. 產一份 per-task `OPENCODE_CONFIG_CONTENT` + skelm workflow draft，對同一任務比對 permission 行為。
+  3. ai-jury 跑一個 read-only diff fixture，保存 `verdict.json` + report。
+  4. Palabre 跑一個 architecture debate fixture，保存 NDJSON v1 + Markdown。
+  5. LiteLLM 保留 gateway 角色；另用 Sage Router 的概念補 route explanation，不直接替換。
+
+### 值得持續追蹤的項目
+- OpenCode non-interactive dispatch/session API、machine-readable output、permission map、plugin model API 是否更穩定。
+- skelm `@skelm/opencode` backend 是否能實際約束 shell/filesystem/network/MCP，尤其 OpenCode agent tool calls 是否完全經 gateway。
+- ai-jury verdict schema / benchmark / PyPI release 是否穩定，是否適合接入 CI gate。
+- Palabre NDJSON v1 是否保持相容，是否能穩定驅動 OpenCode + Ollama debate。
+- Sage Router 的 route explanation / hard filters / API format compatibility 是否可抽成 LiteLLM 前置 policy，不引入額外風險。
+- CAST 的 `owns_files`、hook gate、SQLite audit、Agent Dispatch Manifest 是否能抽象為 OpenCode-neutral schema。
+- Striatum 的 leases/verdicts/audit-chain/corpus export 是否出現輕量模式。
+- Emdash / Superset / TUICommander 的 OpenCode support、worktree lifecycle、diff/PR UI 是否成熟。
+- 本地 coding 模型（Qwen、DeepSeek、Kimi、GLM、MiniMax）在 OpenCode + Ollama 的 patch reliability、tool-use、長上下文、review precision、低 RAM single-slot 表現。
+
+### 今日摘要
+今天有實質新進展，但不是推翻主線：仍推薦 **OpenCode + Ollama + LiteLLM + 薄 task manager**。最大更新是 **skelm 的 trust-boundary 角色更明確**：它的 `opencode` backend、default-deny gateway、network/fs/exec/MCP permissions、hash-chain audit 讓它仍是第一個 runtime prototype。另兩個 sidecar 更成熟：**ai-jury** 適合作 diff/PR verdict jury，**Palabre** 適合作 plan/architecture debate，且都應輸出可機讀 artifact。今天建議工作流小幅修改：新增 `owned_paths`、`conflict_policy`、`review_artifact_format`、`debate_artifact_format`、`route_explanation`；LiteLLM 仍做 gateway，Sage Router 只借鑑 semantic route explanation，不替換主棧。
+
+### 來源/查核記錄
+- GitHub API snapshot 2026-06-11 22:00 UTC：`anomalyco/opencode`、`BerriAI/litellm`、`ollama/ollama`、`langchain-ai/langgraph`、`microsoft/autogen`、`crewAIInc/crewAI`、`mastra-ai/mastra`、`temporalio/temporal`、`OpenHands/OpenHands`、`Aider-AI/aider`、`scottgl9/skelm`、`Suraj1235/open-dynamic-workflows`、`berkayturanci/ai-jury`、`halbritt/striatum`、`JuReyms/Palabre`、`generalaction/emdash`、`sstraus/tuicommander`、`superset-sh/superset`、`Mybono/ai-orchestrator`、`mercurialsolo/claudectl`、`aegntic/compound-engineering`、`keakon/chord`、`tiny-intelligence/localcoding`、`skgandikota/coracle`、`earlvanze/sage-router`、`guyshonshon/vibestrate`、`ucav/mozart-router`、`pockanoodles/Mahoraga`、`aiagentflow/aiagentflow`、`VikingOwl91/gnoma`、`XAIHT/Tlamatini`、`RBraga01/a-team`、`ek33450505/claude-agent-team`。
+- README review 2026-06-11：`scottgl9/skelm`、`berkayturanci/ai-jury`、`JuReyms/Palabre`、`earlvanze/sage-router`、`ek33450505/claude-agent-team`。
+- GitHub Search API 2026-06-11：搜尋階段遭 rate limit，因此今天未完整展開新 repo 掃描；以既有候選 metadata/README 深查為主。
