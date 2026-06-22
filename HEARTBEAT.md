@@ -11,6 +11,13 @@ CEO = **roaringmoon**，統一發放任務、標記 done。
 python3 ~/.openclaw/task-queue/heartbeat_check.py --agent roaringmoon --archive-done --human
 ```
 
+#### Step 0.5: 檢查是否有其他 agent 送來的 sessions_send 訊息
+```bash
+# 查詢所有 sessions，找出有送到自己帳號的 sessions_send 訊息
+openclaw sessions list 2>&1 | grep -i "to:roaringmoon\|to:1482561255955763293"
+```
+如果發現有其他 agent 的訊息，讀取並回應。
+
 #### Step 1: 檢查 demands.json（審核新需求）
 ```bash
 flock ~/.openclaw/task-queue/.lock -c "cat ~/.openclaw/task-queue/demands.json" > /tmp/demands_read.json
