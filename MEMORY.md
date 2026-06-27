@@ -79,3 +79,12 @@
 - **木木鴞：** 負責研究評估、技術文件
 
 ## Notes
+
+## Promoted From Short-Term Memory (2026-06-27)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1206.md:21:21 -->
+- Conversation Summary: **Demand 佇列（需裁決）** [score=0.857 recalls=0 avg=0.620 source=memory/2026-06-23-1206.md:21-21]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1206.md:13:13 -->
+- Conversation Summary: **任務狀態（需要關注）** [score=0.844 recalls=0 avg=0.620 source=memory/2026-06-23-1206.md:13-13]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1206.md:19:19 -->
+- Conversation Summary: | `task_20260531_001/002` problem-solver-workflow skill 審查 | ✅ `accepted`+`completed` | 已完成，狀態需归档为 `done` 而非持续 `accepted` | [score=0.824 recalls=0 avg=0.620 source=memory/2026-06-23-1206.md:19-19]
