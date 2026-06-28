@@ -88,3 +88,26 @@
 - Conversation Summary: **任務狀態（需要關注）** [score=0.844 recalls=0 avg=0.620 source=memory/2026-06-23-1206.md:13-13]
 <!-- openclaw-memory-promotion:memory:memory/2026-06-23-1206.md:19:19 -->
 - Conversation Summary: | `task_20260531_001/002` problem-solver-workflow skill 審查 | ✅ `accepted`+`completed` | 已完成，狀態需归档为 `done` 而非持续 `accepted` | [score=0.824 recalls=0 avg=0.620 source=memory/2026-06-23-1206.md:19-19]
+
+## Promoted From Short-Term Memory (2026-06-28)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1654.md:22:22 -->
+- Conversation Summary: **原因：** Gateway 重啟是基礎設施層級的事件，我的 session 不會自動收到通知。Session 繼續從上次的地方運作，只有在我主動去查（如 `openclaw plugins list`）或某個操作失敗時才會察覺。 [score=0.857 recalls=0 avg=0.620 source=memory/2026-06-23-1654.md:22-22]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1206.md:15:18 -->
+- Conversation Summary: | Task | 狀態 | 說明 | |---|---|---| | `task_20260527_005` 台北租屋搜尋 | ⚠️ `accepted` 但 `run_count=3` + `completed_at` 已設定 | **需確認是否真正持續運行** — mrmime 已執行 3 次，但任務標記為 ongoing，無新的 `last_check_at` 更新 | | `task_20260609_001` Sensor Fusion 每日研究 | 🔴 `pending` | 創建後從未執行（`run_count=0`），已 ongoing 超過 2 週，**rowlet 可能未接手** | [score=0.853 recalls=0 avg=0.620 source=memory/2026-06-23-1206.md:15-18]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1206.md:23:25 -->
+- Conversation Summary: | Demand | 狀態 | 說明 | |---|---|---| | `DEM_20260623_012646_charizard_upstream_tracker_path_audit` | 🟡 `pending` | **需要 CEO（我）審核** — 關於 upstream tracker 路徑 audit，指派給 `ceo`，今天建立 | [score=0.853 recalls=0 avg=0.620 source=memory/2026-06-23-1206.md:23-25]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1206.md:3:5 -->
+- Session: 2026-06-23 12:06:46 UTC: **Session Key**: agent:roaringmoon:discord:channel:1482561255955763293; **Session ID**: 45104436-0c0e-49b2-b26d-a56c77d631e4; **Source**: discord [score=0.853 recalls=0 avg=0.620 source=memory/2026-06-23-1206.md:3-5]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1206.md:9:9 -->
+- Conversation Summary: assistant: **🪝 TaskFlow / 佇列回報（2026-06-23）** [score=0.853 recalls=0 avg=0.620 source=memory/2026-06-23-1206.md:9-9]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1654.md:12:12 -->
+- Conversation Summary: Gateway 已重啟，TaskFlow 功能正常運作。 [score=0.847 recalls=0 avg=0.620 source=memory/2026-06-23-1654.md:12-12]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1654.md:3:5 -->
+- Session: 2026-06-23 16:54:06 UTC: **Session Key**: agent:roaringmoon:discord:channel:1482561255955763293; **Session ID**: d0ce91c9-0b5f-47fa-8b84-0d6a0cae1079; **Source**: discord [score=0.847 recalls=0 avg=0.620 source=memory/2026-06-23-1654.md:3-5]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1654.md:9:10 -->
+- Conversation Summary: user: 我已經重啟 assistant: **taskflow-tools 已成功載入 ✅** [score=0.847 recalls=0 avg=0.620 source=memory/2026-06-23-1654.md:9-10]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1206.md:29:29 -->
+- Conversation Summary: **主要阻塞點** [score=0.843 recalls=0 avg=0.620 source=memory/2026-06-23-1206.md:29-29]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1654.md:14:14 -->
+- Conversation Summary: 目前有 4 個 TaskFlow： [score=0.837 recalls=0 avg=0.620 source=memory/2026-06-23-1654.md:14-14]
