@@ -111,3 +111,26 @@
 - Conversation Summary: **主要阻塞點** [score=0.843 recalls=0 avg=0.620 source=memory/2026-06-23-1206.md:29-29]
 <!-- openclaw-memory-promotion:memory:memory/2026-06-23-1654.md:14:14 -->
 - Conversation Summary: 目前有 4 個 TaskFlow： [score=0.837 recalls=0 avg=0.620 source=memory/2026-06-23-1654.md:14-14]
+
+## Promoted From Short-Term Memory (2026-06-29)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-06-21.md:35:37 -->
+- Knowledge (MMLU-PRO): MaziyarPanahi/calme-3.2-instruct-78b: 70.03; MaziyarPanahi/calme-3.1-instruct-78b: 68.72; dfurman/CalmeRys-78B-Orpo-v0.1: 66.80 [score=0.865 recalls=0 avg=0.620 source=memory/2026-06-21.md:35-37]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-21.md:4:5 -->
+- Data Sources: Open LLM Leaderboard (HuggingFace) - 4576 models; Artificial Analysis - AA-Omniscience & AA-Briefcase [score=0.865 recalls=0 avg=0.620 source=memory/2026-06-21.md:4-5]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1654.md:15:18 -->
+- Conversation Summary: `ptcgp-meta-retry-0517` — succeeded; `learning-notes-corpus-synthesis` — succeeded; `graphify-claw-code` — succeeded; `Reply with exactly: OK...` — failed [score=0.847 recalls=0 avg=0.620 source=memory/2026-06-23-1654.md:15-18]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1654.md:19:20 -->
+- Conversation Summary: user: 為何你認知不到自己被重啟這件是 assistant: 抱歉，這是我的認知盲點。 [score=0.847 recalls=0 avg=0.620 source=memory/2026-06-23-1654.md:19-20]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1654.md:24:24 -->
+- Conversation Summary: ** Gateway 重啟後，我應該：** [score=0.837 recalls=0 avg=0.620 source=memory/2026-06-23-1654.md:24-24]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-24-0352.md:10:12 -->
+- 商業模式評估: Linder 目前把 OpenCode 包成 Docker image 給客戶; 想轉移到 NemoClaw + K3s 包裝; **結論：** NemoClaw 原生就是 Docker，商業模式完全吻合 [score=0.837 recalls=0 avg=0.620 source=memory/2026-06-24-0352.md:10-12]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-24-0352.md:15:18 -->
+- 技術關鍵點: **Landlock 安全機制** — NemoClaw 的核心價值; **鎖死本地模型** — 修改 `network_policies` 移除外部 API; **GPU 分配** — NemoClaw 不做，靠 Docker `--gpus` 或外部排程; **Task 分派** — 由 Coordinator Agent 自己用 `sessions_spawn`/`sessions_send` 做 [score=0.837 recalls=0 avg=0.620 source=memory/2026-06-24-0352.md:15-18]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-24-0352.md:19:19 -->
+- 技術關鍵點: **K3s 包裝** — 官方不支援，但可用 Docker commit 方式 [score=0.837 recalls=0 avg=0.620 source=memory/2026-06-24-0352.md:19-19]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-24-0352.md:23:26 -->
+- 客戶交付流程: 架好 NemoClaw Sandbox; 設定 Policy（只有本地模型）; shields up 鎖死 config; docker commit 成新 image [score=0.837 recalls=0 avg=0.620 source=memory/2026-06-24-0352.md:23-26]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-21.md:13:16 -->
+- Top 10 Overall (Open LLM Leaderboard): | 3 | dfurman/CalmeRys-78B-Orpo-v0.1 | 51.23 | 81.63 | 61.92 | 40.63 | 20.02 | 36.37 | 66.80 | 78B | | 4 | MaziyarPanahi/calme-2.4-rys-78b | 50.77 | 80.11 | 62.16 | 40.71 | 20.36 | 34.57 | 66.69 | 78B | | 5 | huihui-ai/Qwen2.5-72B-Instruct-abliterated | 48.11 | 85.93 | 60.49 | 60.12 | 19.35 | 12.34 | 50.41 | 73B | | 6 | Qwen/Qwen2.5-72B-Instruct | 47.98 | 86.38 | 61.87 | 59.82 | 16.67 | 11.74 | 51.40 | 73B | [score=0.833 recalls=0 avg=0.620 source=memory/2026-06-21.md:13-16]
