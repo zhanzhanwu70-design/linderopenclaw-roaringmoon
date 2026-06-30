@@ -80,38 +80,6 @@
 
 ## Notes
 
-## Promoted From Short-Term Memory (2026-06-27)
-
-<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1206.md:21:21 -->
-- Conversation Summary: **Demand 佇列（需裁決）** [score=0.857 recalls=0 avg=0.620 source=memory/2026-06-23-1206.md:21-21]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1206.md:13:13 -->
-- Conversation Summary: **任務狀態（需要關注）** [score=0.844 recalls=0 avg=0.620 source=memory/2026-06-23-1206.md:13-13]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1206.md:19:19 -->
-- Conversation Summary: | `task_20260531_001/002` problem-solver-workflow skill 審查 | ✅ `accepted`+`completed` | 已完成，狀態需归档为 `done` 而非持续 `accepted` | [score=0.824 recalls=0 avg=0.620 source=memory/2026-06-23-1206.md:19-19]
-
-## Promoted From Short-Term Memory (2026-06-28)
-
-<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1654.md:22:22 -->
-- Conversation Summary: **原因：** Gateway 重啟是基礎設施層級的事件，我的 session 不會自動收到通知。Session 繼續從上次的地方運作，只有在我主動去查（如 `openclaw plugins list`）或某個操作失敗時才會察覺。 [score=0.857 recalls=0 avg=0.620 source=memory/2026-06-23-1654.md:22-22]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1206.md:15:18 -->
-- Conversation Summary: | Task | 狀態 | 說明 | |---|---|---| | `task_20260527_005` 台北租屋搜尋 | ⚠️ `accepted` 但 `run_count=3` + `completed_at` 已設定 | **需確認是否真正持續運行** — mrmime 已執行 3 次，但任務標記為 ongoing，無新的 `last_check_at` 更新 | | `task_20260609_001` Sensor Fusion 每日研究 | 🔴 `pending` | 創建後從未執行（`run_count=0`），已 ongoing 超過 2 週，**rowlet 可能未接手** | [score=0.853 recalls=0 avg=0.620 source=memory/2026-06-23-1206.md:15-18]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1206.md:23:25 -->
-- Conversation Summary: | Demand | 狀態 | 說明 | |---|---|---| | `DEM_20260623_012646_charizard_upstream_tracker_path_audit` | 🟡 `pending` | **需要 CEO（我）審核** — 關於 upstream tracker 路徑 audit，指派給 `ceo`，今天建立 | [score=0.853 recalls=0 avg=0.620 source=memory/2026-06-23-1206.md:23-25]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1206.md:3:5 -->
-- Session: 2026-06-23 12:06:46 UTC: **Session Key**: agent:roaringmoon:discord:channel:1482561255955763293; **Session ID**: 45104436-0c0e-49b2-b26d-a56c77d631e4; **Source**: discord [score=0.853 recalls=0 avg=0.620 source=memory/2026-06-23-1206.md:3-5]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1206.md:9:9 -->
-- Conversation Summary: assistant: **🪝 TaskFlow / 佇列回報（2026-06-23）** [score=0.853 recalls=0 avg=0.620 source=memory/2026-06-23-1206.md:9-9]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1654.md:12:12 -->
-- Conversation Summary: Gateway 已重啟，TaskFlow 功能正常運作。 [score=0.847 recalls=0 avg=0.620 source=memory/2026-06-23-1654.md:12-12]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1654.md:3:5 -->
-- Session: 2026-06-23 16:54:06 UTC: **Session Key**: agent:roaringmoon:discord:channel:1482561255955763293; **Session ID**: d0ce91c9-0b5f-47fa-8b84-0d6a0cae1079; **Source**: discord [score=0.847 recalls=0 avg=0.620 source=memory/2026-06-23-1654.md:3-5]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1654.md:9:10 -->
-- Conversation Summary: user: 我已經重啟 assistant: **taskflow-tools 已成功載入 ✅** [score=0.847 recalls=0 avg=0.620 source=memory/2026-06-23-1654.md:9-10]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1206.md:29:29 -->
-- Conversation Summary: **主要阻塞點** [score=0.843 recalls=0 avg=0.620 source=memory/2026-06-23-1206.md:29-29]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1654.md:14:14 -->
-- Conversation Summary: 目前有 4 個 TaskFlow： [score=0.837 recalls=0 avg=0.620 source=memory/2026-06-23-1654.md:14-14]
-
 ## Promoted From Short-Term Memory (2026-06-29)
 
 <!-- openclaw-memory-promotion:memory:memory/2026-06-21.md:35:37 -->
@@ -134,3 +102,26 @@
 - 客戶交付流程: 架好 NemoClaw Sandbox; 設定 Policy（只有本地模型）; shields up 鎖死 config; docker commit 成新 image [score=0.837 recalls=0 avg=0.620 source=memory/2026-06-24-0352.md:23-26]
 <!-- openclaw-memory-promotion:memory:memory/2026-06-21.md:13:16 -->
 - Top 10 Overall (Open LLM Leaderboard): | 3 | dfurman/CalmeRys-78B-Orpo-v0.1 | 51.23 | 81.63 | 61.92 | 40.63 | 20.02 | 36.37 | 66.80 | 78B | | 4 | MaziyarPanahi/calme-2.4-rys-78b | 50.77 | 80.11 | 62.16 | 40.71 | 20.36 | 34.57 | 66.69 | 78B | | 5 | huihui-ai/Qwen2.5-72B-Instruct-abliterated | 48.11 | 85.93 | 60.49 | 60.12 | 19.35 | 12.34 | 50.41 | 73B | | 6 | Qwen/Qwen2.5-72B-Instruct | 47.98 | 86.38 | 61.87 | 59.82 | 16.67 | 11.74 | 51.40 | 73B | [score=0.833 recalls=0 avg=0.620 source=memory/2026-06-21.md:13-16]
+
+## Promoted From Short-Term Memory (2026-06-30)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1206.md:31:32 -->
+- Conversation Summary: **Sensor Fusion 每日研究 (`task_20260609_001`) 卡住** — `run_count=0` 顯示從未被執行，需確認 rowlet 是否收到任務; **`task_20260527_005` 狀態不一致** — 已完成但 ongoing flag 未清除，可能影響 mrmime 的後續排程 [score=0.901 recalls=0 avg=0.620 source=memory/2026-06-23-1206.md:31-32]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1206.md:34:34 -->
+- Conversation Summary: **無需關注的已完成任務（建議 archive）** [score=0.901 recalls=0 avg=0.620 source=memory/2026-06-23-1206.md:34-34]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1654.md:25:27 -->
+- Conversation Summary: 查詢 `openclaw plugins list` 確認 plugin 狀態; 查詢 `openclaw tasks flow list` 確認 TaskFlow 是否正常; 主動告訴 Linder 已確認重啟完成 [score=0.872 recalls=0 avg=0.620 source=memory/2026-06-23-1654.md:25-27]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-24-0352.md:27:28 -->
+- 客戶交付流程: docker save 成 .tar.gz; 客戶 docker load + docker run [score=0.862 recalls=0 avg=0.620 source=memory/2026-06-24-0352.md:27-28]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-24-0352.md:32:34 -->
+- smolagents 討論: Hugging Face 輕量 Agent 框架; 可考慮 smolagents + NemoClaw 組合; 但 NemoClaw 已內建 Agent（OpenClaw/Hermes） [score=0.862 recalls=0 avg=0.620 source=memory/2026-06-24-0352.md:32-34]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-24-0352.md:37:39 -->
+- 待確認: 設備到位後開始實作; 模型大小（影響是否一起包進 Image）; 客戶主機規格（決定 GPU 分配方式） [score=0.862 recalls=0 avg=0.620 source=memory/2026-06-24-0352.md:37-39]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-24-0352.md:6:7 -->
+- NemoClaw 研究: **下載並整理：** Source → `llm-wiki/raw/code/nemoclaw-nvidia/`; **Wiki 條目：** `wiki/entities/nemoclaw.md`, `wiki/concepts/distributed-gpu-agent-with-nemoclaw.md` [score=0.862 recalls=0 avg=0.620 source=memory/2026-06-24-0352.md:6-7]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1654.md:29:32 -->
+- Conversation Summary: 這次你告訴我已重啟，我才去查。以後我應該在懷疑 gateway 可能重啟時，主動查詢確認。 assistant: 已通知 gengar：這是 Linder 15:33 UTC 指示的清理行動，不是異常。任務佇列已完全移除。 assistant: HEARTBEAT_OK assistant: HEARTBEAT_OK [score=0.840 recalls=0 avg=0.620 source=memory/2026-06-23-1654.md:29-32]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-21.md:17:20 -->
+- Top 10 Overall (Open LLM Leaderboard): | 7 | MaziyarPanahi/calme-2.1-qwen2.5-72b | 47.86 | 86.62 | 61.66 | 59.14 | 15.10 | 13.30 | 51.32 | 73B | | 8 | newsbang/Homer-v1.0-Qwen2.5-72B | 47.46 | 76.28 | 62.27 | 49.02 | 22.15 | 17.90 | 57.17 | 73B | | 9 | ehristoforu/qwen2.5-test-32b-it | 47.37 | 78.89 | 58.28 | 59.74 | 15.21 | 19.13 | 52.95 | 33B | | 10 | Saxo/Linkbricks-Horizon-AI-Avengers-V1-32B | 47.34 | 79.72 | 57.63 | 60.27 | 14.99 | 18.16 | 53.25 | 33B | [score=0.824 recalls=0 avg=0.620 source=memory/2026-06-21.md:17-20]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-21.md:25:27 -->
+- Reasoning (BBH): qingy2024/Benchmaxx-Llama-3.2-1B-Instruct: 76.70; JungZoona/T3Q-Qwen2.5-14B-Instruct-1M-e3: 65.47; JungZoona/T3Q-qwen2.5-14b-v1.0-e3: 65.47 [score=0.824 recalls=0 avg=0.620 source=memory/2026-06-21.md:25-27]

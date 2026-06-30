@@ -1,0 +1,5 @@
+[roaringmoon/sessions/roaringmoon/7816db42-7f96-40b9-9b40-07cef119660b.jsonl#L929] User: 正常來說 一個mem 96G的險卡可以裝那些 模型?
+[roaringmoon/sessions/roaringmoon/7816db42-7f96-40b9-9b40-07cef119660b.jsonl#L930] Assistant: ## 96GB VRAM 顯示卡可容納的模型 ### 量化模型（Int4/Int8） | 模型 | 參數 | 精度 | VRAM 需求 | 量化後可跑 | |------|------|------|----------|-----------| | **Qwen2.5-72B** | 72B | Int4 | ~40GB | ✅ | | **Qwen2.5-72B** | 72B | Int8 | ~72GB | ✅ | | **LLaMA-3-70B** | 70B | Int4 | ~38
+[roaringmoon/sessions/roaringmoon/7816db42-7f96-40b9-9b40-07cef119660b.jsonl#L930] Assistant: #2 | Gemini 12B | ~24GB FP16 | | RTX 4000 #1 | Gemini 12B | ~24GB FP16 | | RTX 4000 #2 | Gemini 12B | ~24GB FP16 | **不是單卡 96GB**，而是分布式多卡。
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L177] Assistant: [assistant turn failed before producing content]
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L179] Assistant: [assistant turn failed before producing content
