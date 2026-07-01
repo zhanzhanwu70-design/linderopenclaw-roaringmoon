@@ -80,29 +80,6 @@
 
 ## Notes
 
-## Promoted From Short-Term Memory (2026-06-29)
-
-<!-- openclaw-memory-promotion:memory:memory/2026-06-21.md:35:37 -->
-- Knowledge (MMLU-PRO): MaziyarPanahi/calme-3.2-instruct-78b: 70.03; MaziyarPanahi/calme-3.1-instruct-78b: 68.72; dfurman/CalmeRys-78B-Orpo-v0.1: 66.80 [score=0.865 recalls=0 avg=0.620 source=memory/2026-06-21.md:35-37]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-21.md:4:5 -->
-- Data Sources: Open LLM Leaderboard (HuggingFace) - 4576 models; Artificial Analysis - AA-Omniscience & AA-Briefcase [score=0.865 recalls=0 avg=0.620 source=memory/2026-06-21.md:4-5]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1654.md:15:18 -->
-- Conversation Summary: `ptcgp-meta-retry-0517` — succeeded; `learning-notes-corpus-synthesis` — succeeded; `graphify-claw-code` — succeeded; `Reply with exactly: OK...` — failed [score=0.847 recalls=0 avg=0.620 source=memory/2026-06-23-1654.md:15-18]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1654.md:19:20 -->
-- Conversation Summary: user: 為何你認知不到自己被重啟這件是 assistant: 抱歉，這是我的認知盲點。 [score=0.847 recalls=0 avg=0.620 source=memory/2026-06-23-1654.md:19-20]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1654.md:24:24 -->
-- Conversation Summary: ** Gateway 重啟後，我應該：** [score=0.837 recalls=0 avg=0.620 source=memory/2026-06-23-1654.md:24-24]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-24-0352.md:10:12 -->
-- 商業模式評估: Linder 目前把 OpenCode 包成 Docker image 給客戶; 想轉移到 NemoClaw + K3s 包裝; **結論：** NemoClaw 原生就是 Docker，商業模式完全吻合 [score=0.837 recalls=0 avg=0.620 source=memory/2026-06-24-0352.md:10-12]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-24-0352.md:15:18 -->
-- 技術關鍵點: **Landlock 安全機制** — NemoClaw 的核心價值; **鎖死本地模型** — 修改 `network_policies` 移除外部 API; **GPU 分配** — NemoClaw 不做，靠 Docker `--gpus` 或外部排程; **Task 分派** — 由 Coordinator Agent 自己用 `sessions_spawn`/`sessions_send` 做 [score=0.837 recalls=0 avg=0.620 source=memory/2026-06-24-0352.md:15-18]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-24-0352.md:19:19 -->
-- 技術關鍵點: **K3s 包裝** — 官方不支援，但可用 Docker commit 方式 [score=0.837 recalls=0 avg=0.620 source=memory/2026-06-24-0352.md:19-19]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-24-0352.md:23:26 -->
-- 客戶交付流程: 架好 NemoClaw Sandbox; 設定 Policy（只有本地模型）; shields up 鎖死 config; docker commit 成新 image [score=0.837 recalls=0 avg=0.620 source=memory/2026-06-24-0352.md:23-26]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-21.md:13:16 -->
-- Top 10 Overall (Open LLM Leaderboard): | 3 | dfurman/CalmeRys-78B-Orpo-v0.1 | 51.23 | 81.63 | 61.92 | 40.63 | 20.02 | 36.37 | 66.80 | 78B | | 4 | MaziyarPanahi/calme-2.4-rys-78b | 50.77 | 80.11 | 62.16 | 40.71 | 20.36 | 34.57 | 66.69 | 78B | | 5 | huihui-ai/Qwen2.5-72B-Instruct-abliterated | 48.11 | 85.93 | 60.49 | 60.12 | 19.35 | 12.34 | 50.41 | 73B | | 6 | Qwen/Qwen2.5-72B-Instruct | 47.98 | 86.38 | 61.87 | 59.82 | 16.67 | 11.74 | 51.40 | 73B | [score=0.833 recalls=0 avg=0.620 source=memory/2026-06-21.md:13-16]
-
 ## Promoted From Short-Term Memory (2026-06-30)
 
 <!-- openclaw-memory-promotion:memory:memory/2026-06-23-1206.md:31:32 -->
@@ -125,3 +102,16 @@
 - Top 10 Overall (Open LLM Leaderboard): | 7 | MaziyarPanahi/calme-2.1-qwen2.5-72b | 47.86 | 86.62 | 61.66 | 59.14 | 15.10 | 13.30 | 51.32 | 73B | | 8 | newsbang/Homer-v1.0-Qwen2.5-72B | 47.46 | 76.28 | 62.27 | 49.02 | 22.15 | 17.90 | 57.17 | 73B | | 9 | ehristoforu/qwen2.5-test-32b-it | 47.37 | 78.89 | 58.28 | 59.74 | 15.21 | 19.13 | 52.95 | 33B | | 10 | Saxo/Linkbricks-Horizon-AI-Avengers-V1-32B | 47.34 | 79.72 | 57.63 | 60.27 | 14.99 | 18.16 | 53.25 | 33B | [score=0.824 recalls=0 avg=0.620 source=memory/2026-06-21.md:17-20]
 <!-- openclaw-memory-promotion:memory:memory/2026-06-21.md:25:27 -->
 - Reasoning (BBH): qingy2024/Benchmaxx-Llama-3.2-1B-Instruct: 76.70; JungZoona/T3Q-Qwen2.5-14B-Instruct-1M-e3: 65.47; JungZoona/T3Q-qwen2.5-14b-v1.0-e3: 65.47 [score=0.824 recalls=0 avg=0.620 source=memory/2026-06-21.md:25-27]
+
+## Promoted From Short-Term Memory (2026-07-01)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:18:18 -->
+- Native Ollama Provider 支援 (`be8112f`): **架構關鍵點**： [score=0.825 recalls=0 avg=0.620 source=memory/2026-06-27.md:18-18]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:20:23 -->
+- Native Ollama Provider 支援 (`be8112f`): // openai_compat.rs 新增 pub const OLLAMA_CONFIG: OpenAiCompatConfig = OpenAiCompatConfig { provider_name: "Ollama", api_key_env: "OLLAMA_HOST", [score=0.825 recalls=0 avg=0.620 source=memory/2026-06-27.md:20-23]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:24:26 -->
+- Native Ollama Provider 支援 (`be8112f`): base_url_env: "OLLAMA_HOST", default_base_url: "http://127.0.0.1:11434/v1", max_request_body_bytes: 104_857_600, [score=0.825 recalls=0 avg=0.620 source=memory/2026-06-27.md:24-26]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-21.md:30:32 -->
+- Math (MATH Lvl 5): nvidia/AceMath-72B-Instruct: 71.45; nvidia/AceMath-7B-Instruct: 63.37; nvidia/AceInstruct-72B: 62.61 [score=0.816 recalls=0 avg=0.620 source=memory/2026-06-21.md:30-32]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-21.md:9:12 -->
+- Top 10 Overall (Open LLM Leaderboard): | Rank | Model | Average | IFEval | BBH | MATH | GPQA | MUSR | MMLU-PRO | Params | |------|-------|---------|--------|-----|------|------|------|----------|--------| | 1 | MaziyarPanahi/calme-3.2-instruct-78b | 52.08 | 80.63 | 62.61 | 40.33 | 20.36 | 38.53 | 70.03 | 78B | | 2 | MaziyarPanahi/calme-3.1-instruct-78b | 51.29 | 81.36 | 62.41 | 39.27 | 19.46 | 36.50 | 68.72 | 78B | [score=0.816 recalls=0 avg=0.620 source=memory/2026-06-21.md:9-12]
