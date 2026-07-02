@@ -115,3 +115,26 @@
 - Math (MATH Lvl 5): nvidia/AceMath-72B-Instruct: 71.45; nvidia/AceMath-7B-Instruct: 63.37; nvidia/AceInstruct-72B: 62.61 [score=0.816 recalls=0 avg=0.620 source=memory/2026-06-21.md:30-32]
 <!-- openclaw-memory-promotion:memory:memory/2026-06-21.md:9:12 -->
 - Top 10 Overall (Open LLM Leaderboard): | Rank | Model | Average | IFEval | BBH | MATH | GPQA | MUSR | MMLU-PRO | Params | |------|-------|---------|--------|-----|------|------|------|----------|--------| | 1 | MaziyarPanahi/calme-3.2-instruct-78b | 52.08 | 80.63 | 62.61 | 40.33 | 20.36 | 38.53 | 70.03 | 78B | | 2 | MaziyarPanahi/calme-3.1-instruct-78b | 51.29 | 81.36 | 62.41 | 39.27 | 19.46 | 36.50 | 68.72 | 78B | [score=0.816 recalls=0 avg=0.620 source=memory/2026-06-21.md:9-12]
+
+## Promoted From Short-Term Memory (2026-07-02)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:13:16 -->
+- Native Ollama Provider 支援 (`be8112f`): 透過 `OLLAMA_HOST` 環境變數直接支援本地 Ollama; 最高優先級 provider 檢測（早於 OPENAI_BASE_URL）; 無需 API key（使用 placeholder token）; 模型名稱如 `qwen3:8b` 可繞過嚴格 provider/model 語法驗證 [score=0.861 recalls=0 avg=0.620 source=memory/2026-06-27.md:13-16]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:29:29 -->
+- Native Ollama Provider 支援 (`be8112f`): pub fn from_ollama_env() -> Option<Self> { ... } [score=0.861 recalls=0 avg=0.620 source=memory/2026-06-27.md:29-29]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:33:36 -->
+- Setup Wizard 入口點 (`3845040`): 新增 `/setup` slash command; 新增 `claw setup` CLI subcommand; 新增 `RuntimeProviderConfig` struct（kind, apiKey, baseUrl, model）; 三層 provider 配置解析：環境變數 > .env > settings.json [score=0.861 recalls=0 avg=0.620 source=memory/2026-06-27.md:33-36]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:39:41 -->
+- 路徑驗證安全改進 (`eb21179`): Python `path_scope.py` 新增 redirection operator 剝離; 防止 `>file.txt` 或 `2>&1` 等 redirection 被誤認為路徑; 正則：`^(?:\d*)?(?:<>|>>?|<)(.+)$|^&>>?(.+)$` [score=0.861 recalls=0 avg=0.620 source=memory/2026-06-27.md:39-41]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:44:45 -->
+- 命令查詢正規化 (`5babda1`): 改善 command lookup normalization; 修復 `src/commands.py` 和 `test_porting_workspace.py` [score=0.861 recalls=0 avg=0.620 source=memory/2026-06-27.md:44-45]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:48:48 -->
+- 眾多 ROADMAP 項目關閉: 大量 ROADMAP 項目被標記為 DONE，包括： [score=0.856 recalls=0 avg=0.620 source=memory/2026-06-27.md:48-48]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:5:6 -->
+- upstream/main 新 commits 概覽: 共 **1549 個新 commits**（上次研究後的累積）; 涵蓋時間：從 2026-06-05 到 2026-06-27 [score=0.856 recalls=0 avg=0.620 source=memory/2026-06-27.md:5-6]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:61:64 -->
+- Commands 模組 (Rust): `SlashCommandSpec` 靜態定義所有 slash commands; `SlashCommand` enum 完整列舉所有命令變體; 統一解析入口 `SlashCommand::parse(input: &str)`; 每個命令有 `resume_supported` 標記 [score=0.825 recalls=0 avg=0.620 source=memory/2026-06-27.md:61-64]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:77:79 -->
+- Config 層級: RuntimeConfig (Rust) → RuntimeFeatureConfig → RuntimeProviderConfig (新增) [score=0.825 recalls=0 avg=0.620 source=memory/2026-06-27.md:77-79]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:80:83 -->
+- Config 層級: kind: Option<String>; api_key: Option<String>; base_url: Option<String>; model: Option<String> [score=0.825 recalls=0 avg=0.620 source=memory/2026-06-27.md:80-83]
