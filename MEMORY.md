@@ -80,29 +80,6 @@
 
 ## Notes
 
-## Promoted From Short-Term Memory (2026-06-30)
-
-<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1206.md:31:32 -->
-- Conversation Summary: **Sensor Fusion 每日研究 (`task_20260609_001`) 卡住** — `run_count=0` 顯示從未被執行，需確認 rowlet 是否收到任務; **`task_20260527_005` 狀態不一致** — 已完成但 ongoing flag 未清除，可能影響 mrmime 的後續排程 [score=0.901 recalls=0 avg=0.620 source=memory/2026-06-23-1206.md:31-32]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1206.md:34:34 -->
-- Conversation Summary: **無需關注的已完成任務（建議 archive）** [score=0.901 recalls=0 avg=0.620 source=memory/2026-06-23-1206.md:34-34]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1654.md:25:27 -->
-- Conversation Summary: 查詢 `openclaw plugins list` 確認 plugin 狀態; 查詢 `openclaw tasks flow list` 確認 TaskFlow 是否正常; 主動告訴 Linder 已確認重啟完成 [score=0.872 recalls=0 avg=0.620 source=memory/2026-06-23-1654.md:25-27]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-24-0352.md:27:28 -->
-- 客戶交付流程: docker save 成 .tar.gz; 客戶 docker load + docker run [score=0.862 recalls=0 avg=0.620 source=memory/2026-06-24-0352.md:27-28]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-24-0352.md:32:34 -->
-- smolagents 討論: Hugging Face 輕量 Agent 框架; 可考慮 smolagents + NemoClaw 組合; 但 NemoClaw 已內建 Agent（OpenClaw/Hermes） [score=0.862 recalls=0 avg=0.620 source=memory/2026-06-24-0352.md:32-34]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-24-0352.md:37:39 -->
-- 待確認: 設備到位後開始實作; 模型大小（影響是否一起包進 Image）; 客戶主機規格（決定 GPU 分配方式） [score=0.862 recalls=0 avg=0.620 source=memory/2026-06-24-0352.md:37-39]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-24-0352.md:6:7 -->
-- NemoClaw 研究: **下載並整理：** Source → `llm-wiki/raw/code/nemoclaw-nvidia/`; **Wiki 條目：** `wiki/entities/nemoclaw.md`, `wiki/concepts/distributed-gpu-agent-with-nemoclaw.md` [score=0.862 recalls=0 avg=0.620 source=memory/2026-06-24-0352.md:6-7]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-23-1654.md:29:32 -->
-- Conversation Summary: 這次你告訴我已重啟，我才去查。以後我應該在懷疑 gateway 可能重啟時，主動查詢確認。 assistant: 已通知 gengar：這是 Linder 15:33 UTC 指示的清理行動，不是異常。任務佇列已完全移除。 assistant: HEARTBEAT_OK assistant: HEARTBEAT_OK [score=0.840 recalls=0 avg=0.620 source=memory/2026-06-23-1654.md:29-32]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-21.md:17:20 -->
-- Top 10 Overall (Open LLM Leaderboard): | 7 | MaziyarPanahi/calme-2.1-qwen2.5-72b | 47.86 | 86.62 | 61.66 | 59.14 | 15.10 | 13.30 | 51.32 | 73B | | 8 | newsbang/Homer-v1.0-Qwen2.5-72B | 47.46 | 76.28 | 62.27 | 49.02 | 22.15 | 17.90 | 57.17 | 73B | | 9 | ehristoforu/qwen2.5-test-32b-it | 47.37 | 78.89 | 58.28 | 59.74 | 15.21 | 19.13 | 52.95 | 33B | | 10 | Saxo/Linkbricks-Horizon-AI-Avengers-V1-32B | 47.34 | 79.72 | 57.63 | 60.27 | 14.99 | 18.16 | 53.25 | 33B | [score=0.824 recalls=0 avg=0.620 source=memory/2026-06-21.md:17-20]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-21.md:25:27 -->
-- Reasoning (BBH): qingy2024/Benchmaxx-Llama-3.2-1B-Instruct: 76.70; JungZoona/T3Q-Qwen2.5-14B-Instruct-1M-e3: 65.47; JungZoona/T3Q-qwen2.5-14b-v1.0-e3: 65.47 [score=0.824 recalls=0 avg=0.620 source=memory/2026-06-21.md:25-27]
-
 ## Promoted From Short-Term Memory (2026-07-01)
 
 <!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:18:18 -->
@@ -138,3 +115,18 @@
 - Config 層級: RuntimeConfig (Rust) → RuntimeFeatureConfig → RuntimeProviderConfig (新增) [score=0.825 recalls=0 avg=0.620 source=memory/2026-06-27.md:77-79]
 <!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:80:83 -->
 - Config 層級: kind: Option<String>; api_key: Option<String>; base_url: Option<String>; model: Option<String> [score=0.825 recalls=0 avg=0.620 source=memory/2026-06-27.md:80-83]
+
+## Promoted From Short-Term Memory (2026-07-03)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:49:50 -->
+- 眾多 ROADMAP 項目關閉: #325, #330, #338, #339, #341, #342, #343, #344; 涵蓋 JSON contract stabilization、session resume、help system [score=0.853 recalls=0 avg=0.620 source=memory/2026-06-27.md:49-50]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:57:58 -->
+- 雙語言架構: **Rust**: 核心 CLI、commands、runtime、API client; **Python**: 輔助工具、porting workspace infrastructure [score=0.853 recalls=0 avg=0.620 source=memory/2026-06-27.md:57-58]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:68:71 -->
+- Provider 路由: detect_provider_kind() → OLLAMA_HOST (最高優先) → ANTHROPIC_API_KEY → OPENAI_API_KEY / OPENAI_BASE_URL [score=0.853 recalls=0 avg=0.620 source=memory/2026-06-27.md:68-71]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:90:93 -->
+- 對 OpenClaw 整合的影響: **Ollama 支援增強**：可更自然地使用本地模型; **Provider 配置簡化**：三層解析減少環境設定複雜度; **安全改進**：redirection 路徑驗證防止 sandbox escape; **JSON contract 穩定化**：有利於程式化整合 [score=0.853 recalls=0 avg=0.620 source=memory/2026-06-27.md:90-93]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:98:100 -->
+- 繼續研究重點: 深入 `runtime/src/config.rs` 的 provider 解析邏輯; 理解 `tools` crate 的 tool dispatch 機制; MCP server lifecycle 管理實作 [score=0.853 recalls=0 avg=0.620 source=memory/2026-06-27.md:98-100]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:72:72 -->
+- Provider 路由: → 其他 provider... [score=0.813 recalls=0 avg=0.620 source=memory/2026-06-27.md:72-72]
