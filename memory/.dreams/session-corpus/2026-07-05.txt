@@ -1,0 +1,2 @@
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L215] Assistant: [assistant turn failed before producing content]
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L217] Assistant: [assistant turn failed before producing content
