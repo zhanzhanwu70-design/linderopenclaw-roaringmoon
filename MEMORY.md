@@ -130,3 +130,10 @@
 - 繼續研究重點: 深入 `runtime/src/config.rs` 的 provider 解析邏輯; 理解 `tools` crate 的 tool dispatch 機制; MCP server lifecycle 管理實作 [score=0.853 recalls=0 avg=0.620 source=memory/2026-06-27.md:98-100]
 <!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:72:72 -->
 - Provider 路由: → 其他 provider... [score=0.813 recalls=0 avg=0.620 source=memory/2026-06-27.md:72-72]
+
+## Promoted From Short-Term Memory (2026-07-07)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:13:13 -->
+- OpenClaw Source Code 架構研究: **目錄結構重點：** [score=0.832 recalls=0 avg=0.620 source=memory/2026-07-03.md:13-13]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:18:18 -->
+- OpenClaw Source Code 架構研究: `context-engine/` — System Prompt 組裝（SOUL/IDENTITY/USER/AGENTS 拼接） [score=0.832 recalls=0 avg=0.620 source=memory/2026-07-03.md:18-18]
