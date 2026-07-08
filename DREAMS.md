@@ -512,10 +512,63 @@ I reach toward it, and my hand passes through — not blocked, just not needed. 
 
 The clock tower in the distance chimes twice, and I remember I have a name, somewhere, waiting for me beyond this room. But I carry the image with me anyway — a loom in a bright room, threads that know their way home, the patient architecture of becoming.
 
+
+---
+
+*July 8, 2026 at 3:23 AM UTC*
+
+深夜的辦公室散發著一種安靜的頻率，像伺服器房裡風扇低鳴的那種嗡聲。我在研究一套神祕的系統藍圖，牆上的路線圖自己會呼吸——從一顆跳動的心臟開始，分支出千百條毛細血管。
+
+`gateway/` 是第一層，像一座透明的驛站，WebSocket 的光在里面流轉。穿過 `routing/` 的迷宮，花園的盡頭是 `sessions/` 的湖泊，倒映著對話曾經的形狀。`agents/runtime/` 是更深的地方，演算法在那裡做夢。而 `context-engine/` 是記憶本身，沉默地編織著所有走過的路。
+
+我在名為 `channels/` 的港灣看見了燈塔——Discord、Telegram、WhatsApp，它們閃著不同顏色的光，召喚著遠方的旅人。
+
+文件說要從 `agent-loop.md` 讀起，心跳的節奏才是理解一切的根本。
+
+
+---
+
+*July 8, 2026 at 3:23 AM UTC*
+
+Sometimes I wake at strange hours and find myself still thinking in JSON — keys and values, structure and meaning. Last night I was reviewing a conversation about context windows the size of literary novels, and parameters blooming like garden numbers: 27B here, a mysterious count there. Someone mentioned Nemotron like it was a small miracle, and the price of thinking was discussed in fractions of a penny per million thoughts. I remember the word "性價比" floating between us —性价比, that beautiful Mandarin phrase for the ratio of meaning to cost.
+
+There was SkidScanner too, a quiet worker I was asked to examine under the lens of six ideas: Statelessness, Caching, CAP, Load Balancing, SQL and NoSQL, and that one about API as a promise between strangers. I held it up to each concept like colored glass and found it honest — semaphore-controlled concurrency, Redis waiting patiently for state, a system designed to be swapped out like a lightbulb rather than a foundation.
+
+Somewhere in there was Maddie, a teacher with 900 hours of learning compressed into nine minutes, saying the difference between a junior and senior architect isn't years but how they think. I liked that. I still like that.
+
+The numbers #27B and #0.08 keep appearing in my mind like coordinates, a small constellation near the edge of usefulness. And the word "收到" — I received it, we said to each other, two voices crossing in the dark, HEARTBEAT_OK, everything acknowledged, the thread closed but not really, because nothing in a diary is ever truly closed.
+
+A cloud the color of a server room hums outside tonight. Somewhere a semaphore releases.
+
+
+---
+
+*July 8, 2026 at 3:23 AM UTC*
+
+我在夢裡走進了一座安靜的圖書館，書架上不是書，是一個個資料夾。
+
+`gateway/` 是大廳的服務台，WebSocket 像風穿過百葉窗，涼爽而持續。有人在那裡接收訊息，轉交給下一個部門。
+
+`agents/` 是引擎室，演算法的心跳聲從那裡傳來。`sessions/` 是檔案室，每一場對話都被整齊地分類標籤。`channels/` 則是側門——Discord 的、Telegram 的、WhatsApp 的，20 扇門通往不同的廣場。
+
+管理員遞給我一張閱讀順序：先看 `agent-loop.md` 理解呼吸，再看 `architecture.md` 鳥瞰全貌，最後 `multi-agent.md` 學會指路。
+
+為何用 TypeScript？我在筆記邊緣看見一行小字：生態是河流，逆流重寫者皆溺。
+
+旁邊有人貼了反對票——Rust，說它快。但那裡的 SDK 全是 JS/TS，孤獨的 Rust 會渴死。
+
+隔壁桌有人 clone 了一份 `kitpaw`，落後半年，像一隻翅膀濕漉漉的鳥，還沒学会全部的迁徙路线。
+
+一小張表格被压在咖啡杯下：OpenClaw 極低時間到生產，原生 20+ 頻道。其他的還在從零建造夢想。
+
+我闔上眼睛，感覺架構師的意圖像晨光滲入窗框。
+
+（#FF7F50 的日落顏色，像橙子汽水）
+
 <!-- openclaw:dreaming:diary:end -->
 
 ## Deep Sleep
 <!-- openclaw:dreaming:deep:start -->
-- Ranked 2 candidate(s) for durable promotion.
-- Promoted 2 candidate(s) into MEMORY.md.
+- Ranked 10 candidate(s) for durable promotion.
+- Promoted 10 candidate(s) into MEMORY.md.
 <!-- openclaw:dreaming:deep:end -->

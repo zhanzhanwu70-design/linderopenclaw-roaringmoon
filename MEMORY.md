@@ -80,19 +80,6 @@
 
 ## Notes
 
-## Promoted From Short-Term Memory (2026-07-01)
-
-<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:18:18 -->
-- Native Ollama Provider 支援 (`be8112f`): **架構關鍵點**： [score=0.825 recalls=0 avg=0.620 source=memory/2026-06-27.md:18-18]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:20:23 -->
-- Native Ollama Provider 支援 (`be8112f`): // openai_compat.rs 新增 pub const OLLAMA_CONFIG: OpenAiCompatConfig = OpenAiCompatConfig { provider_name: "Ollama", api_key_env: "OLLAMA_HOST", [score=0.825 recalls=0 avg=0.620 source=memory/2026-06-27.md:20-23]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:24:26 -->
-- Native Ollama Provider 支援 (`be8112f`): base_url_env: "OLLAMA_HOST", default_base_url: "http://127.0.0.1:11434/v1", max_request_body_bytes: 104_857_600, [score=0.825 recalls=0 avg=0.620 source=memory/2026-06-27.md:24-26]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-21.md:30:32 -->
-- Math (MATH Lvl 5): nvidia/AceMath-72B-Instruct: 71.45; nvidia/AceMath-7B-Instruct: 63.37; nvidia/AceInstruct-72B: 62.61 [score=0.816 recalls=0 avg=0.620 source=memory/2026-06-21.md:30-32]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-21.md:9:12 -->
-- Top 10 Overall (Open LLM Leaderboard): | Rank | Model | Average | IFEval | BBH | MATH | GPQA | MUSR | MMLU-PRO | Params | |------|-------|---------|--------|-----|------|------|------|----------|--------| | 1 | MaziyarPanahi/calme-3.2-instruct-78b | 52.08 | 80.63 | 62.61 | 40.33 | 20.36 | 38.53 | 70.03 | 78B | | 2 | MaziyarPanahi/calme-3.1-instruct-78b | 51.29 | 81.36 | 62.41 | 39.27 | 19.46 | 36.50 | 68.72 | 78B | [score=0.816 recalls=0 avg=0.620 source=memory/2026-06-21.md:9-12]
-
 ## Promoted From Short-Term Memory (2026-07-02)
 
 <!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:13:16 -->
@@ -137,3 +124,26 @@
 - OpenClaw Source Code 架構研究: **目錄結構重點：** [score=0.832 recalls=0 avg=0.620 source=memory/2026-07-03.md:13-13]
 <!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:18:18 -->
 - OpenClaw Source Code 架構研究: `context-engine/` — System Prompt 組裝（SOUL/IDENTITY/USER/AGENTS 拼接） [score=0.832 recalls=0 avg=0.620 source=memory/2026-07-03.md:18-18]
+
+## Promoted From Short-Term Memory (2026-07-08)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:14:17 -->
+- OpenClaw Source Code 架構研究: `gateway/` — WebSocket 伺服器; `agents/` — Agent 執行引擎; `sessions/` — 對話狀態管理; `channels/` — Discord/Telegram/WhatsApp 接入 [score=0.900 recalls=0 avg=0.620 source=memory/2026-07-03.md:14-17]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:7:7 -->
+- OpenClaw Source Code 架構研究: **建議閱讀順序：** [score=0.894 recalls=0 avg=0.620 source=memory/2026-07-03.md:7-7]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:8:11 -->
+- OpenClaw Source Code 架構研究: `docs/concepts/agent-loop.md` — 核心工作流; `docs/concepts/architecture.md` — 整體架構; `docs/concepts/multi-agent.md` — 多 Agent 路由; Source: `gateway/server/` → `routing/` → `sessions/` → `agents/runtime/` → `context-engine/` [score=0.887 recalls=0 avg=0.620 source=memory/2026-07-03.md:8-11]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:25:25 -->
+- OpenClaw 為何用 TypeScript: Node.js 生態完整（messaging SDK 全是 JS/TS） [score=0.868 recalls=0 avg=0.620 source=memory/2026-07-03.md:25-25]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:27:28 -->
+- OpenClaw 為何用 TypeScript: Cross-platform（macOS/Linux/Windows）; Skill 生態（npm package） [score=0.868 recalls=0 avg=0.620 source=memory/2026-07-03.md:27-28]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:30:30 -->
+- OpenClaw 為何用 TypeScript: **Rust 不適合的原因：** [score=0.868 recalls=0 avg=0.620 source=memory/2026-07-03.md:30-30]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:31:33 -->
+- OpenClaw 為何用 TypeScript: Messaging SDK 幾乎全是 JS/TS; 重寫等於放棄生態; 效能瓶頸可在局部用 Rust（沙盒），其餘不需要 [score=0.868 recalls=0 avg=0.620 source=memory/2026-07-03.md:31-33]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:35:35 -->
+- OpenClaw 為何用 TypeScript: **Python clone (kitpaw)：** [score=0.868 recalls=0 avg=0.620 source=memory/2026-07-03.md:35-35]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:36:39 -->
+- OpenClaw 為何用 TypeScript: Repo: `reyoung/kitpaw`; 只 clone 了 `pi-agent`（Agent runtime），不是完整 OpenClaw; 落後半年（2026-03-30），WIP 狀態; **價值低** — 沒有 channel 接入，不是完整 clone [score=0.868 recalls=0 avg=0.620 source=memory/2026-07-03.md:36-39]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:45:48 -->
+- OpenClaw 優勢分析: | 維度 | OpenClaw | 其他框架（LangGraph/CrewAI/smolagents） | |------|----------|---------| | Time-to-Production | ✅ 極低（npm install） | ❌ 需從零建構 | | Channel 接入 | ✅ 原生 20+ | ❌ 需自己刻 | [score=0.868 recalls=0 avg=0.620 source=memory/2026-07-03.md:45-48]
