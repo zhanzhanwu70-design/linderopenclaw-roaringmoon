@@ -80,54 +80,72 @@
 
 ## Notes
 
-## Promoted From Short-Term Memory (2026-07-03)
+## Promoted From Short-Term Memory (2026-07-13)
 
-<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:49:50 -->
-- 眾多 ROADMAP 項目關閉: #325, #330, #338, #339, #341, #342, #343, #344; 涵蓋 JSON contract stabilization、session resume、help system [score=0.853 recalls=0 avg=0.620 source=memory/2026-06-27.md:49-50]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:57:58 -->
-- 雙語言架構: **Rust**: 核心 CLI、commands、runtime、API client; **Python**: 輔助工具、porting workspace infrastructure [score=0.853 recalls=0 avg=0.620 source=memory/2026-06-27.md:57-58]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:68:71 -->
-- Provider 路由: detect_provider_kind() → OLLAMA_HOST (最高優先) → ANTHROPIC_API_KEY → OPENAI_API_KEY / OPENAI_BASE_URL [score=0.853 recalls=0 avg=0.620 source=memory/2026-06-27.md:68-71]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:90:93 -->
-- 對 OpenClaw 整合的影響: **Ollama 支援增強**：可更自然地使用本地模型; **Provider 配置簡化**：三層解析減少環境設定複雜度; **安全改進**：redirection 路徑驗證防止 sandbox escape; **JSON contract 穩定化**：有利於程式化整合 [score=0.853 recalls=0 avg=0.620 source=memory/2026-06-27.md:90-93]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:98:100 -->
-- 繼續研究重點: 深入 `runtime/src/config.rs` 的 provider 解析邏輯; 理解 `tools` crate 的 tool dispatch 機制; MCP server lifecycle 管理實作 [score=0.853 recalls=0 avg=0.620 source=memory/2026-06-27.md:98-100]
-<!-- openclaw-memory-promotion:memory:memory/2026-06-27.md:72:72 -->
-- Provider 路由: → 其他 provider... [score=0.813 recalls=0 avg=0.620 source=memory/2026-06-27.md:72-72]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:50:53 -->
+- 狀態: [ ] Phase 1: 止血; [ ] Phase 2: 強制力; [ ] Phase 3: 召回; [ ] Phase 4: QA [score=0.839 recalls=0 avg=0.620 source=memory/2026-07-08.md:50-53]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:54:55 -->
+- 狀態: [ ] Phase 5: 設計; [ ] Phase 6: 範圍 [score=0.829 recalls=0 avg=0.620 source=memory/2026-07-08.md:54-55]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:15:16 -->
+- Phase 2：強制力（重要）: 程式化 Hooks（pre-commit, pre-merge, post-merge）; Schema 驗證 [score=0.827 recalls=0 avg=0.620 source=memory/2026-07-08.md:15-16]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:19:19 -->
+- Phase 3：召回機制（核心）: 填補語義搜尋（整合 codebase-memory-mcp） [score=0.827 recalls=0 avg=0.620 source=memory/2026-07-08.md:19-19]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:38:41 -->
+- 任務分配: | 任務 | 負責人 | 緊急度 | |------|--------|--------| | Phase 1a: 熵管理機制 | 木木鴞 | 緊急 | | Phase 1b: 去重偵測 | 木木鴞 | 緊急 | [score=0.827 recalls=0 avg=0.620 source=memory/2026-07-08.md:38-41]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:4:4 -->
+- 來源: Linder 轉發 Ouroboros 批判分析（外部評價） [score=0.827 recalls=0 avg=0.620 source=memory/2026-07-08.md:4-4]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:42:45 -->
+- 任務分配: | Phase 2: 強制力 Hooks | 噴火龍 | 重要 | | Phase 3: 召回機制 | 噴火龍 | 核心 | | Phase 4: QA 自動化 | 木木鴞 | 重要 | | Phase 5: 設計調整 | 魔牆人偶 | 中等 | [score=0.827 recalls=0 avg=0.620 source=memory/2026-07-08.md:42-45]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:32:32 -->
+- Phase 6：範圍擴展: Agent Working Memory 整合 [score=0.817 recalls=0 avg=0.620 source=memory/2026-07-08.md:32-32]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:23:23 -->
+- Phase 4：QA 自動化: Lint 工具鏈 [score=0.807 recalls=0 avg=0.620 source=memory/2026-07-08.md:23-23]
 
-## Promoted From Short-Term Memory (2026-07-07)
+## Promoted From Short-Term Memory (2026-07-14)
 
-<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:13:13 -->
-- OpenClaw Source Code 架構研究: **目錄結構重點：** [score=0.832 recalls=0 avg=0.620 source=memory/2026-07-03.md:13-13]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:18:18 -->
-- OpenClaw Source Code 架構研究: `context-engine/` — System Prompt 組裝（SOUL/IDENTITY/USER/AGENTS 拼接） [score=0.832 recalls=0 avg=0.620 source=memory/2026-07-03.md:18-18]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:12:12 -->
+- Conversation Summary: assistant: 那是**不同的目錄**。 [score=0.844 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:12-12]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:14:14 -->
+- Conversation Summary: 我跑的 graphify 在**伺服器**上，不是你本機。 [score=0.844 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:14-14]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:9:9 -->
+- Conversation Summary: user: "D:\llm-wiki\raw\code\elle_ws\graphify\elle_ws_functions-ast\graphify-out\cache\semantic" [score=0.844 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:9-9]
 
-## Promoted From Short-Term Memory (2026-07-08)
+## Promoted From Short-Term Memory (2026-07-15)
 
-<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:14:17 -->
-- OpenClaw Source Code 架構研究: `gateway/` — WebSocket 伺服器; `agents/` — Agent 執行引擎; `sessions/` — 對話狀態管理; `channels/` — Discord/Telegram/WhatsApp 接入 [score=0.900 recalls=0 avg=0.620 source=memory/2026-07-03.md:14-17]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:7:7 -->
-- OpenClaw Source Code 架構研究: **建議閱讀順序：** [score=0.894 recalls=0 avg=0.620 source=memory/2026-07-03.md:7-7]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:8:11 -->
-- OpenClaw Source Code 架構研究: `docs/concepts/agent-loop.md` — 核心工作流; `docs/concepts/architecture.md` — 整體架構; `docs/concepts/multi-agent.md` — 多 Agent 路由; Source: `gateway/server/` → `routing/` → `sessions/` → `agents/runtime/` → `context-engine/` [score=0.887 recalls=0 avg=0.620 source=memory/2026-07-03.md:8-11]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:25:25 -->
-- OpenClaw 為何用 TypeScript: Node.js 生態完整（messaging SDK 全是 JS/TS） [score=0.868 recalls=0 avg=0.620 source=memory/2026-07-03.md:25-25]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:27:28 -->
-- OpenClaw 為何用 TypeScript: Cross-platform（macOS/Linux/Windows）; Skill 生態（npm package） [score=0.868 recalls=0 avg=0.620 source=memory/2026-07-03.md:27-28]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:30:30 -->
-- OpenClaw 為何用 TypeScript: **Rust 不適合的原因：** [score=0.868 recalls=0 avg=0.620 source=memory/2026-07-03.md:30-30]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:31:33 -->
-- OpenClaw 為何用 TypeScript: Messaging SDK 幾乎全是 JS/TS; 重寫等於放棄生態; 效能瓶頸可在局部用 Rust（沙盒），其餘不需要 [score=0.868 recalls=0 avg=0.620 source=memory/2026-07-03.md:31-33]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:35:35 -->
-- OpenClaw 為何用 TypeScript: **Python clone (kitpaw)：** [score=0.868 recalls=0 avg=0.620 source=memory/2026-07-03.md:35-35]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:36:39 -->
-- OpenClaw 為何用 TypeScript: Repo: `reyoung/kitpaw`; 只 clone 了 `pi-agent`（Agent runtime），不是完整 OpenClaw; 落後半年（2026-03-30），WIP 狀態; **價值低** — 沒有 channel 接入，不是完整 clone [score=0.868 recalls=0 avg=0.620 source=memory/2026-07-03.md:36-39]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:45:48 -->
-- OpenClaw 優勢分析: | 維度 | OpenClaw | 其他框架（LangGraph/CrewAI/smolagents） | |------|----------|---------| | Time-to-Production | ✅ 極低（npm install） | ❌ 需從零建構 | | Channel 接入 | ✅ 原生 20+ | ❌ 需自己刻 | [score=0.868 recalls=0 avg=0.620 source=memory/2026-07-03.md:45-48]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:3:5 -->
+- Session: 2026-07-10 07:35:50 UTC: **Session Key**: agent:roaringmoon:discord:channel:1482561255955763293; **Session ID**: 7816db42-7f96-40b9-9b40-07cef119660b; **Source**: discord [score=0.893 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:3-5]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:30:31 -->
+- 原因: elle_ws_functions-ast → 之前失敗的 run（只有 AST，沒有 semantic） elle_ws_functions → 剛剛成功的 run（有 semantic + graph.json） [score=0.893 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:30-31]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:40:40 -->
+- 在伺服器上: find /home/node/.openclaw/workspace/llm-wiki/raw/code/elle_ws/graphify/elle_ws_functions -name "*.json" | wc -l [score=0.893 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:40-40]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:60:63 -->
+- 已完成: [x] staleness_rules.yaml — 定義各類型的過時閾值; [x] auto_archive_hook.py — 自動歸檔過時頁面; [x] deduplication_hook.py — 偵測近義重複頁面; [x] wikilinks_integrity_hook.py — 檢查 wikilinks 完整性 [score=0.869 recalls=0 avg=0.620 source=memory/2026-07-08.md:60-63]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:64:65 -->
+- 已完成: [x] frontmatter_schema.json — frontmatter 驗證 schema; [x] SKILL.md 更新 — v2.6 加入熵管理與強制力章節 [score=0.869 recalls=0 avg=0.620 source=memory/2026-07-08.md:64-65]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:69:72 -->
+- 新增檔案: ouroboros/ ├── references/ │ ├── staleness_rules.yaml # 過時閾值設定 │ └── frontmatter_schema.json # frontmatter 驗證 [score=0.869 recalls=0 avg=0.620 source=memory/2026-07-08.md:69-72]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:73:76 -->
+- 新增檔案: ├── scripts/ │ ├── auto_archive_hook.py # 自動歸檔腳本 │ ├── deduplication_hook.py # 去重偵測腳本 │ └── wikilinks_integrity_hook.py # 斷鏈檢查 [score=0.869 recalls=0 avg=0.620 source=memory/2026-07-08.md:73-76]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:20:23 -->
+- 實際路徑對照: | 你的本機（Windows） | 伺服器（Linux） | |--------------------|----------------| | `D:\llm-wiki\...\` | `/home/node/.openclaw/workspace/llm-wiki/raw/code/elle_ws/` | | `elle_ws_functions-ast\` | `elle_ws_functions/`（有 semantic）| [score=0.861 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:20-23]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:44:46 -->
+- 結果: 1368 + graph.json = 1369 個檔案: **Semantic extraction 成功了，資料在 `graphify/elle_ws_functions/graphify-out/`** user: elle_ws_functions-ast 部分應該可以刪掉 assistant: ✅ 已刪除 `elle_ws_functions-ast` [score=0.861 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:44-46]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:53:56 -->
+- 目前結構: graphify/ └── elle_ws_functions/ └── graphify-out/ ├── graph.json (21,393 nodes, 27,710 edges) [score=0.861 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:53-56]
 
-## Promoted From Short-Term Memory (2026-07-09)
+## Promoted From Short-Term Memory (2026-07-16)
 
-<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:49:50 -->
-- OpenClaw 優勢分析: | 本地部署 | ✅ 優先 | ⚠️ 通常是選項 | | Python 生態 | ❌ | ✅ 主流 | [score=0.858 recalls=0 avg=0.620 source=memory/2026-07-03.md:49-50]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-03.md:52:52 -->
-- OpenClaw 優勢分析: **核心定位：「給你一個完整的 AI Agent 系統，不需要知道怎麼做」** [score=0.858 recalls=0 avg=0.620 source=memory/2026-07-03.md:52-52]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:57:59 -->
+- 目前結構: └── cache/ ├── ast/ (1,368 files) └── semantic/ (chunk results) [score=0.888 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:57-59]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:62:64 -->
+- 目前結構: **有用的資料都保留了。** user: 為何只有function 其他部分也要做啊 assistant: 對，其他 repos 也要做。目前進度： [score=0.888 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:62-64]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:66:69 -->
+- 目前結構: | Repo | 檔案數 | Graphify | |------|--------|---------| | elle_ws_functions | 1370 | ✅ 完成 | | elle_ws_bringup | 71 | ❌ 未做 | [score=0.888 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:66-69]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:70:73 -->
+- 目前結構: | elle_ws_hardware | - | ❌ 未做 | | elle_ws_simulations | - | ❌ 未做 | | elle_ws_tools | - | ❌ 未做 | | elle_web_backend | - | ❌ 未做 | [score=0.888 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:70-73]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:79:82 -->
+- 繼續執行: user: hey assistant: NO_REPLY user: 做的如何了 assistant: elle_ws_bringup 被中斷了，繼續跑完： [score=0.888 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:79-82]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:84:87 -->
+- 繼續執行: user: hi assistant: [assistant turn failed before producing content] user: 繼續把 bringup hardware 的graphify部分完成 user: 有繼續做嗎 [score=0.812 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:84-87]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:88:88 -->
+- 繼續執行: user: 設定一個cron 每五分鐘檢測一次是否完成 完成後把cron刪除 [score=0.812 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:88-88]
