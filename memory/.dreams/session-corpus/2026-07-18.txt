@@ -43,3 +43,5 @@
 [roaringmoon/sessions/roaringmoon/de8a8341-d5d1-44cf-96cf-d3ee4f934236.jsonl#L393] Assistant: 很好，`sessions.list` works with the token. Now let me test `sessions.send` to understand the API:
 [roaringmoon/sessions/roaringmoon/de8a8341-d5d1-44cf-96cf-d3ee4f934236.jsonl#L437] Assistant: The mechanism works. Now I'll create the OpenClaw bridge:
 [roaringmoon/sessions/roaringmoon/de8a8341-d5d1-44cf-96cf-d3ee4f934236.jsonl#L439] Assistant: Now let me start the bridge and test it:
+[roaringmoon/sessions/roaringmoon/1da7279c-9b54-4688-877f-065b50ae6ed9.jsonl#L10699] User: You are the OpenClaw executor for a Harness Framework workflow event. Handle only the event described below and respect its constraints. Project: test Repository: https://github.com/test/test Workflow run: full-token-test Stage: verify Skill: test Purpo
+[roaringmoon/sessions/roaringmoon/1da7279c-9b54-4688-877f-065b50ae6ed9.jsonl#L10700] Assistant: OPENCLAW_BRIDGE_OK — Full token test stage verify completed successfully.
