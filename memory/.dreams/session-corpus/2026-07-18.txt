@@ -45,3 +45,14 @@
 [roaringmoon/sessions/roaringmoon/de8a8341-d5d1-44cf-96cf-d3ee4f934236.jsonl#L439] Assistant: Now let me start the bridge and test it:
 [roaringmoon/sessions/roaringmoon/1da7279c-9b54-4688-877f-065b50ae6ed9.jsonl#L10699] User: You are the OpenClaw executor for a Harness Framework workflow event. Handle only the event described below and respect its constraints. Project: test Repository: https://github.com/test/test Workflow run: full-token-test Stage: verify Skill: test Purpo
 [roaringmoon/sessions/roaringmoon/1da7279c-9b54-4688-877f-065b50ae6ed9.jsonl#L10700] Assistant: OPENCLAW_BRIDGE_OK — Full token test stage verify completed successfully.
+[roaringmoon/sessions/roaringmoon/de8a8341-d5d1-44cf-96cf-d3ee4f934236.jsonl#L1176] Assistant: Gateway WebSocket 需要挑戰握手，比我想的複雜。讓我用更簡單的方式——直接用 `openclaw gateway call` CLI 指令，這個已經能工作了：
+[roaringmoon/sessions/roaringmoon/de8a8341-d5d1-44cf-96cf-d3ee4f934236.jsonl#L1180] Assistant: Bridge 正常。測試完整流程：
+[roaringmoon/sessions/roaringmoon/de8a8341-d5d1-44cf-96cf-d3ee4f934236.jsonl#L1182] Assistant: **成功！** Bridge 工作正常。 Agent 回覆了 `OPENCLAW_BRIDGE_OK`，歷時約 22 秒（poll 等待時間）。 --- ## 目前 Bridge 狀態 - **Port**: `127.0.0.1:4178` - **認證**: `OPENCLAW_BRIDGE_TOKEN` 未設定（目前只有 localhost 存取） - **Gateway token**: 已設定 - **Mode**: CLI（用 `openclaw gateway call` 指令）
+[roaringmoon/sessions/roaringmoon/de8a8341-d5d1-44cf-96cf-d3ee4f934236.jsonl#L1183] User: 已經啟動 Cloudflare Tunnel 繼續下去
+[roaringmoon/sessions/roaringmoon/de8a8341-d5d1-44cf-96cf-d3ee4f934236.jsonl#L1184] Assistant: 好，測試 public URL：
+[roaringmoon/sessions/roaringmoon/de8a8341-d5d1-44cf-96cf-d3ee4f934236.jsonl#L1186] Assistant: Public URL 通了。測試完整流程：
+[roaringmoon/sessions/roaringmoon/de8a8341-d5d1-44cf-96cf-d3ee4f934236.jsonl#L1188] Assistant: 全部成功。現在要把 OpenClaw adapter 整合進 harness-framework 的程式碼。
+[roaringmoon/sessions/roaringmoon/de8a8341-d5d1-44cf-96cf-d3ee4f934236.jsonl#L1191] Assistant: 現在理解了。需要修改 `invokeConfiguredAgent` 讓它也支援 `openclaw` executor：
+[roaringmoon/sessions/roaringmoon/de8a8341-d5d1-44cf-96cf-d3ee4f934236.jsonl#L1193] Assistant: 現在確認 `workflow.ts` 裡的調用方式：
+[roaringmoon/sessions/roaringmoon/de8a8341-d5d1-44cf-96cf-d3ee4f934236.jsonl#L1205] Assistant: 整合點在 `route.ts`，`invokeConfiguredAgent` 已經傳給 `advanceWorkflow`，我的修改讓它同時支援 `openclaw`。現在跑 typecheck 和 build：
+[roaringmoon/sessions/roaringmoon/de8a8341-d5d1-44cf-96cf-d3ee4f934236.jsonl#L1223] Assistant: 兩個錯誤： 1. `bridgeUrl` 變數名重複 2. `source` type 不包含 `"openclaw-bridge"`
