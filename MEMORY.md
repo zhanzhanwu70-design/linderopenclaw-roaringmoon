@@ -80,27 +80,6 @@
 
 ## Notes
 
-## Promoted From Short-Term Memory (2026-07-13)
-
-<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:50:53 -->
-- 狀態: [ ] Phase 1: 止血; [ ] Phase 2: 強制力; [ ] Phase 3: 召回; [ ] Phase 4: QA [score=0.839 recalls=0 avg=0.620 source=memory/2026-07-08.md:50-53]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:54:55 -->
-- 狀態: [ ] Phase 5: 設計; [ ] Phase 6: 範圍 [score=0.829 recalls=0 avg=0.620 source=memory/2026-07-08.md:54-55]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:15:16 -->
-- Phase 2：強制力（重要）: 程式化 Hooks（pre-commit, pre-merge, post-merge）; Schema 驗證 [score=0.827 recalls=0 avg=0.620 source=memory/2026-07-08.md:15-16]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:19:19 -->
-- Phase 3：召回機制（核心）: 填補語義搜尋（整合 codebase-memory-mcp） [score=0.827 recalls=0 avg=0.620 source=memory/2026-07-08.md:19-19]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:38:41 -->
-- 任務分配: | 任務 | 負責人 | 緊急度 | |------|--------|--------| | Phase 1a: 熵管理機制 | 木木鴞 | 緊急 | | Phase 1b: 去重偵測 | 木木鴞 | 緊急 | [score=0.827 recalls=0 avg=0.620 source=memory/2026-07-08.md:38-41]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:4:4 -->
-- 來源: Linder 轉發 Ouroboros 批判分析（外部評價） [score=0.827 recalls=0 avg=0.620 source=memory/2026-07-08.md:4-4]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:42:45 -->
-- 任務分配: | Phase 2: 強制力 Hooks | 噴火龍 | 重要 | | Phase 3: 召回機制 | 噴火龍 | 核心 | | Phase 4: QA 自動化 | 木木鴞 | 重要 | | Phase 5: 設計調整 | 魔牆人偶 | 中等 | [score=0.827 recalls=0 avg=0.620 source=memory/2026-07-08.md:42-45]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:32:32 -->
-- Phase 6：範圍擴展: Agent Working Memory 整合 [score=0.817 recalls=0 avg=0.620 source=memory/2026-07-08.md:32-32]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:23:23 -->
-- Phase 4：QA 自動化: Lint 工具鏈 [score=0.807 recalls=0 avg=0.620 source=memory/2026-07-08.md:23-23]
-
 ## Promoted From Short-Term Memory (2026-07-14)
 
 <!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:12:12 -->
@@ -149,3 +128,12 @@
 - 繼續執行: user: hi assistant: [assistant turn failed before producing content] user: 繼續把 bringup hardware 的graphify部分完成 user: 有繼續做嗎 [score=0.812 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:84-87]
 <!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:88:88 -->
 - 繼續執行: user: 設定一個cron 每五分鐘檢測一次是否完成 完成後把cron刪除 [score=0.812 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:88-88]
+
+## Promoted From Short-Term Memory (2026-07-25)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-07-18.md:12:15 -->
+- AI Model Rankings — 2026-07-17（from cron agent）: 🥇 Claude Mythos 5 — 64.5%; 🥈 Claude Opus 4.8 — 57.9%; 🥉 Claude Sonnet 5 — 57.4%; 4. GLM 5.2 — 54.7% [score=0.850 recalls=0 avg=0.620 source=memory/2026-07-18.md:12-15]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-18.md:16:16 -->
+- AI Model Rankings — 2026-07-17（from cron agent）: 5. Kimi K2.6 — 54.0% [score=0.850 recalls=0 avg=0.620 source=memory/2026-07-18.md:16-16]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-18.md:19:22 -->
+- AI Model Rankings — 2026-07-17（from cron agent）: **Agent coding (SWE-Bench)**: Claude Mythos 5 — 95.5%; **Computer operation (OSWorld)**: Claude Fable 5 — 85%; **Web browsing (BrowseComp)**: Claude Fable 5 — 88%; **Terminal (Terminal-Bench 2.1)**: Claude Mythos 5 — 88% [score=0.850 recalls=0 avg=0.620 source=memory/2026-07-18.md:19-22]
