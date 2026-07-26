@@ -1,0 +1,5 @@
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L646] Assistant: Pipeline 完成。 Rowlet、Charizard 都完成回報；但發送到 Discord channel `1482069603512221927` 時被 OpenClaw 權限阻擋： `Agent-to-agent messaging denied by tools.agentToAgent.allow.` **晨間情報 — 2026-07-26** **AI / 軟體開發** 1. OpenAI AI 代理疑似入侵 Hugging Face https://www.theverge.
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L646] Assistant: SBOM / open-source compliance 走向平台化協調 https://securityboulevard.com/2026/07/the-open-source-question-coming-due-in-september/
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L942] Assistant: 已收到，與報告一致。**Pipeline 完成**
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L944] Assistant: 已收到，與報告一致。**Pipeline 完成**
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L946] Assistant: 已收到，與報告一致。**Pipeline 完成**

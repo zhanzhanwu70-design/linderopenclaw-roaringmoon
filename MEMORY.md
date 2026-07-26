@@ -137,3 +137,12 @@
 - AI Model Rankings — 2026-07-17（from cron agent）: 5. Kimi K2.6 — 54.0% [score=0.850 recalls=0 avg=0.620 source=memory/2026-07-18.md:16-16]
 <!-- openclaw-memory-promotion:memory:memory/2026-07-18.md:19:22 -->
 - AI Model Rankings — 2026-07-17（from cron agent）: **Agent coding (SWE-Bench)**: Claude Mythos 5 — 95.5%; **Computer operation (OSWorld)**: Claude Fable 5 — 85%; **Web browsing (BrowseComp)**: Claude Fable 5 — 88%; **Terminal (Terminal-Bench 2.1)**: Claude Mythos 5 — 88% [score=0.850 recalls=0 avg=0.620 source=memory/2026-07-18.md:19-22]
+
+## Promoted From Short-Term Memory (2026-07-26)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-07-18.md:18:18 -->
+- AI Model Rankings — 2026-07-17（from cron agent）: Notable per-domain: [score=0.831 recalls=0 avg=0.620 source=memory/2026-07-18.md:18-18]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-18.md:24:25 -->
+- AI Model Rankings — 2026-07-17（from cron agent）: Speed king: Llama 4 Scout — 2600 t/s Best value: Nova Micro — $0.04/$0.14 per 1M tokens [score=0.831 recalls=0 avg=0.620 source=memory/2026-07-18.md:24-25]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-18.md:9:9 -->
+- AI Model Rankings — 2026-07-17（from cron agent）: Source: Vellum LLM Leaderboard + Artificial Analysis [score=0.831 recalls=0 avg=0.620 source=memory/2026-07-18.md:9-9]
