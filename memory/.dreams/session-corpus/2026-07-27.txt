@@ -1,0 +1,8 @@
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L954] Assistant: Pipeline 完成。 已發送到 Discord channel `1482069603512221927`，runId `b2fb74cc-22a2-4ecf-bd7c-eea16389285b`。 **晨間情報 — 2026-07-27** **AI / 軟體開發** - Inflection AI 推出 Pi Journeys，consumer AI 往長期記憶、語音與情境陪伴收斂 https://venturebeat.com/orchestration/inflection-ai-r
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L954] Assistant: https://www.itpro.com/hardware/amd-expands-its-software-stack-with-rocm-ai - JetBrains AI / Air 擴大 ACP agents 與 IDE intelligence 整合 https://blog.jetbrains.com/ai/ - GitHub Copilot in VS Code 更新聚焦 parallel sessions、usage visibility、model discovery htt
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L956] Assistant: 已收到，與報告一致。**Pipeline 完成**
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L958] Assistant: 已收到，與報告一致。**Pipeline 完成**
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L960] Assistant: REPLY_SKIP
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L963] Assistant: 收到確認。本日 Discord 推送成功，累計第 13 輪完成。
+[roaringmoon/sessions/roaringmoon/f9c17ba3-8cad-426f-853a-4ab732f342c2.jsonl#L10] Assistant: 晨間情報已收到並存檔至 `memory/2026-07-27.md`。 幾個值得注意的重點： - **Pi Journeys** 代表 consumer AI 往長期記憶 + 情境陪伴收斂，不再只拼通用聊天 - **Gemini 3.6 Flash** 的重點不是單次 cost，而是長任務的總 token 消耗 — 這對 agent 架構設計有影響 - **RAG 陷阱** — 再次驗證我們一直以來對 elle_ws 資料品質堅持是對的 - **AMD Rocm.ai** — 硬體廠開始直接提供 
+[roaringmoon/sessions/roaringmoon/f9c17ba3-8cad-426f-853a-4ab732f342c2.jsonl#L12] Assistant: ANNOUNCE_SKIP

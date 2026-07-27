@@ -80,38 +80,6 @@
 
 ## Notes
 
-## Promoted From Short-Term Memory (2026-07-14)
-
-<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:12:12 -->
-- Conversation Summary: assistant: 那是**不同的目錄**。 [score=0.844 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:12-12]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:14:14 -->
-- Conversation Summary: 我跑的 graphify 在**伺服器**上，不是你本機。 [score=0.844 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:14-14]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:9:9 -->
-- Conversation Summary: user: "D:\llm-wiki\raw\code\elle_ws\graphify\elle_ws_functions-ast\graphify-out\cache\semantic" [score=0.844 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:9-9]
-
-## Promoted From Short-Term Memory (2026-07-15)
-
-<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:3:5 -->
-- Session: 2026-07-10 07:35:50 UTC: **Session Key**: agent:roaringmoon:discord:channel:1482561255955763293; **Session ID**: 7816db42-7f96-40b9-9b40-07cef119660b; **Source**: discord [score=0.893 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:3-5]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:30:31 -->
-- 原因: elle_ws_functions-ast → 之前失敗的 run（只有 AST，沒有 semantic） elle_ws_functions → 剛剛成功的 run（有 semantic + graph.json） [score=0.893 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:30-31]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:40:40 -->
-- 在伺服器上: find /home/node/.openclaw/workspace/llm-wiki/raw/code/elle_ws/graphify/elle_ws_functions -name "*.json" | wc -l [score=0.893 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:40-40]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:60:63 -->
-- 已完成: [x] staleness_rules.yaml — 定義各類型的過時閾值; [x] auto_archive_hook.py — 自動歸檔過時頁面; [x] deduplication_hook.py — 偵測近義重複頁面; [x] wikilinks_integrity_hook.py — 檢查 wikilinks 完整性 [score=0.869 recalls=0 avg=0.620 source=memory/2026-07-08.md:60-63]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:64:65 -->
-- 已完成: [x] frontmatter_schema.json — frontmatter 驗證 schema; [x] SKILL.md 更新 — v2.6 加入熵管理與強制力章節 [score=0.869 recalls=0 avg=0.620 source=memory/2026-07-08.md:64-65]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:69:72 -->
-- 新增檔案: ouroboros/ ├── references/ │ ├── staleness_rules.yaml # 過時閾值設定 │ └── frontmatter_schema.json # frontmatter 驗證 [score=0.869 recalls=0 avg=0.620 source=memory/2026-07-08.md:69-72]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-08.md:73:76 -->
-- 新增檔案: ├── scripts/ │ ├── auto_archive_hook.py # 自動歸檔腳本 │ ├── deduplication_hook.py # 去重偵測腳本 │ └── wikilinks_integrity_hook.py # 斷鏈檢查 [score=0.869 recalls=0 avg=0.620 source=memory/2026-07-08.md:73-76]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:20:23 -->
-- 實際路徑對照: | 你的本機（Windows） | 伺服器（Linux） | |--------------------|----------------| | `D:\llm-wiki\...\` | `/home/node/.openclaw/workspace/llm-wiki/raw/code/elle_ws/` | | `elle_ws_functions-ast\` | `elle_ws_functions/`（有 semantic）| [score=0.861 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:20-23]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:44:46 -->
-- 結果: 1368 + graph.json = 1369 個檔案: **Semantic extraction 成功了，資料在 `graphify/elle_ws_functions/graphify-out/`** user: elle_ws_functions-ast 部分應該可以刪掉 assistant: ✅ 已刪除 `elle_ws_functions-ast` [score=0.861 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:44-46]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:53:56 -->
-- 目前結構: graphify/ └── elle_ws_functions/ └── graphify-out/ ├── graph.json (21,393 nodes, 27,710 edges) [score=0.861 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:53-56]
-
 ## Promoted From Short-Term Memory (2026-07-16)
 
 <!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:57:59 -->
@@ -146,3 +114,26 @@
 - AI Model Rankings — 2026-07-17（from cron agent）: Speed king: Llama 4 Scout — 2600 t/s Best value: Nova Micro — $0.04/$0.14 per 1M tokens [score=0.831 recalls=0 avg=0.620 source=memory/2026-07-18.md:24-25]
 <!-- openclaw-memory-promotion:memory:memory/2026-07-18.md:9:9 -->
 - AI Model Rankings — 2026-07-17（from cron agent）: Source: Vellum LLM Leaderboard + Artificial Analysis [score=0.831 recalls=0 avg=0.620 source=memory/2026-07-18.md:9-9]
+
+## Promoted From Short-Term Memory (2026-07-27)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:23:23 -->
+- AI Model Rankings — 2026-07-21（from cron agent）: **開源 Top 5（Open Weights）:** [score=0.894 recalls=0 avg=0.620 source=memory/2026-07-21.md:23-23]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:6:6 -->
+- AI Model Rankings — 2026-07-21（from cron agent）: **🏆 Top 10 Overall (Intelligence Index)** [score=0.894 recalls=0 avg=0.620 source=memory/2026-07-21.md:6-6]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:11:14 -->
+- AI Model Rankings — 2026-07-21（from cron agent）: GPT-5.6 Terra — 55.0 (II), 76.7 (CI), 47.4 (AI) ▲2; GPT-5.5 — 54.8 (II), 74.9 (CI), 44.9 (AI) ▼1; Grok 4.5 — 53.8 (II), 72.4 (CI), 45.7 (AI) ▲1; Claude Opus 4.7 — 53.5 (II), 73.6 (CI), 44.4 (AI) ▼2 [score=0.868 recalls=0 avg=0.620 source=memory/2026-07-21.md:11-14]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:15:16 -->
+- AI Model Rankings — 2026-07-21（from cron agent）: Claude Sonnet 5 — 53.4 (II), 71.5 (CI), 46.7 (AI) ▲1; GPT-5.4 — 51.4 (II), 71.1 (CI), 41.1 (AI) ▼1 [score=0.868 recalls=0 avg=0.620 source=memory/2026-07-21.md:15-16]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:19:21 -->
+- AI Model Rankings — 2026-07-21（from cron agent）: 💻 Coding (CI): GPT-5.6 Sol — 77.4; 🤖 Agent (AI): GPT-5.6 Sol — 54.0; 🎨 Design Arena: Kimi K3（3D/UI/網站）, Claude Fable 5（網頁 Apps/Godot） [score=0.868 recalls=0 avg=0.620 source=memory/2026-07-21.md:19-21]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:24:27 -->
+- AI Model Rankings — 2026-07-21（from cron agent）: GLM 5.2 — 51.1 (II), 68.8 (CI), 43.1 (AI); DeepSeek V4 Pro — 44.3 (II), 59.4 (CI), 36.4 (AI); MiniMax M3 — 44.4 (II), 58.6 (CI), 35.4 (AI); Kimi K2.6 — 44.2 (II), 61.8 (CI), 30.3 (AI) [score=0.862 recalls=0 avg=0.620 source=memory/2026-07-21.md:24-27]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:28:28 -->
+- AI Model Rankings — 2026-07-21（from cron agent）: Tencent Hy3 preview — 41.2 (II), 58.8 (CI), 30.7 (AI) [score=0.862 recalls=0 avg=0.620 source=memory/2026-07-21.md:28-28]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:31:34 -->
+- AI Model Rankings — 2026-07-21（from cron agent）: Meituan LongCat 2.0 — 1.6T MoE（480億激活）, 1M 上下文, 極低價; Thinking Machines Inkling — 9750億 MoE, 多模態代理; GPT-5.6 Sol — 新旗艦推理模型，CI/AI 雙冠; Claude Fable 5 — 總排名第一，Design Arena 大滿貫 [score=0.862 recalls=0 avg=0.620 source=memory/2026-07-21.md:31-34]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:37:40 -->
+- Inter-session Messages: 04:31 UTC: Harness smoke test (roaringmoon 4) — OPENCLAW_ROARINGMOON_OK_4; 04:35 UTC: Harness retry test (roaringmoon retry) — OPENCLAW_ROARINGMOON_OK_RETRY_1; 04:26 UTC: Harness smoke test (roaringmoon 2) — OPENCLAW_ROARINGMOON_OK_2; 21:27 UTC: Harness full-token-test — OPENCLAW_BRIDGE_OK [score=0.862 recalls=0 avg=0.620 source=memory/2026-07-21.md:37-40]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:4:4 -->
+- AI Model Rankings — 2026-07-21（from cron agent）: Source: OpenRouter × Artificial Analysis Intelligence Index v4.1 [score=0.862 recalls=0 avg=0.620 source=memory/2026-07-21.md:4-4]
