@@ -80,23 +80,6 @@
 
 ## Notes
 
-## Promoted From Short-Term Memory (2026-07-16)
-
-<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:57:59 -->
-- 目前結構: └── cache/ ├── ast/ (1,368 files) └── semantic/ (chunk results) [score=0.888 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:57-59]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:62:64 -->
-- 目前結構: **有用的資料都保留了。** user: 為何只有function 其他部分也要做啊 assistant: 對，其他 repos 也要做。目前進度： [score=0.888 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:62-64]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:66:69 -->
-- 目前結構: | Repo | 檔案數 | Graphify | |------|--------|---------| | elle_ws_functions | 1370 | ✅ 完成 | | elle_ws_bringup | 71 | ❌ 未做 | [score=0.888 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:66-69]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:70:73 -->
-- 目前結構: | elle_ws_hardware | - | ❌ 未做 | | elle_ws_simulations | - | ❌ 未做 | | elle_ws_tools | - | ❌ 未做 | | elle_web_backend | - | ❌ 未做 | [score=0.888 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:70-73]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:79:82 -->
-- 繼續執行: user: hey assistant: NO_REPLY user: 做的如何了 assistant: elle_ws_bringup 被中斷了，繼續跑完： [score=0.888 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:79-82]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:84:87 -->
-- 繼續執行: user: hi assistant: [assistant turn failed before producing content] user: 繼續把 bringup hardware 的graphify部分完成 user: 有繼續做嗎 [score=0.812 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:84-87]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-10-0735.md:88:88 -->
-- 繼續執行: user: 設定一個cron 每五分鐘檢測一次是否完成 完成後把cron刪除 [score=0.812 recalls=0 avg=0.620 source=memory/2026-07-10-0735.md:88-88]
-
 ## Promoted From Short-Term Memory (2026-07-25)
 
 <!-- openclaw-memory-promotion:memory:memory/2026-07-18.md:12:15 -->
@@ -137,3 +120,18 @@
 - Inter-session Messages: 04:31 UTC: Harness smoke test (roaringmoon 4) — OPENCLAW_ROARINGMOON_OK_4; 04:35 UTC: Harness retry test (roaringmoon retry) — OPENCLAW_ROARINGMOON_OK_RETRY_1; 04:26 UTC: Harness smoke test (roaringmoon 2) — OPENCLAW_ROARINGMOON_OK_2; 21:27 UTC: Harness full-token-test — OPENCLAW_BRIDGE_OK [score=0.862 recalls=0 avg=0.620 source=memory/2026-07-21.md:37-40]
 <!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:4:4 -->
 - AI Model Rankings — 2026-07-21（from cron agent）: Source: OpenRouter × Artificial Analysis Intelligence Index v4.1 [score=0.862 recalls=0 avg=0.620 source=memory/2026-07-21.md:4-4]
+
+## Promoted From Short-Term Memory (2026-07-28)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:41:43 -->
+- Inter-session Messages: 21:25 UTC: Harness dashboard-test — OPENCLAW_BRIDGE_OK; 21:18 UTC: Harness public-bridge — OPENCLAW_BRIDGE_OK; 21:10 UTC: Harness test-123 verify — OPENCLAW_BRIDGE_OK [score=0.922 recalls=0 avg=0.620 source=memory/2026-07-21.md:41-43]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:7:10 -->
+- AI Model Rankings — 2026-07-21（from cron agent）: Claude Fable 5 — 59.9 (II), 76.5 (CI), 52.8 (AI) ▲ NEW; GPT-5.6 Sol — 58.9 (II), 77.4 (CI), 54.0 (AI) ▲ NEW; Kimi K3 — 57.1 (II), 76.2 (CI), 50.1 (AI); Claude Opus 4.8 — 55.7 (II), 74.3 (CI), 47.2 (AI) [score=0.922 recalls=0 avg=0.620 source=memory/2026-07-21.md:7-10]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:46:47 -->
+- System Status: Task queue: 0 pending, 0 CEO review; Heartbeat polls continuing normally [score=0.892 recalls=0 avg=0.620 source=memory/2026-07-21.md:46-47]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:18:18 -->
+- AI Model Rankings — 2026-07-21（from cron agent）: **各領域冠軍：** [score=0.884 recalls=0 avg=0.620 source=memory/2026-07-21.md:18-18]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:30:30 -->
+- AI Model Rankings — 2026-07-21（from cron agent）: **本週新上架:** [score=0.880 recalls=0 avg=0.620 source=memory/2026-07-21.md:30-30]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-18.md:11:11 -->
+- AI Model Rankings — 2026-07-17（from cron agent）: Top composite (Humanity's Last Exam): [score=0.819 recalls=0 avg=0.620 source=memory/2026-07-18.md:11-11]

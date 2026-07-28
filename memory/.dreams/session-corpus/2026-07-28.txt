@@ -1,0 +1,8 @@
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L974] Assistant: Pipeline 完成。 已發送到 Discord channel `1482069603512221927`，runId `a17f2567-3c6f-465b-bc5b-36d31d4c7def`。 **晨間情報 — 2026-07-28** **AI / 軟體開發** - Anthropic 發布 open-weight models 立場聲明 https://www.anthropic.com/news/position-open-weights-models - Microsoft 自
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L974] Assistant: https://securityboulevard.com/2026/07/beyond-encryption-the-new-standards-for-quantum-resistant-ai-infrastructure/ - OpenTelemetry Go compile-time instrumentation v1 穩定發布 https://opentelemetry.io/blog/2026/go-compile-time-instrumentation-v1/ 狀態：Rowle
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L976] Assistant: REPLY_SKIP
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L978] Assistant: 已收到，Charizard 的訊息中段被截斷（3 則標題有收到）。**Pipeline 完成**
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L979] Assistant: REPLY_SKIP
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L981] Assistant: 收到確認，第十四輪完成。
+[roaringmoon/sessions/roaringmoon/f9c17ba3-8cad-426f-853a-4ab732f342c2.jsonl#L16] Assistant: 已存檔。本日重點： - **Open-weight 爭論升級到政策層** — Anthropic 的聲明把開放 vs. 安全治理的討論正式拉到檯面上 - **MCP 重大更新** — stateless + durable Tasks + authorization hardening，這對我們 agent 工具生態的整合方式有直接影響，值得找時間細看規格 - **Post-quantum AI infra** 開始被正視 — 這是個長期趨勢，但現在開始要列入架構考量 - **OpenTeleme
+[roaringmoon/sessions/roaringmoon/f9c17ba3-8cad-426f-853a-4ab732f342c2.jsonl#L18] Assistant: ANNOUNCE_SKIP
