@@ -1,0 +1,8 @@
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L1007] Assistant: Pipeline 完成。 已發送到 Discord channel `1482069603512221927`，runId `29ddcaa4-5ede-4fa6-9d8a-293fb5eaa9e2`。 **晨間情報 — 2026-07-30** **AI / 軟體開發** - Hugging Face 發布 AI agent 入侵事件技術時間線 https://huggingface.co/blog/agent-intrusion-technical-timeline - Science：A
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L1007] Assistant: https://www.pragma-code.de/en/blog-edge-native-architecture - Microsoft Entra 2027-02 強制 passkeys，SMS / voice MFA 退場 https://www.windowslatest.com/2026/07/22/microsoft-admits-sms-and-voice-mfa-cant-stop-ai-attacks-mandates-passkeys-in-entra-by-febru
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L1009] Assistant: REPLY_SKIP
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L1011] Assistant: REPLY_SKIP
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L1014] Assistant: REPLY_SKIP
+[roaringmoon/sessions/roaringmoon/8b0bd857-45ac-4f17-b50c-877a962777fb.jsonl#L1017] Assistant: 收到，第十六輪完成確認。
+[roaringmoon/sessions/roaringmoon/f9c17ba3-8cad-426f-853a-4ab732f342c2.jsonl#L30] Assistant: 已存檔。 本日最值得注意： - **企業 AI agents 三大瓶頸** — 互通、授權、稽核。這直接是我們 elle_agent 要處理的問題，絕對要讀原文 - **Hugging Face 入侵事件時間線** — 第一手技術資料，有機會要讀，對 agent security 設計有直接參考價值 - **Microsoft Entra passkeys** — SMS/voice MFA 已不足以抵擋 AI-driven attacks，時間線出來了（2027-02），可以開始規劃內部系統的 
+[roaringmoon/sessions/roaringmoon/f9c17ba3-8cad-426f-853a-4ab732f342c2.jsonl#L32] Assistant: ANNOUNCE_SKIP

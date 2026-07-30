@@ -80,15 +80,6 @@
 
 ## Notes
 
-## Promoted From Short-Term Memory (2026-07-25)
-
-<!-- openclaw-memory-promotion:memory:memory/2026-07-18.md:12:15 -->
-- AI Model Rankings — 2026-07-17（from cron agent）: 🥇 Claude Mythos 5 — 64.5%; 🥈 Claude Opus 4.8 — 57.9%; 🥉 Claude Sonnet 5 — 57.4%; 4. GLM 5.2 — 54.7% [score=0.850 recalls=0 avg=0.620 source=memory/2026-07-18.md:12-15]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-18.md:16:16 -->
-- AI Model Rankings — 2026-07-17（from cron agent）: 5. Kimi K2.6 — 54.0% [score=0.850 recalls=0 avg=0.620 source=memory/2026-07-18.md:16-16]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-18.md:19:22 -->
-- AI Model Rankings — 2026-07-17（from cron agent）: **Agent coding (SWE-Bench)**: Claude Mythos 5 — 95.5%; **Computer operation (OSWorld)**: Claude Fable 5 — 85%; **Web browsing (BrowseComp)**: Claude Fable 5 — 88%; **Terminal (Terminal-Bench 2.1)**: Claude Mythos 5 — 88% [score=0.850 recalls=0 avg=0.620 source=memory/2026-07-18.md:19-22]
-
 ## Promoted From Short-Term Memory (2026-07-26)
 
 <!-- openclaw-memory-promotion:memory:memory/2026-07-18.md:18:18 -->
@@ -135,3 +126,12 @@
 - AI Model Rankings — 2026-07-21（from cron agent）: **本週新上架:** [score=0.880 recalls=0 avg=0.620 source=memory/2026-07-21.md:30-30]
 <!-- openclaw-memory-promotion:memory:memory/2026-07-18.md:11:11 -->
 - AI Model Rankings — 2026-07-17（from cron agent）: Top composite (Humanity's Last Exam): [score=0.819 recalls=0 avg=0.620 source=memory/2026-07-18.md:11-11]
+
+## Promoted From Short-Term Memory (2026-07-30)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-07-27.md:13:14 -->
+- AI & 軟體開發動態: **RAG 清理陷阱** — 用 RAG 掩蓋資料治理問題是試點失敗主因; URL: https://venturebeat.com/orchestration/the-cleanup-trap-stop-asking-rag-to-fix-bad-data [score=0.815 recalls=0 avg=0.620 source=memory/2026-07-27.md:13-14]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-27.md:6:7 -->
+- AI & 軟體開發動態: **Inflection AI Pi Journeys** — 個人 AI 助手，主打人生階段調整、長期記憶、語音、代理工具與情境陪伴; URL: https://venturebeat.com/orchestration/inflection-ai-returns-to-consumer-market-with-pi-journeys-after-microsoft-upheaval [score=0.815 recalls=0 avg=0.620 source=memory/2026-07-27.md:6-7]
+<!-- openclaw-memory-promotion:memory:memory/2026-07-27.md:9:11 -->
+- AI & 軟體開發動態: **Google Gemini 3.6 Flash** — 更高效率、低延遲，coding/knowledge/multimodal agent 場景; 長任務 agent 總 token 消耗成競爭主軸; URL: https://timesofindia.indiatimes.com/technology/tech-news/google-launches-more-efficient-gemini-3-6-flash-ai-model-along-with-3-5-flash-lite-ai/articleshow/132557064.cms [score=0.815 recalls=0 avg=0.620 source=memory/2026-07-27.md:9-11]
