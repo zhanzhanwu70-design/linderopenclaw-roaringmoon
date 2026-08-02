@@ -80,6 +80,13 @@
 
 ## Notes
 
+### AI Model Rankings 趨勢（2026-08-01）
+- Anthropic 家族全面主導：Opus 5（64.7）、Mythos 5（64.5）、Sonnet 5（57.4）
+- GPT-5.6 Sol：程式代理 + 終端任務專精（OSWorld、BrowseComp、Terminal-Bench 領先）
+- Kimi K3 快速崛起（56.0，總排名第5）
+- 速度王者：Llama 4 Scout（2600 t/s）
+- 性價比王者：Nova Micro（$0.04/$0.14 per 1M tokens）
+
 ## Promoted From Short-Term Memory (2026-07-26)
 
 <!-- openclaw-memory-promotion:memory:memory/2026-07-18.md:18:18 -->
