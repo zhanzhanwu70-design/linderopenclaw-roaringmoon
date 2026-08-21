@@ -142,3 +142,11 @@
 - AI & 軟體開發動態: **Inflection AI Pi Journeys** — 個人 AI 助手，主打人生階段調整、長期記憶、語音、代理工具與情境陪伴; URL: https://venturebeat.com/orchestration/inflection-ai-returns-to-consumer-market-with-pi-journeys-after-microsoft-upheaval [score=0.815 recalls=0 avg=0.620 source=memory/2026-07-27.md:6-7]
 <!-- openclaw-memory-promotion:memory:memory/2026-07-27.md:9:11 -->
 - AI & 軟體開發動態: **Google Gemini 3.6 Flash** — 更高效率、低延遲，coding/knowledge/multimodal agent 場景; 長任務 agent 總 token 消耗成競爭主軸; URL: https://timesofindia.indiatimes.com/technology/tech-news/google-launches-more-efficient-gemini-3-6-flash-ai-model-along-with-3-5-flash-lite-ai/articleshow/132557064.cms [score=0.815 recalls=0 avg=0.620 source=memory/2026-07-27.md:9-11]
+
+### Pipeline Issue Tracker（持續觀察）
+- **2026-08-05 ~ 2026-08-20**：Charizard 持續「主回覆只給摘要」，內容靠 daily note 補撈
+- **2026-08-10**：Rowlet 首次出現 sessions_send timeout
+- **2026-08-16**：Rowlet 也出現「主回覆只給摘要」模式
+- **2026-08-21**：Rowlet + Charizard 都因 token plan usage limit 無法執行，全部由 coordinator 接手
+- **模式演變**：摘要 → timeout → session lock → token budget exhaustion，問題越來越嚴重
+- **需要**：定期檢查 token budget、subagent prompt 是否有問題
