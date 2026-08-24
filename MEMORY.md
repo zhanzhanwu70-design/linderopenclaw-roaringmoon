@@ -18,7 +18,7 @@
 ## Active Projects
 ### elle_ws 重構 + elle_agent 開發
 - **目標：** 重構 elle_ws 並建立可操作重構後系統的 agent
-- **路徑：** `/home/node/.openclaw/workspace/llm-wiki/raw/code/elle_ws/`
+- **路徑：** `/home/amr/llm-wiki/raw/code/elle_ws/`
 - **Ouroboros 結構：** raw/ repos/ graphify/ wiki/ spec/
 - **現況：**
   - ✅ raw/ 完成
@@ -45,7 +45,7 @@
 - **結論：** 可考慮 smolagents + NemoClaw 組合
 
 ## NemoClaw 研究摘要（2026-06-24）
-- **Source：** `/home/node/.openclaw/workspace/llm-wiki/raw/code/nemoclaw-nvidia/`
+- **Source：** `/home/amr/llm-wiki/raw/code/nemoclaw-nvidia/`
 - **Wiki：** `wiki/entities/nemoclaw.md`
 - **官方定位：** 安全隔離層，不包含 Agent 本身
 - **預設架構：** Docker-driver（不是 K3s）

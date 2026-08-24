@@ -217,4 +217,4 @@ Ollama 很適合 serving，
 
 ## 文件位置
 
-`/home/node/.openclaw/workspace-roaringmoon/opencode-langgraph-ollama-合作圖與筆記.md`
+`/home/amr/.openclaw/workspace-roaringmoon/opencode-langgraph-ollama-合作圖與筆記.md`

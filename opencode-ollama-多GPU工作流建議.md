@@ -367,7 +367,7 @@ Ollama 很適合當本地模型入口，
 
 這份記錄放在：
 
-`/home/node/.openclaw/workspace-roaringmoon/opencode-ollama-多GPU工作流建議.md`
+`/home/amr/.openclaw/workspace-roaringmoon/opencode-ollama-多GPU工作流建議.md`
 
 之後你只要提：
 - `opencode 多GPU 建議`
