@@ -143,6 +143,16 @@
 <!-- openclaw-memory-promotion:memory:memory/2026-07-27.md:9:11 -->
 - AI & 軟體開發動態: **Google Gemini 3.6 Flash** — 更高效率、低延遲，coding/knowledge/multimodal agent 場景; 長任務 agent 總 token 消耗成競爭主軸; URL: https://timesofindia.indiatimes.com/technology/tech-news/google-launches-more-efficient-gemini-3-6-flash-ai-model-along-with-3-5-flash-lite-ai/articleshow/132557064.cms [score=0.815 recalls=0 avg=0.620 source=memory/2026-07-27.md:9-11]
 
+### llm-wiki git 陷阱（2026-10-26 near-miss，機制已實測確認）
+- **精確機制:** agent 把檔案寫到磁碟但**未自行 `git add`／`git commit`** → nightly sync `push-llm-wiki.sh` 用 isolated index（`GIT_INDEX_FILE`）+ `update-ref` 把這些路徑 commit 進 HEAD → **真實 `.git/index` 從未見過它們** → 真實 index 落後 HEAD
+- **觸發:** 之後任何人（或 weekly research cron）跑 `git add <自己的檔案> && git commit` → 那些路徑**從 HEAD 被刪除**（檔案仍在磁碟上，git status 同時出現 `D` + `??`）
+- **實測:** 當晚 05:05 的 `4ac2858630` 正好新增 **19 個檔案** = 被標成 `D` 的 19 個，數量完全吻合。`git commit --dry-run` 顯示 426 筆刪除
+- **對照組:** agent 若在 nightly 前自己先 commit → drift=0 → 安全。**所以 trigger 是「誰先 commit」，不是「isolated index 本身有害」**
+- **修法:** `git restore --staged`（只動 index）+ `git reset`（index→HEAD，working tree 不動）。實測 `git reset -q HEAD` 後 drift=0，後續 `git add X && git commit` 不再誤刪，未提交檔案仍正確顯示 `??`
+- **根治（已寫入 wiki patterns，尚未實作）:** `push-llm-wiki.sh` 在 `update-ref` 之後補 `git reset --quiet HEAD`。屬排程腳本改動，待 Linder 確認
+- **注意:** commit llm-wiki 前先 `comm -3 <(git ls-tree -r --name-only HEAD|sort) <(git ls-files|sort)` 確認 drift=0
+- 詳見 llm-wiki `wiki/patterns/llm-wiki-nightly-sync-stale-index.md` <!-- project: github.com/zhanzhanwu70-design/linderopenclaw-roaringmoon -->
+
 ### Pipeline Issue Tracker（持續觀察）
 - **2026-08-05 ~ 2026-08-20**：Charizard 持續「主回覆只給摘要」，內容靠 daily note 補撈
 - **2026-08-10**：Rowlet 首次出現 sessions_send timeout

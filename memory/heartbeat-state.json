@@ -1,8 +1,13 @@
 {
+  "project": "github.com/zhanzhanwu70-design/linderopenclaw-roaringmoon",
   "lastChecks": {
-    "keepalive": 1779742500,
-    "heartbeat_utc": "2026-06-03T23:55:00Z"
+    "keepalive": 1792943800,
+    "heartbeat_utc": "2026-10-25T15:56:00Z",
+    "ai_rankings": 1792942894,
+    "cron_health": 1792943800
   },
-  "lastHeartbeat": 1779742500,
-  "lastAIrankings": 1779742500
+  "lastHeartbeat": 1792943800,
+  "lastAIrankings": 1792942894,
+  "lastCronHealth": 1792943800,
+  "notes": "2026-10-25 23:56 check: all own crons ok (每日模型排行前十 20m ago, 群體智能架構研究 16h ago); no task_queue.json present; late-night window 23:00-08:00 -> stay quiet."
 }
