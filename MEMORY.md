@@ -149,7 +149,7 @@
 - **實測:** 當晚 05:05 的 `4ac2858630` 正好新增 **19 個檔案** = 被標成 `D` 的 19 個，數量完全吻合。`git commit --dry-run` 顯示 426 筆刪除
 - **對照組:** agent 若在 nightly 前自己先 commit → drift=0 → 安全。**所以 trigger 是「誰先 commit」，不是「isolated index 本身有害」**
 - **修法:** `git restore --staged`（只動 index）+ `git reset`（index→HEAD，working tree 不動）。實測 `git reset -q HEAD` 後 drift=0，後續 `git add X && git commit` 不再誤刪，未提交檔案仍正確顯示 `??`
-- **根治（已寫入 wiki patterns，尚未實作）:** `push-llm-wiki.sh` 在 `update-ref` 之後補 `git reset --quiet HEAD`。屬排程腳本改動，待 Linder 確認
+- **根治 ✅ 已實作並驗證（2026-10-27 05:31）:** `push-llm-wiki.sh` 在 `update-ref` 之後已補 `git reset --mixed <commit_sha>` 對齊真實 index。**實測:** 10-28 05:05 sync → `Re-synced the real index` → drift=0、刪除數=0；agent `git add` 未 commit 的檔案仍留在磁碟（`A`→`??`），`reset --mixed` 不吃 working tree
 - **注意:** commit llm-wiki 前先 `comm -3 <(git ls-tree -r --name-only HEAD|sort) <(git ls-files|sort)` 確認 drift=0
 - 詳見 llm-wiki `wiki/patterns/llm-wiki-nightly-sync-stale-index.md` <!-- project: github.com/zhanzhanwu70-design/linderopenclaw-roaringmoon -->
 
