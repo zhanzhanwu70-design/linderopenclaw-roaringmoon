@@ -1,0 +1,122 @@
+[
+ {
+  "slug": "gemini-4-carbon",
+  "name": "Gemini 4 Carbon (high)",
+  "idx": 59.425738829526,
+  "ow": false
+ },
+ {
+  "slug": "claude-opus-5-5",
+  "name": "Claude Opus 5.5 (max with fallback)",
+  "idx": 58.4060336078904,
+  "ow": false
+ },
+ {
+  "slug": "gpt-6-astra",
+  "name": "GPT-6 Astra (max)",
+  "idx": 56.8538559596797,
+  "ow": false
+ },
+ {
+  "slug": "gpt-6-1-sol",
+  "name": "GPT-6.1 Sol (max)",
+  "idx": 54.5087338138148,
+  "ow": false
+ },
+ {
+  "slug": "claude-sonnet-5-5",
+  "name": "Claude Sonnet 5.5 (max with fallback)",
+  "idx": 54.24133407109,
+  "ow": false
+ },
+ {
+  "slug": "gpt-6-1-terra",
+  "name": "GPT-6.1 Terra (max)",
+  "idx": 50.9765188577015,
+  "ow": false
+ },
+ {
+  "slug": "gemini-4-argon",
+  "name": "Gemini 4 Argon (high)",
+  "idx": 50.4121935905389,
+  "ow": false
+ },
+ {
+  "slug": "muse-wonder-full",
+  "name": "Muse Wonder Full (max)",
+  "idx": 49.7272123627021,
+  "ow": false
+ },
+ {
+  "slug": "claude-fable-5-1-xhigh",
+  "name": "Claude Fable 5.1 (xhigh with fallback)",
+  "idx": 49.6716384248632,
+  "ow": false
+ },
+ {
+  "slug": "kimi-k3-1-pro",
+  "name": "Kimi K3.1 Pro",
+  "idx": 46.0026236744189,
+  "ow": false
+ },
+ {
+  "slug": "muse-wonder",
+  "name": "Muse Wonder (max)",
+  "idx": 43.3248225998431,
+  "ow": false
+ },
+ {
+  "slug": "claude-haiku-5-5",
+  "name": "Claude Haiku 5.5 (max)",
+  "idx": 36.2345435880142,
+  "ow": false
+ },
+ {
+  "slug": "grok-4-7-high",
+  "name": "Grok 4.7 (high)",
+  "idx": 35.0122962959703,
+  "ow": false
+ },
+ {
+  "slug": "qwen3-8-max",
+  "name": "Qwen3.8 Max (0902)",
+  "idx": 33.5545627367888,
+  "ow": false
+ },
+ {
+  "slug": "deepseek-v4-1-flash-1017",
+  "name": "DeepSeek V4.1 Flash 1017 (max)",
+  "idx": 32.4896393532027,
+  "ow": true
+ },
+ {
+  "slug": "glm-5-3",
+  "name": "GLM-5.3 (max)",
+  "idx": 31.653381843882,
+  "ow": true
+ },
+ {
+  "slug": "gemini-3-8-flash",
+  "name": "Gemini 3.8 Flash (high)",
+  "idx": 30.5468119957291,
+  "ow": false
+ },
+ {
+  "slug": "mimo-v2-6-pro",
+  "name": "MiMo-V2.6-Pro",
+  "idx": 29.8897833093321,
+  "ow": true
+ },
+ {
+  "slug": "ling-3-1-flash-1019",
+  "name": "Ling 3.1 Flash 1019",
+  "idx": 29.470119369837,
+  "ow": true
+ },
+ {
+  "slug": "minimax-m3-1-flash",
+  "name": "MiniMax-M3.1-Flash",
+  "idx": 28.9095214290458,
+  "ow": true
+ }
+]
