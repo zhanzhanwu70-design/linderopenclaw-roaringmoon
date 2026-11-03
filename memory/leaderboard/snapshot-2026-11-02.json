@@ -1,0 +1,636 @@
+{
+ "fetched_utc": "2026-11-02T15:10:33Z",
+ "source": "https://artificialanalysis.ai/leaderboards/models",
+ "index": "Artificial Analysis Intelligence Index v5.0",
+ "slugs_parsed": 278,
+ "active_scored": 90,
+ "prev_active_scored": 86,
+ "top20": [
+  {
+   "slug": "gemini-4-carbon",
+   "name": "Gemini 4 Carbon (high)",
+   "idx": 59.425738829526,
+   "ow": false,
+   "dy": 0.0,
+   "tok_s": 94.6248042744194,
+   "ttft": 137.574520929,
+   "cost_per_task": 7.755545745286556,
+   "release": null
+  },
+  {
+   "slug": "claude-opus-5-5",
+   "name": "Claude Opus 5.5 (max with fallback)",
+   "idx": 58.4060336078904,
+   "ow": false,
+   "dy": 0.0,
+   "tok_s": 95.5293924557226,
+   "ttft": 728.679488626,
+   "cost_per_task": 10.036409719512749,
+   "release": null
+  },
+  {
+   "slug": "gpt-6-astra",
+   "name": "GPT-6 Astra (max)",
+   "idx": 56.8538559596797,
+   "ow": false,
+   "dy": 0.0,
+   "tok_s": 71.5533296028404,
+   "ttft": 367.5696394405,
+   "cost_per_task": 6.244666943602518,
+   "release": null
+  },
+  {
+   "slug": "gpt-6-1-sol",
+   "name": "GPT-6.1 Sol (max)",
+   "idx": 54.5087338138148,
+   "ow": false,
+   "dy": 0.0,
+   "tok_s": 86.6532754396548,
+   "ttft": 331.44517755,
+   "cost_per_task": 1.2720632679446995,
+   "release": null
+  },
+  {
+   "slug": "claude-sonnet-5-5",
+   "name": "Claude Sonnet 5.5 (max with fallback)",
+   "idx": 54.24133407109,
+   "ow": false,
+   "dy": 0.0,
+   "tok_s": 136.807590705413,
+   "ttft": 514.90744377,
+   "cost_per_task": 10.020621343395753,
+   "release": null
+  },
+  {
+   "slug": "gpt-6-1-terra",
+   "name": "GPT-6.1 Terra (max)",
+   "idx": 50.9765188577015,
+   "ow": false,
+   "dy": 0.0,
+   "tok_s": 106.778718262753,
+   "ttft": 264.32581858,
+   "cost_per_task": 0.961108031081634,
+   "release": null
+  },
+  {
+   "slug": "gemini-4-argon",
+   "name": "Gemini 4 Argon (high)",
+   "idx": 50.4121935905389,
+   "ow": false,
+   "dy": 0.0,
+   "tok_s": 83.2883200602061,
+   "ttft": 40.471191687,
+   "cost_per_task": 7.682671372515551,
+   "release": null
+  },
+  {
+   "slug": "muse-wonder-full",
+   "name": "Muse Wonder Full (max)",
+   "idx": 49.7272123627021,
+   "ow": false,
+   "dy": 0.0,
+   "tok_s": null,
+   "ttft": null,
+   "cost_per_task": null,
+   "release": null
+  },
+  {
+   "slug": "claude-fable-5-1-xhigh",
+   "name": "Claude Fable 5.1 (xhigh with fallback)",
+   "idx": 49.6716384248632,
+   "ow": false,
+   "dy": 0.0,
+   "tok_s": 62.3458905882748,
+   "ttft": 73.482591952,
+   "cost_per_task": 10.847474706140272,
+   "release": null
+  },
+  {
+   "slug": "kimi-k3-1-pro",
+   "name": "Kimi K3.1 Pro",
+   "idx": 46.0026236744189,
+   "ow": false,
+   "dy": 0.0,
+   "tok_s": 30.8342819156493,
+   "ttft": 3.42704832350006,
+   "cost_per_task": 3.6812002895742055,
+   "release": null
+  },
+  {
+   "slug": "muse-wonder",
+   "name": "Muse Wonder (max)",
+   "idx": 43.3248225998431,
+   "ow": false,
+   "dy": 0.0,
+   "tok_s": 191.854153024369,
+   "ttft": 26.3703580625001,
+   "cost_per_task": 6.9520364786062245,
+   "release": null
+  },
+  {
+   "slug": "claude-haiku-5-5",
+   "name": "Claude Haiku 5.5 (max)",
+   "idx": 36.2345435880142,
+   "ow": false,
+   "dy": 0.0,
+   "tok_s": 235.379056046412,
+   "ttft": 370.077087912,
+   "cost_per_task": 0.41100741536816304,
+   "release": null
+  },
+  {
+   "slug": "grok-4-7-high",
+   "name": "Grok 4.7 (high)",
+   "idx": 35.0122962959703,
+   "ow": false,
+   "dy": 0.0,
+   "tok_s": 76.275849583434,
+   "ttft": 43.188973533,
+   "cost_per_task": 6.18359556537658,
+   "release": null
+  },
+  {
+   "slug": "qwen3-8-max",
+   "name": "Qwen3.8 Max (0902)",
+   "idx": 33.5545627367888,
+   "ow": false,
+   "dy": 0.0,
+   "tok_s": 39.5127950871991,
+   "ttft": 2.89710141500006,
+   "cost_per_task": 10.023891571541945,
+   "release": null
+  },
+  {
+   "slug": "deepseek-v4-1-flash-1017",
+   "name": "DeepSeek V4.1 Flash 1017 (max)",
+   "idx": 32.4896393532027,
+   "ow": true,
+   "dy": 0.0,
+   "tok_s": 170.462089292569,
+   "ttft": 1.27729528449998,
+   "cost_per_task": 0.60210514783598,
+   "release": null
+  },
+  {
+   "slug": "glm-5-3",
+   "name": "GLM-5.3 (max)",
+   "idx": 31.653381843882,
+   "ow": true,
+   "dy": 0.0,
+   "tok_s": 88.9741843342523,
+   "ttft": 1.432242352,
+   "cost_per_task": 5.009264601719954,
+   "release": null
+  },
+  {
+   "slug": "gemini-3-8-flash",
+   "name": "Gemini 3.8 Flash (high)",
+   "idx": 30.5468119957291,
+   "ow": false,
+   "dy": 0.0,
+   "tok_s": 130.74604237303,
+   "ttft": 24.890338168,
+   "cost_per_task": 7.766006178152514,
+   "release": null
+  },
+  {
+   "slug": "mimo-v2-6-pro",
+   "name": "MiMo-V2.6-Pro",
+   "idx": 29.8897833093321,
+   "ow": true,
+   "dy": 0.0,
+   "tok_s": 43.6559735205528,
+   "ttft": 3.44582818000003,
+   "cost_per_task": 0.25718036275876155,
+   "release": null
+  },
+  {
+   "slug": "ling-3-1-flash-1019",
+   "name": "Ling 3.1 Flash 1019",
+   "idx": 29.470119369837,
+   "ow": true,
+   "dy": 0.0,
+   "tok_s": null,
+   "ttft": null,
+   "cost_per_task": 3.185145018337793,
+   "release": null
+  },
+  {
+   "slug": "minimax-m3-1-flash",
+   "name": "MiniMax-M3.1-Flash",
+   "idx": 28.9095214290458,
+   "ow": true,
+   "dy": 0.0,
+   "tok_s": 135.942802529148,
+   "ttft": 0.903627819000008,
+   "cost_per_task": 0.49097067348453205,
+   "release": null
+  }
+ ],
+ "domains": {
+  "hle-diamond": [
+   [
+    "gemini-4-carbon",
+    0.691
+   ],
+   [
+    "claude-opus-5-5",
+    0.679
+   ],
+   [
+    "gemini-4-carbon-medium",
+    0.674
+   ]
+  ],
+  "critpt-v2-hard": [
+   [
+    "gpt-6-astra-high",
+    0.715
+   ],
+   [
+    "gpt-6-astra-medium",
+    0.71
+   ],
+   [
+    "gpt-6-astra",
+    0.705
+   ]
+  ],
+  "gpqa-diamond": [
+   [
+    "gpt-6-astra-xhigh",
+    0.962626262626263
+   ],
+   [
+    "gpt-6-astra",
+    0.960606060606061
+   ],
+   [
+    "gemini-3-8-flash",
+    0.952525252525253
+   ]
+  ],
+  "artificial-analysis-long-context-reasoning": [
+   [
+    "step-5",
+    0.883333333333333
+   ],
+   [
+    "kimi-k3-1-pro",
+    0.863333333333333
+   ],
+   [
+    "mimo-v2-6-pro",
+    0.863333333333333
+   ]
+  ],
+  "frontiercode-2-0": [
+   [
+    "claude-opus-5-5",
+    0.464359595959596
+   ],
+   [
+    "claude-opus-5-5-xhigh",
+    0.437547474747475
+   ],
+   [
+    "gpt-6-astra",
+    0.42374797979798
+   ]
+  ],
+  "terminalbench-4-0": [
+   [
+    "kimi-k3-1-pro",
+    0.671717171717172
+   ],
+   [
+    "gemini-4-carbon",
+    0.651515151515151
+   ],
+   [
+    "claude-sonnet-5-5",
+    0.636363636363636
+   ]
+  ],
+  "gdp-pdf": [
+   [
+    "muse-wonder-full",
+    0.326
+   ],
+   [
+    "gpt-6-astra-xhigh",
+    0.322
+   ],
+   [
+    "gpt-6-1-sol-high",
+    0.32
+   ]
+  ],
+  "scicode": [
+   [
+    "claude-opus-5-5",
+    0.668981481481482
+   ],
+   [
+    "claude-opus-5-5-xhigh",
+    0.650462962962963
+   ],
+   [
+    "claude-fable-5-1",
+    0.630787037037037
+   ]
+  ],
+  "omniscience-accuracy": [
+   [
+    "claude-fable-5-1",
+    0.684
+   ],
+   [
+    "claude-fable-5-1-xhigh",
+    0.6716666666666666
+   ],
+   [
+    "claude-opus-5-5-xhigh",
+    0.6553333333333333
+   ]
+  ],
+  "omniscience-non-hallucination": [
+   [
+    "gemini-4-carbon-medium",
+    0.9575718015665796
+   ],
+   [
+    "gemini-4-argon",
+    0.9574468085106383
+   ],
+   [
+    "gemini-4-carbon",
+    0.8857827476038339
+   ]
+  ],
+  "mmmu-pro": [
+   [
+    "gemini-4-carbon-medium",
+    0.892485549132948
+   ],
+   [
+    "claude-opus-5-5",
+    0.876878612716763
+   ],
+   [
+    "gpt-6-astra",
+    0.86878612716763
+   ]
+  ],
+  "aa-briefcase": [
+   [
+    "claude-sonnet-5-5",
+    1813.57
+   ],
+   [
+    "claude-opus-5-5",
+    1800.51
+   ],
+   [
+    "claude-opus-5-5-xhigh",
+    1761.21
+   ]
+  ],
+  "automationbench-aa": [
+   [
+    "gemini-4-carbon",
+    0.7781660572624064
+   ],
+   [
+    "gemini-4-carbon-medium",
+    0.7759585317030244
+   ],
+   [
+    "gemini-4-argon",
+    0.7751346945899195
+   ]
+  ],
+  "terminal-bench-science": [
+   [
+    "gemini-4-carbon",
+    0.647619047619048
+   ],
+   [
+    "gpt-6-astra",
+    0.633333333333333
+   ],
+   [
+    "gemini-4-carbon-medium",
+    0.623809523809524
+   ]
+  ],
+  "apex-agents-aa": [
+   [
+    "qwen3-8-max",
+    0.424041297935103
+   ],
+   [
+    "step-5",
+    0.379793510324484
+   ]
+  ],
+  "aa-analyst-agent": [
+   [
+    "claude-sonnet-5-5",
+    0.575
+   ],
+   [
+    "claude-fable-5-1",
+    0.575
+   ],
+   [
+    "claude-opus-5-5",
+    0.5625
+   ]
+  ],
+  "tau3-banking": [
+   [
+    "glm-5-3",
+    0.503092783505155
+   ],
+   [
+    "qwen3-8-27b",
+    0.480412371134021
+   ],
+   [
+    "qwen3-8-max",
+    0.478350515463918
+   ]
+  ],
+  "gdpval-aa-normalized": [
+   [
+    "claude-opus-5-5",
+    1866.27
+   ],
+   [
+    "kimi-k3-1-pro",
+    1858.05
+   ],
+   [
+    "muse-wonder-full",
+    1857.09
+   ]
+  ]
+ },
+ "domains_open_weights": {
+  "terminalbench-4-0": [
+   [
+    "glm-5-3",
+    0.419191919191919
+   ],
+   [
+    "mimo-v2-6-pro",
+    0.348484848484849
+   ],
+   [
+    "glm-5-3-low",
+    0.348484848484849
+   ]
+  ],
+  "gpqa-diamond": [
+   [
+    "minimax-m3",
+    0.929292929292929
+   ],
+   [
+    "deepseek-v4-pro",
+    0.928282828282828
+   ],
+   [
+    "glm-5-3",
+    0.917171717171717
+   ]
+  ],
+  "automationbench-aa": [
+   [
+    "minimax-m3-1-flash",
+    0.7252180957532544
+   ],
+   [
+    "deepseek-v4-1-flash-1017-high",
+    0.6849296525816153
+   ],
+   [
+    "ling-3-1-flash-1019",
+    0.6754660741517774
+   ]
+  ],
+  "frontiercode-2-0": [
+   [
+    "deepseek-v4-1-flash-1017",
+    0.284711616161616
+   ],
+   [
+    "mimo-v2-6-pro",
+    0.239701262626263
+   ],
+   [
+    "minimax-m3",
+    0.219031313131313
+   ]
+  ],
+  "aa-briefcase": [
+   [
+    "deepseek-v4-1-flash-1017",
+    1570.42
+   ],
+   [
+    "ling-3-1-flash-1019",
+    1521.7
+   ],
+   [
+    "mimo-v2-6-pro",
+    1512.15
+   ]
+  ],
+  "hle-diamond": [
+   [
+    "minimax-m3-1-flash",
+    0.281
+   ],
+   [
+    "muse-spark-open",
+    0.263
+   ],
+   [
+    "deepseek-v4-1-flash-1017",
+    0.253
+   ]
+  ]
+ },
+ "fastest_output": [
+  [
+   "k2-horizon-375b-a23b",
+   720.295461157322
+  ],
+  [
+   "nemotron-3-5-super-vl",
+   479.24273621774
+  ],
+  [
+   "gemini-3-5-flash-lite",
+   423.317454997959
+  ],
+  [
+   "reflection-beam",
+   361.16622823273
+  ],
+  [
+   "nemotron-3-5-lightning",
+   294.744260955026
+  ]
+ ],
+ "lowest_latency": [
+  [
+   "command-a-plus",
+   0.471783970500013
+  ],
+  [
+   "nemotron-3-5-lightning",
+   0.560218875500027
+  ],
+  [
+   "reflection-beam",
+   0.620279966500107
+  ],
+  [
+   "minimax-m3",
+   0.707541318999972
+  ],
+  [
+   "nemotron-3-5-super-vl",
+   0.714245038000058
+  ]
+ ],
+ "cheapest": [
+  [
+   "k2-horizon-375b-a23b",
+   0
+  ],
+  [
+   "command-a-plus",
+   0
+  ],
+  [
+   "gpt-6-luna-low",
+   0.005115255188520391
+  ],
+  [
+   "mistral-small-4",
+   0.03990856296103761
+  ],
+  [
+   "granite-4-2-8b",
+   0.0404628507686443
+  ],
+  [
+   "gpt-6-luna-medium",
+   0.042201836106537785
+  ]
+ ]
+}

@@ -28,8 +28,6 @@
 
 ## Key Decisions
 
-## Key Decisions
-
 ### NemoClaw 商業模式評估（2026-06-24）
 - **結論：** NemoClaw 適合當「安全隔離層」，Agent 仍需要 OpenClaw/Hermes
 - **官方不支援 K3s Air-Gap Bundle**：預設是 Docker-driver 架構
