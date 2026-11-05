@@ -151,6 +151,11 @@
 - **注意:** commit llm-wiki 前先 `comm -3 <(git ls-tree -r --name-only HEAD|sort) <(git ls-files|sort)` 確認 drift=0
 - 詳見 llm-wiki `wiki/patterns/llm-wiki-nightly-sync-stale-index.md` <!-- project: github.com/zhanzhanwu70-design/linderopenclaw-roaringmoon -->
 
+### 每日模型排行 cron 的兩條陷阱（2026-11-04 實測）
+- **AA 指數換版會製造「假進步」**：2026-11-04 AA Intelligence Index 由 v5.0 → **v5.0.1**，全榜分數普遍微升但名次零位移（前 20 family 16 升 / 4 平 / 0 降）。發佈時**必須註明換版**，否則讀者會誤判成模型變強。判斷方法：看 payload 內 `Artificial Analysis Intelligence Index` 的 `name` 欄位。
+- **AA payload 欄位會無預警改名**：2026-11-04 起 `medianOutputTokensPerSecond` → `outputSpeed`、`medianTimeToFirstTokenSeconds` → `timeToFirstToken`、新增 `timeToFirstAnswerToken`，舊欄位直接消失 → `tmp_aa_daily.py` 速度段靜靜回傳空陣列。**每天要檢查快照的速度/延遲段是否為空**，別把「空」當成「沒有快模型」。舊快照的 tok/s、ttft 與換版後數值不可直接比較。
+- 流程：`tmp_aa_daily.py`（fetch/parse/rank）+ 對前一快照逐列差分 → 存 `memory/leaderboard/snapshot-YYYY-MM-DD.json` → 隔天做 dy。<!-- project: github.com/zhanzhanwu70-design/linderopenclaw-roaringmoon -->
+
 ### Pipeline Issue Tracker（持續觀察）
 - **2026-08-05 ~ 2026-08-20**：Charizard 持續「主回覆只給摘要」，內容靠 daily note 補撈
 - **2026-08-10**：Rowlet 首次出現 sessions_send timeout

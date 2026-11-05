@@ -163,11 +163,11 @@ def rank():
         print(f'{label:22s} -> ' + (' | '.join(f"{o.get('shortName','?')[:28]} {fmt(v)}" for v, o in rows) if rows else '(無)'))
 
     print('\n=== 速度 / 延遲 / 成本 ===')
-    sp = sorted([(o.get('medianOutputTokensPerSecond'), o) for o in have
-                 if isinstance(o.get('medianOutputTokensPerSecond'), (int, float))], key=lambda t: -t[0])
+    sp = sorted([(o.get('outputSpeed'), o) for o in have
+                 if isinstance(o.get('outputSpeed'), (int, float))], key=lambda t: -t[0])
     print('最快輸出:', [(o.get('shortName', '?')[:26], round(v)) for v, o in sp[:5]])
-    lt = sorted([(o.get('medianTimeToFirstTokenSeconds'), o) for o in have
-                 if isinstance(o.get('medianTimeToFirstTokenSeconds'), (int, float))], key=lambda t: t[0])
+    lt = sorted([(o.get('timeToFirstToken'), o) for o in have
+                 if isinstance(o.get('timeToFirstToken'), (int, float))], key=lambda t: t[0])
     print('最低延遲:', [(o.get('shortName', '?')[:26], round(v, 1)) for v, o in lt[:5]])
     co = sorted([(o.get('intelligenceIndexCostPerTask'), o) for o in have
                  if isinstance(o.get('intelligenceIndexCostPerTask'), (int, float))], key=lambda t: t[0])
