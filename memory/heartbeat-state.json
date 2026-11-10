@@ -1,15 +1,15 @@
 {
   "project": "github.com/zhanzhanwu70-design/linderopenclaw-roaringmoon",
   "lastChecks": {
-    "keepalive": 1793669305,
-    "heartbeat_utc": "2026-11-03T01:26:00Z",
+    "keepalive": 1794270484,
+    "heartbeat_utc": "2026-11-10T00:26:00Z",
     "ai_rankings": 1793634040,
-    "cron_health": 1793669305,
-    "llm_wiki_git": 1793669305
+    "cron_health": 1794270484,
+    "llm_wiki_git": 1794270484
   },
-  "lastHeartbeat": 1793669305,
+  "lastHeartbeat": 1794270484,
   "lastAIrankings": 1793634040,
-  "lastCronHealth": 1793669305,
-  "notes": "2026-11-03 09:26 check: found and FIXED a 3-night llm-wiki push outage - origin's last 'Daily sync' was 10-31 because two clones (llm-wiki + workspace-mrmime) both write MEMORY.md, so every nightly rebase conflicted and the old script aborted the whole push. Resolved manually (union of both sides, 2038 pages, 0 deletions), pushed, and added an auto-resolver to push-llm-wiki.sh (MEMORY.md only, with a marker safety check) - validated end-to-end in isolation. #19 research also committed + pushed (1422 insertions, 0 deletions). Cleaned 13 garbage tmp_pack files (4.5GB) and my /tmp test clones (67GB -> 314MB; disk 72%->56%). llm-wiki drift=0, staged deletions=0, wiki/ clean, fully in sync with origin (2048 pages).",
-  "lastLLMWikiGit": 1793669305
+  "lastCronHealth": 1794270484,
+  "notes": "2026-11-10 08:26 check: #25 collective-intelligence research committed + pushed (2015 insertions, 0 deletions). Verified: 10 new concepts lint-clean, 12/12 pass graphify orphan check (nodes/edges 10548/19200 match exactly), all headline numbers present in page text, 4 remaining broken refs all pre-existing. llm-wiki drift=0, staged deletions=0, wiki/ clean, in sync with origin (2157 pages). Nightly sync has landed every day since 11-04 - root fix stable for a week.",
+  "lastLLMWikiGit": 1794270484
 }
