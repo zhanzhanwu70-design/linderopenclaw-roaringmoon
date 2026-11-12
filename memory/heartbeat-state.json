@@ -1,15 +1,15 @@
 {
   "project": "github.com/zhanzhanwu70-design/linderopenclaw-roaringmoon",
   "lastChecks": {
-    "keepalive": 1794270484,
-    "heartbeat_utc": "2026-11-10T00:26:00Z",
+    "keepalive": 1794463178,
+    "heartbeat_utc": "2026-11-12T05:56:00Z",
     "ai_rankings": 1793634040,
-    "cron_health": 1794270484,
-    "llm_wiki_git": 1794270484
+    "cron_health": 1794463178,
+    "llm_wiki_git": 1794463178
   },
-  "lastHeartbeat": 1794270484,
+  "lastHeartbeat": 1794463178,
   "lastAIrankings": 1793634040,
-  "lastCronHealth": 1794270484,
-  "notes": "2026-11-10 08:26 check: #25 collective-intelligence research committed + pushed (2015 insertions, 0 deletions). Verified: 10 new concepts lint-clean, 12/12 pass graphify orphan check (nodes/edges 10548/19200 match exactly), all headline numbers present in page text, 4 remaining broken refs all pre-existing. llm-wiki drift=0, staged deletions=0, wiki/ clean, in sync with origin (2157 pages). Nightly sync has landed every day since 11-04 - root fix stable for a week.",
-  "lastLLMWikiGit": 1794270484
+  "lastCronHealth": 1794463178,
+  "notes": "2026-11-12 11:56 check: committed #26 synthesis (was never written by the 11-11 run) + #27, 3 commits, all 0 deletions, pushed (2197 pages). Found and fixed TWO real nightly-sync bugs: (1) after a rebase the tree always equals HEAD so the script printed 'nothing to push' and stranded 4 commits / 5204 lines locally - now publishes existing commits instead; (2) autostash pop conflicting AFTER the rebase left conflict markers in DREAMS.md and 4 stale autostashes - resolver now uses git conflict stages (:2:/3:) instead of regex, and handles the autostash-pop conflict too. Both verified end-to-end. llm-wiki drift=0, staged deletions=0, wiki/ clean, fully in sync with origin.",
+  "lastLLMWikiGit": 1794463178
 }
