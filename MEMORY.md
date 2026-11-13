@@ -85,38 +85,6 @@
 - 速度王者：Llama 4 Scout（2600 t/s）
 - 性價比王者：Nova Micro（$0.04/$0.14 per 1M tokens）
 
-## Promoted From Short-Term Memory (2026-07-26)
-
-<!-- openclaw-memory-promotion:memory:memory/2026-07-18.md:18:18 -->
-- AI Model Rankings — 2026-07-17（from cron agent）: Notable per-domain: [score=0.831 recalls=0 avg=0.620 source=memory/2026-07-18.md:18-18]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-18.md:24:25 -->
-- AI Model Rankings — 2026-07-17（from cron agent）: Speed king: Llama 4 Scout — 2600 t/s Best value: Nova Micro — $0.04/$0.14 per 1M tokens [score=0.831 recalls=0 avg=0.620 source=memory/2026-07-18.md:24-25]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-18.md:9:9 -->
-- AI Model Rankings — 2026-07-17（from cron agent）: Source: Vellum LLM Leaderboard + Artificial Analysis [score=0.831 recalls=0 avg=0.620 source=memory/2026-07-18.md:9-9]
-
-## Promoted From Short-Term Memory (2026-07-27)
-
-<!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:23:23 -->
-- AI Model Rankings — 2026-07-21（from cron agent）: **開源 Top 5（Open Weights）:** [score=0.894 recalls=0 avg=0.620 source=memory/2026-07-21.md:23-23]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:6:6 -->
-- AI Model Rankings — 2026-07-21（from cron agent）: **🏆 Top 10 Overall (Intelligence Index)** [score=0.894 recalls=0 avg=0.620 source=memory/2026-07-21.md:6-6]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:11:14 -->
-- AI Model Rankings — 2026-07-21（from cron agent）: GPT-5.6 Terra — 55.0 (II), 76.7 (CI), 47.4 (AI) ▲2; GPT-5.5 — 54.8 (II), 74.9 (CI), 44.9 (AI) ▼1; Grok 4.5 — 53.8 (II), 72.4 (CI), 45.7 (AI) ▲1; Claude Opus 4.7 — 53.5 (II), 73.6 (CI), 44.4 (AI) ▼2 [score=0.868 recalls=0 avg=0.620 source=memory/2026-07-21.md:11-14]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:15:16 -->
-- AI Model Rankings — 2026-07-21（from cron agent）: Claude Sonnet 5 — 53.4 (II), 71.5 (CI), 46.7 (AI) ▲1; GPT-5.4 — 51.4 (II), 71.1 (CI), 41.1 (AI) ▼1 [score=0.868 recalls=0 avg=0.620 source=memory/2026-07-21.md:15-16]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:19:21 -->
-- AI Model Rankings — 2026-07-21（from cron agent）: 💻 Coding (CI): GPT-5.6 Sol — 77.4; 🤖 Agent (AI): GPT-5.6 Sol — 54.0; 🎨 Design Arena: Kimi K3（3D/UI/網站）, Claude Fable 5（網頁 Apps/Godot） [score=0.868 recalls=0 avg=0.620 source=memory/2026-07-21.md:19-21]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:24:27 -->
-- AI Model Rankings — 2026-07-21（from cron agent）: GLM 5.2 — 51.1 (II), 68.8 (CI), 43.1 (AI); DeepSeek V4 Pro — 44.3 (II), 59.4 (CI), 36.4 (AI); MiniMax M3 — 44.4 (II), 58.6 (CI), 35.4 (AI); Kimi K2.6 — 44.2 (II), 61.8 (CI), 30.3 (AI) [score=0.862 recalls=0 avg=0.620 source=memory/2026-07-21.md:24-27]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:28:28 -->
-- AI Model Rankings — 2026-07-21（from cron agent）: Tencent Hy3 preview — 41.2 (II), 58.8 (CI), 30.7 (AI) [score=0.862 recalls=0 avg=0.620 source=memory/2026-07-21.md:28-28]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:31:34 -->
-- AI Model Rankings — 2026-07-21（from cron agent）: Meituan LongCat 2.0 — 1.6T MoE（480億激活）, 1M 上下文, 極低價; Thinking Machines Inkling — 9750億 MoE, 多模態代理; GPT-5.6 Sol — 新旗艦推理模型，CI/AI 雙冠; Claude Fable 5 — 總排名第一，Design Arena 大滿貫 [score=0.862 recalls=0 avg=0.620 source=memory/2026-07-21.md:31-34]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:37:40 -->
-- Inter-session Messages: 04:31 UTC: Harness smoke test (roaringmoon 4) — OPENCLAW_ROARINGMOON_OK_4; 04:35 UTC: Harness retry test (roaringmoon retry) — OPENCLAW_ROARINGMOON_OK_RETRY_1; 04:26 UTC: Harness smoke test (roaringmoon 2) — OPENCLAW_ROARINGMOON_OK_2; 21:27 UTC: Harness full-token-test — OPENCLAW_BRIDGE_OK [score=0.862 recalls=0 avg=0.620 source=memory/2026-07-21.md:37-40]
-<!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:4:4 -->
-- AI Model Rankings — 2026-07-21（from cron agent）: Source: OpenRouter × Artificial Analysis Intelligence Index v4.1 [score=0.862 recalls=0 avg=0.620 source=memory/2026-07-21.md:4-4]
-
 ## Promoted From Short-Term Memory (2026-07-28)
 
 <!-- openclaw-memory-promotion:memory:memory/2026-07-21.md:41:43 -->
@@ -163,3 +131,8 @@
 - **2026-08-21**：Rowlet + Charizard 都因 token plan usage limit 無法執行，全部由 coordinator 接手
 - **模式演變**：摘要 → timeout → session lock → token budget exhaustion，問題越來越嚴重
 - **需要**：定期檢查 token budget、subagent prompt 是否有問題
+
+## Promoted From Short-Term Memory (2026-11-13)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-10-27.md:1:20 -->
+- # 2026-10-27 ## 群體智能架構研究 #12 — 集體記憶基質 × 信任與誘因（cron b37129c0） **完成**：純閱讀研究，8 篇 arXiv 全文（2606.24535 / 2606.10662 / 2603.10062 / 2608.04507 / 2606.03030 / 2610.31002 / 2601.11369 / 2609.02580），19 sources。 [score=0.822 signals=3 recalls=3 avg=0.827 source=memory/2026-10-27.md:1-5] <!-- trigger: llm-wiki, raw-notes.md, source-meta.yaml --> <!-- importance: 8 --> <!-- project: github.com/zhanzhanwu70-design/linderopenclaw-roaringmoon -->

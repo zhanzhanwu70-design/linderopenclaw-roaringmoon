@@ -1,15 +1,15 @@
 {
   "project": "github.com/zhanzhanwu70-design/linderopenclaw-roaringmoon",
   "lastChecks": {
-    "keepalive": 1794463178,
-    "heartbeat_utc": "2026-11-12T05:56:00Z",
-    "ai_rankings": 1793634040,
-    "cron_health": 1794463178,
-    "llm_wiki_git": 1794463178
+    "keepalive": 1794518996,
+    "heartbeat_utc": "2026-11-13T01:34:44Z",
+    "ai_rankings": 1794497327,
+    "cron_health": 1794533684,
+    "llm_wiki_git": 1794518996
   },
-  "lastHeartbeat": 1794463178,
-  "lastAIrankings": 1793634040,
-  "lastCronHealth": 1794463178,
-  "notes": "2026-11-12 11:56 check: committed #26 synthesis (was never written by the 11-11 run) + #27, 3 commits, all 0 deletions, pushed (2197 pages). Found and fixed TWO real nightly-sync bugs: (1) after a rebase the tree always equals HEAD so the script printed 'nothing to push' and stranded 4 commits / 5204 lines locally - now publishes existing commits instead; (2) autostash pop conflicting AFTER the rebase left conflict markers in DREAMS.md and 4 stale autostashes - resolver now uses git conflict stages (:2:/3:) instead of regex, and handles the autostash-pop conflict too. Both verified end-to-end. llm-wiki drift=0, staged deletions=0, wiki/ clean, fully in sync with origin.",
-  "lastLLMWikiGit": 1794463178
+  "lastHeartbeat": 1794533684,
+  "lastAIrankings": 1794497327,
+  "lastCronHealth": 1794533684,
+  "notes": "2026-11-13 05:30 check: diagnosed two stale async commands from the #27 research session. sharp-fj (exit 0) = an arXiv API search loop where 2 queries failed to parse; root cause is arXiv's HTTP 429 with an EMPTY body (reproduced: 12 rapid requests then 429+empty -> XML parser misreports it as 'mismatched tag'/'syntax error'). brisk-fj (SIGTERM) = the local wiki grep gap-scan, interrupted. No impact on published work: #27's gap evidence used local grep, and all 5 cited papers were FULL HTML READ via arxiv.org/html/ (unaffected by API rate limits). Lesson: arXiv API throttles with 429 + empty body; sleep 3 between queries or use /html/<id>. llm-wiki drift=0, staged deletions=0, wiki/ clean, 0 unpublished. | 2026-11-13 09:35 check: 早上的 cron 失敗分三種病因 — (1) MiniMax 429 overloaded（群體智能架構研究 error 5x，研究型 isolated cron）；(2) 600s cron timeout（rowlet/gengar/roaringmoon heartbeat，模型呼叫掛住）；(3) 設定層 no-route / Discord bot token missing for account 'default'（heartbeat delivery route 未設定）。結構性發現：agents.defaults.model 的 fallback 只有 minimax/MiniMax-M3，與 primary 同家族 → provider 過載時 fallback 無效；openai/gpt-5.4-mini 已在 modelPolicy.allow。sharp-fj/brisk-fj/cool-sum 為 #27 session 遺留，05:05 已診斷、對已發布成果無影響。",
+  "lastLLMWikiGit": 1794518996
 }
