@@ -136,3 +136,11 @@
 
 <!-- openclaw-memory-promotion:memory:memory/2026-10-27.md:1:20 -->
 - # 2026-10-27 ## 群體智能架構研究 #12 — 集體記憶基質 × 信任與誘因（cron b37129c0） **完成**：純閱讀研究，8 篇 arXiv 全文（2606.24535 / 2606.10662 / 2603.10062 / 2608.04507 / 2606.03030 / 2610.31002 / 2601.11369 / 2609.02580），19 sources。 [score=0.822 signals=3 recalls=3 avg=0.827 source=memory/2026-10-27.md:1-5] <!-- trigger: llm-wiki, raw-notes.md, source-meta.yaml --> <!-- importance: 8 --> <!-- project: github.com/zhanzhanwu70-design/linderopenclaw-roaringmoon -->
+
+### MiniMax Token Plan 429：同家族 fallback 的盲點（2026-11-13/14 實測）
+- **兩種 429 要分開看**：`rate_limit_error` +「Token Plan usage limit reached」＝**配額用盡**；`overloaded_error` +「server is busy」＝**後端忙碌**。兩者都會讓研究型 cron 失敗，但前者是配額問題（要降量或換 provider），後者是容量問題（等或重試）。
+- **失敗 run 會拖很久**：限流期間不斷重試，duration 可達 20–33 分鐘才收尾（不是瞬間拒絕）→ cron 看起來像「卡住」而非「失敗」。
+- **結構性盲點**：`agents.defaults.model = {primary: minimax-portal/MiniMax-M3, fallbacks: [minimax/MiniMax-M3]}` —— primary 與 fallback **同家族**，Token Plan 一觸發兩者一起死，fallback 形同虛設。跨 provider fallback（`openai/gpt-5.4-mini` / `gpt-5.4-nano`，已在 `modelPolicy.allow`）才擋得住；此為全域 config 變更，需 Linder 拍板後才動。
+- **容量是波動的**：同一支 `群體智能架構研究` cron 2026-11-13 08:01 失敗（78s）、2026-11-14 08:00 成功（23.6 分鐘，4 篇 FULL HTML READ，delivery=delivered）。**看到「連續失敗」不要直接判定 provider 掛掉** —— 先看 error 字串分 rate_limit / overloaded，再看時間窗。
+- **診斷入口**：`openclaw cron runs --id <jobId>`（看 status / error / durationMs / diagnostics），比看 cron list 的 error 次數有資訊量得多。
+- **對應的 heartbeat 層故障**（與 provider 無關，別混為一談）：`heartbeat skipped: no-route`（未設 heartbeat.target / allowFrom）與 `Discord bot token missing for account "default"`。<!-- project: github.com/zhanzhanwu70-design/linderopenclaw-roaringmoon -->
