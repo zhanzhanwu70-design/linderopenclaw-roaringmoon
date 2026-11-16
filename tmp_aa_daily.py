@@ -27,20 +27,15 @@ def fetch():
     print('fetched', len(open('/tmp/aa_models.html', 'rb').read()), 'bytes')
 
 
-def parse():
-    html = open('/tmp/aa_models.html', encoding='utf-8', errors='ignore').read()
-    s = html.replace('\\"', '"').replace('\\\\', '\\')
-    models, i = [], 0
+def _extract_objects(s, marker='{"id":"'):
+    """Yield balanced JSON objects beginning with marker."""
+    out, i, n = [], 0, len(s)
     while True:
-        j = s.find('"slug":', i)
+        j = s.find(marker, i)
         if j < 0:
             break
-        start = s.rfind('{', 0, j)
-        if start < 0:
-            i = j + 6
-            continue
-        depth, instr, esc, k = 0, False, False, start
-        while k < len(s):
+        depth, instr, esc, k = 0, False, False, j
+        while k < n:
             c = s[k]
             if instr:
                 if esc:
@@ -60,21 +55,59 @@ def parse():
                         break
             k += 1
         try:
-            o = json.loads(s[start:k + 1])
+            o = json.loads(s[j:k + 1])
+            if isinstance(o, dict):
+                out.append(o)
         except Exception:
-            i = j + 6
+            pass
+        i = j + len(marker)
+    return out
+
+
+def build_slug(o):
+    """Family slug + effort suffix -> legacy slug scheme (family-<effort>).
+
+    2026-11 change: AA payload moved the slug into release.slug (family-level)
+    and expresses effort variants via `suffix`. Older snapshots used the flat
+    'family-effort' scheme, so rebuild it to keep day-over-day diffs working.
+    """
+    rel = o.get('release') or {}
+    base = rel.get('slug') or o.get('slug') or ''
+    if not base:
+        return None
+    suf = (o.get('suffix') or '').lower()
+    for eff in ('xhigh', 'minimal', 'non-reasoning', 'medium', 'high', 'low', 'max'):
+        if suf.startswith(eff):
+            return f"{base}-{eff}"
+    return base
+
+
+def parse():
+    html = open('/tmp/aa_models.html', encoding='utf-8', errors='ignore').read()
+    s = html.replace('\\"', '"').replace('\\\\', '\\')
+    objs = _extract_objects(s)
+    models = []
+    for o in objs:
+        sl = build_slug(o)
+        if not sl:
             continue
-        if isinstance(o, dict) and 'intelligenceIndex' in o:
-            models.append(o)
-        i = j + 6
+        o['_slug'] = sl
+        models.append(o)
     d = {}
     for o in models:
-        sl = o.get('slug')
-        if sl not in d or len(o) > len(d[sl]):
+        sl = o['_slug']
+        prev = d.get(sl)
+
+        def q(x):
+            sc = isinstance(x.get('intelligenceIndex'), (int, float)) and not x.get('deprecated')
+            return (1 if sc else 0, len(json.dumps(x)))
+        if prev is None or q(o) > q(prev):
             d[sl] = o
     json.dump(list(d.values()), open('/tmp/aa_models.json', 'w'), ensure_ascii=False)
     have = [o for o in d.values() if isinstance(o.get('intelligenceIndex'), (int, float)) and not o.get('deprecated')]
     print('parsed slugs:', len(d), '| active scored:', len(have))
+    if not have:
+        print('WARNING: 0 scored models - AA payload shape likely changed again.')
 
 
 SUF = re.compile(r'-(xhigh|high|medium|low|max|minimal|non-reasoning|thinking|reasoning|daily|extended)$')
@@ -96,14 +129,17 @@ def rank():
     for o in ms:
         if not isinstance(o, dict):
             continue
-        sl = o.get('slug')
+        sl = o.get('_slug') or build_slug(o)
+        if not sl:
+            continue
+        o['_slug'] = sl
         if sl not in d or len(o) > len(d[sl]):
             d[sl] = o
     have = [o for o in d.values() if isinstance(o.get('intelligenceIndex'), (int, float)) and not o.get('deprecated')]
     have.sort(key=lambda o: -o['intelligenceIndex'])
     fam = {}
     for o in have:
-        f = family(o['slug'])
+        f = family(o['_slug'])
         if f not in fam or o['intelligenceIndex'] > fam[f]['intelligenceIndex']:
             fam[f] = o
     fams = sorted(fam.values(), key=lambda o: -o['intelligenceIndex'])
