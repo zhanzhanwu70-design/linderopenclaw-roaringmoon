@@ -132,6 +132,25 @@
 - **模式演變**：摘要 → timeout → session lock → token budget exhaustion，問題越來越嚴重
 - **需要**：定期檢查 token budget、subagent prompt 是否有問題
 
+### `sessions_send` 回 `Aborted` ≠ 未投遞（2026-11-17 實測）
+- **現象**：晨間情報 pipeline 對 Rowlet、Charizard 的兩次 `sessions_send` 都回 `Aborted`／「missing tool result in session history」，但**任務兩邊都真的送達並完成了**（Rowlet 回 5 則；Charizard 的 `sessions_history` 顯示它正在跑 web_fetch/web_search）。
+- **判別法**：先 `sessions_history(<對端 sessionKey>)` 看對端是否已在用工具作業（timestamp 與送出時間吻合）→ 已在作業 = 已送達，**不要立刻重送**（重送＝重複工作＋可能重複發布）。真的沒送達才重送。
+- **另一個坑**：`sessions_spawn(agentId=…)` 對本 agent 固定 forbidden（`agents_list` 顯示 `allowAny: false`、只列自己）→ 晨間情報 pipeline 派工一律走 `sessions_send`。（cron job 內文寫 sessions_spawn，但工具政策優先 → 仍用 sessions_send 並在回報中說明。）
+- **對方成品常以 toolCall arguments 形式存在**：Charizard 用 `sessions_send` 把成品送回時，內容在它的 transcript 裡是 `toolCall(sessions_send)` 的 arguments，不是獨立 assistant 訊息 → 用 `sessions_history` 看「最後一則是 sessions_send toolCall」即可拿到原文。<!-- project: github.com/zhanzhanwu70-design/linderopenclaw-roaringmoon -->
+
+### 跨 agent 投遞舉證（可複用，2026-11-16/17 連續驗證）
+- **唯一可靠路徑**：撈對方 agent 的 `openclaw-agent.sqlite` → `transcript_events` → 找 `toolCall(message, action=send)` 的 arguments 與 toolResult（receipt 內有 `primaryPlatformMessageId`、`deliveryStatus`）。
+- **格式坑**：`event_json` 是 **compact JSON** → SQL LIKE 要寫 `'%"name":"message"%'`（**不能**帶空格），帶空格的 pattern 會得到 0 rows。`message_tool_run_outcomes` 表**不含**送出的文字，只有 run 狀態。
+- **不可用**：跨 agent 的 `message action=read`；`sessions_history` 對該 channel session 可能回空（對方 reset session）。
+- **驗證標準**：把對方實際送出的多則**合併**後，與自己的原文檔做 `EXACT MATCH` **＋ SHA-256 比對 ＋ URL 集合與順序比對** —— 不要只相信對方回報裡的「已送出／逐字相同」。<!-- project: github.com/zhanzhanwu70-design/linderopenclaw-roaringmoon -->
+
+### 晨間情報 pipeline 的去重與驗證流程（2026-11-17 定型）
+- **派工時直接把「前兩日已發布清單」交給 sub-agent**，讓它在來源端就避開重複 → 11/17 兩邊回 10 條全是新項，零刪除（11/16 曾需刪 1 條）。
+- **不憑 sub-agent 摘要**：每條 URL 自己 `curl -L` 測（部分站 curl = 403 純 bot 阻擋 → 改用 `web_fetch`），並抓頁面 metadata 核對發布日期。
+- **日期易錯處**：InfoQ 文章頁上會有側欄「November 17, 2026」等相關文章日期 → 以頁面的 `"Published": "YYYY-MM-DD..."` 欄位為準，勿抓第一個日期字串。
+- **URL 形式別猜**：InfoQ 文章是 `/articles/<slug>/`（不是 `/news/YYYY/MM/<slug>/`）；GitHub changelog 是 `/changelog/YYYY-MM-DD-<slug>`（無日期前綴、無結尾斜線）→ 猜錯形式會 404。拿不到真實 URL 時，從對方的 web_fetch spill log 反查相對路徑。
+- **Discord 字數與行數（2026-11-17 複驗 docs＋dist 原始碼）**：**字元硬上限 2,000**（`outbound-adapter` → `DISCORD_TEXT_CHUNK_LIMIT = 2e3`），**但另有 17 行行數門檻**（`config-channels.md:339` → `maxLinesPerMessage` default 17；`chunk-*.js` → `DEFAULT_MAX_LINES = 17`，且 `body.length <= hardMaxChars && countLines(body) <= maxLines` → **任一超標就切**）。因此**密集 URL 清單會在字元遠未到 2,000 時就被行數門檻切開**（本輪實測約 1,100 字元處切）→ **驗證投遞時不可只看字元數，必須同時看行數，並用「前綴＋後綴＋內容關鍵字」三重比對找分段**（只比對開頭關鍵字會漏掉後半段）。全文 > 2,000 字元也要切多則；切點選自然邊界（「**架構與開發工具（3）**」前、「**另附**」前），並要求合併後與原文逐字相同。<!-- project: github.com/zhanzhanwu70-design/linderopenclaw-roaringmoon -->
+
 ## Promoted From Short-Term Memory (2026-11-13)
 
 <!-- openclaw-memory-promotion:memory:memory/2026-10-27.md:1:20 -->
