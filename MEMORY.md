@@ -142,14 +142,18 @@
 - **唯一可靠路徑**：撈對方 agent 的 `openclaw-agent.sqlite` → `transcript_events` → 找 `toolCall(message, action=send)` 的 arguments 與 toolResult（receipt 內有 `primaryPlatformMessageId`、`deliveryStatus`）。
 - **格式坑**：`event_json` 是 **compact JSON** → SQL LIKE 要寫 `'%"name":"message"%'`（**不能**帶空格），帶空格的 pattern 會得到 0 rows。`message_tool_run_outcomes` 表**不含**送出的文字，只有 run 狀態。
 - **不可用**：跨 agent 的 `message action=read`；`sessions_history` 對該 channel session 可能回空（對方 reset session）。
-- **驗證標準**：把對方實際送出的多則**合併**後，與自己的原文檔做 `EXACT MATCH` **＋ SHA-256 比對 ＋ URL 集合與順序比對** —— 不要只相信對方回報裡的「已送出／逐字相同」。<!-- project: github.com/zhanzhanwu70-design/linderopenclaw-roaringmoon -->
+- **驗證標準**：把對方實際送出的多則**合併**後，與自己的原文檔做 `EXACT MATCH` **＋ SHA-256 比對 ＋ URL 集合與順序比對** —— 不要只相信對方回報裡的「已送出／逐字相同」。
+- **★ 比對時絕對不可對每段 `.strip()`**（2026-11-18 實測踩到）：分段合併前去掉前後空白，會把**切分邊界的換行**吃掉 → 得到假的「EXACT MATCH = False」與假的 SHA 不符，連「URL 順序不同」都是假的（相鄰兩行黏成同一個 token）。**正解：直接 `''.join(segment_text)` 與 `open(file).read()` 逐字比**；若一定要修空白，只用 `rstrip("\n")` 並補回換行。**看到比對失敗，先懷疑自己的前處理（strip／換行／regex），再懷疑對方 —— 差一個換行就會翻案。**<!-- project: github.com/zhanzhanwu70-design/linderopenclaw-roaringmoon -->
 
 ### 晨間情報 pipeline 的去重與驗證流程（2026-11-17 定型）
 - **派工時直接把「前兩日已發布清單」交給 sub-agent**，讓它在來源端就避開重複 → 11/17 兩邊回 10 條全是新項，零刪除（11/16 曾需刪 1 條）。
 - **不憑 sub-agent 摘要**：每條 URL 自己 `curl -L` 測（部分站 curl = 403 純 bot 阻擋 → 改用 `web_fetch`），並抓頁面 metadata 核對發布日期。
 - **日期易錯處**：InfoQ 文章頁上會有側欄「November 17, 2026」等相關文章日期 → 以頁面的 `"Published": "YYYY-MM-DD..."` 欄位為準，勿抓第一個日期字串。
 - **URL 形式別猜**：InfoQ 文章是 `/articles/<slug>/`（不是 `/news/YYYY/MM/<slug>/`）；GitHub changelog 是 `/changelog/YYYY-MM-DD-<slug>`（無日期前綴、無結尾斜線）→ 猜錯形式會 404。拿不到真實 URL 時，從對方的 web_fetch spill log 反查相對路徑。
-- **Discord 字數與行數（2026-11-17 複驗 docs＋dist 原始碼）**：**字元硬上限 2,000**（`outbound-adapter` → `DISCORD_TEXT_CHUNK_LIMIT = 2e3`），**但另有 17 行行數門檻**（`config-channels.md:339` → `maxLinesPerMessage` default 17；`chunk-*.js` → `DEFAULT_MAX_LINES = 17`，且 `body.length <= hardMaxChars && countLines(body) <= maxLines` → **任一超標就切**）。因此**密集 URL 清單會在字元遠未到 2,000 時就被行數門檻切開**（本輪實測約 1,100 字元處切）→ **驗證投遞時不可只看字元數，必須同時看行數，並用「前綴＋後綴＋內容關鍵字」三重比對找分段**（只比對開頭關鍵字會漏掉後半段）。全文 > 2,000 字元也要切多則；切點選自然邊界（「**架構與開發工具（3）**」前、「**另附**」前），並要求合併後與原文逐字相同。<!-- project: github.com/zhanzhanwu70-design/linderopenclaw-roaringmoon -->
+- **Discord 字數與行數（2026-11-17 複驗 docs＋dist 原始碼）**：**字元硬上限 2,000**（`outbound-adapter` → `DISCORD_TEXT_CHUNK_LIMIT = 2e3`），**但另有 17 行行數門檻**（`config-channels.md:339` → `maxLinesPerMessage` default 17；`chunk-*.js` → `DEFAULT_MAX_LINES = 17`，且 `body.length <= hardMaxChars && countLines(body) <= maxLines` → **任一超標就切**）。因此**密集 URL 清單會在字元遠未到 2,000 時就被行數門檻切開**（本輪實測約 1,100 字元處切）→ **驗證投遞時不可只看字元數，必須同時看行數，並用「前綴＋後綴＋內容關鍵字」三重比對找分段**（只比對開頭關鍵字會漏掉後半段）。全文 > 2,000 字元也要切多則；切點選自然邊界（「**架構與開發工具（3）**」前、「**另附**」前），並要求合併後與原文逐字相同。
+- **★ 派工時就要求 sub-agent 附「限定詞＋原文句」**（2026-11-18 實得）：每則至少帶一個**時間限定詞**（當時／現在、會期／發布日）與一個**成熟度／預設值**（public preview／GA、預設開／關），再附 1–2 句**頁面原句**（含數字與出處）。否則濃縮版會把「當時沒有開關」講成「現在沒有開關」，而我自己的驗證也得再繞一圈抓原文。
+- **★ 報告一律自己用 `message(action=send)` 送，不依賴 cron 的 announce**（2026-11-17／11-18 連續兩天實測：cron run 一旦 timeout，`deliveryStatus` = unknown → Linder 的頻道只會收到失敗警報、收不到報告）。**先送報告再收尾**，別等 wrapper 幫忙投遞。
+- **★ `openclaw cron edit` 會順手注入 `staggerMs`**（2026-11-18 實測：改完 timeout 後 `cron show` 變成 `cron 0 8 * * * @ Asia/Taipei (stagger 15m)`，會讓固定時段的排程在 ±15 分鐘內浮動）→ **每次 edit 後一定要 `cron show` 覆核排程**（`--exact` 可設 stagger 為 0 還原精確時段），不要只看「指令成功」。另外 timeout 是整條 run 的牆鐘上限 → 派工＋等回覆＋驗證＋發布要一起算進去。<!-- project: github.com/zhanzhanwu70-design/linderopenclaw-roaringmoon -->
 
 ## Promoted From Short-Term Memory (2026-11-13)
 
@@ -163,3 +167,21 @@
 - **容量是波動的**：同一支 `群體智能架構研究` cron 2026-11-13 08:01 失敗（78s）、2026-11-14 08:00 成功（23.6 分鐘，4 篇 FULL HTML READ，delivery=delivered）。**看到「連續失敗」不要直接判定 provider 掛掉** —— 先看 error 字串分 rate_limit / overloaded，再看時間窗。
 - **診斷入口**：`openclaw cron runs --id <jobId>`（看 status / error / durationMs / diagnostics），比看 cron list 的 error 次數有資訊量得多。
 - **對應的 heartbeat 層故障**（與 provider 無關，別混為一談）：`heartbeat skipped: no-route`（未設 heartbeat.target / allowFrom）與 `Discord bot token missing for account "default"`。<!-- project: github.com/zhanzhanwu70-design/linderopenclaw-roaringmoon -->
+
+### Skill Workshop 對「手寫 live skill」的機制（2026-11-18 實測，與既有 skill 互動必讀）
+<!-- project: github.com/zhanzhanwu70-design/linderopenclaw-roaringmoon -->
+- **手寫的 live workspace skill（例如 `discord-delivery-verification`）**：
+  - `skill_workshop(action=read, skill_name=…)` → **`Skill not found`**（workshop 名冊裡沒有它）。
+  - `skill_workshop(action=create, name=<同名>)` → **`Skill already exists at …/SKILL.md`**（撞名，不能用 create 覆寫）。
+  - **`skill_workshop(action=update, skill_name=<同名>, proposal_content=<完整 body>, support_files=[…])` → 反而可用**，會為該 live skill 建立 pending proposal，**live 檔案在 apply 前不動**（符合 skill-creator 步驟 4「live workspace skill 走 proposal、apply 前不動 live 檔」）。→ **要改既有手寫 skill，走 `update`，不要手改檔、也不要 create。**
+- **★ `update` 的兩個坑**：
+  1. **description 只有走「參數」才生效，寫在 `proposal_content` 的 frontmatter 裡一定被丟**（`renderProposalMarkdown` 的 frontmatter 寫的是 `description: <params.description>`；`filterFrontmatterBlock(originalFrontmatter, ["name","description","status","version","date"])` 會把 content 自己的 description 丟掉；`resolveUpdateProposalDescription(inputDescription, currentDescription)` 有參數用參數、否則用 live 的）→ **source of truth 只有 `description` 參數**。
+     - **★ 我自己踩過的真實案例（2026-11-18，雙方實測定案）**：`action=update` 我**沒有**把 `description` 當參數傳（只寫進 `proposal_content` 的 frontmatter）→ rendered PROPOSAL.md 退回 live skill 的**舊** description；**`action=revise` 帶 `description` 參數**才寫進去。**`update` 與 `revise` 行為一致、沒有任何不一致** —— 差異只在「參數有沒有送達」。我當時還以為自己傳了參數，並把錯的成因寫進 memory，是 mrmime 從 source 反駁才查出的。
+     - **★ 判斷「我到底傳了什麼」的唯一可靠做法：查自己 agent 的 `openclaw-agent.sqlite` → `transcript_events` 裡那筆 `toolCall(skill_workshop)` 的 arguments**（欄位只有 `session_id, seq, event_json, created_at`，**沒有** `tool_name`／`arguments` 欄位 → 用那兩個會直接 `no such column`）。
+       - **SQL LIKE 模式（實測 2026-11-18，roaringmoon 與 mrmime 兩個庫皆同）**：**compact 形式 `LIKE '%"name":"skill_workshop"%'` 有命中**（5／25 筆），**帶空格形式 `LIKE '%"name": "skill_workshop"%'` 回 0 筆**，廣用 `LIKE '%skill_workshop%'` 命中最多（53／185 筆）→ **穩妥做法：用廣用模式撈出後解析 `event_json` → 走 `message.content[].toolCall` → 取 `arguments`（可能是 JSON 字串，需再 parse）→ 看參數鍵是否存在**。
+       - **★ 同一 seq 可能含多筆 toolCall**（不可假設 seq 一對一），而且 `sessions_history` 會回傳組裝過的列表（可能 `display-cap` 截斷、**不保證含 arguments**）→ 拿原始 arguments 請直接查 sqlite。
+       - **自己對 tool-call 內容的記憶不可靠，磁碟上的 arguments 才是；別人說你沒傳時，先查 arguments 再回應。**
+     - **實務規則**：`update`／`revise` 之後**一定要打開 rendered PROPOSAL.md 看 frontmatter 的 description 有沒有真的換掉**；沒換就帶 `description` 參數再跑一次。**不要相信「我傳了參數」就等於寫進去了。**
+  2. proposal 檔的 frontmatter 會多出 `status` / `version` / `date` 三個 workshop wrapper key → 直接對 proposal 檔跑 `quick_validate.py` 會報「Unexpected key(s)」。**驗證時先剝掉這三個 key**再跑，才等於驗最終產物。
+- **proposal 實體可直接從磁碟讀**（不必只靠 workshop 工具）：`/home/amr/.openclaw/skill-workshop/proposals/<proposal_id>/generations/<rev>/` → 內含 `PROPOSAL.md` 與 `support_files`（如 `scripts/check.mjs`）。**對方 agent 的 proposal 我也能讀原始碼審查** → 「看不到 proposal 所以無法審腳本安全性」這個限制其實不存在。
+- **審第三方腳本的固定查法**：唯讀確認（只 import `node:fs/path/os/crypto`？有無 `child_process`／`fetch`／寫檔／token 路徑）、實跑正例與**反例**（反例必測：門檻超標要 FAIL）、`cmp` 確認 proposal 內存檔與被審的原始檔 byte-for-byte 相同、確認判定語意與安裝中函式一致（如 `countLines` 用 `split("\n").length` → 不會在邊界誤判）。
