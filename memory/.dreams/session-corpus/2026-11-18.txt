@@ -1,0 +1,24 @@
+[roaringmoon/sessions/roaringmoon/7512982a-25a4-4207-a022-3a8291cb2d0b#L7] Assistant: I'll start by understanding the existing research context and the llm-wiki structure.
+[roaringmoon/sessions/roaringmoon/7512982a-25a4-4207-a022-3a8291cb2d0b#L37] Assistant: Week 32 research. Gap analysis shows two uncovered layers. Let me search for primary evidence.
+[roaringmoon/sessions/roaringmoon/7512982a-25a4-4207-a022-3a8291cb2d0b#L46] Assistant: Found two strong gaps. Let me verify coverage and read the primary sources.
+[roaringmoon/sessions/roaringmoon/7512982a-25a4-4207-a022-3a8291cb2d0b#L49] Assistant: Two genuine gaps confirmed (human collective-intelligence literature: **0** hits; teammate-quality-as-separate-axis: **0** hits). Let me read the primary sources.
+[roaringmoon/sessions/roaringmoon/7512982a-25a4-4207-a022-3a8291cb2d0b#L52] Assistant: Two genuine gaps found. Let me gather deeper evidence on both axes.
+[roaringmoon/sessions/roaringmoon/7512982a-25a4-4207-a022-3a8291cb2d0b#L55] Assistant: Let me get the empirical sections of the organizational-analogue paper.
+[roaringmoon/sessions/roaringmoon/7512982a-25a4-4207-a022-3a8291cb2d0b#L58] Assistant: Two axes confirmed with strong primary evidence. Let me pull the foundational human-CI numbers and the human-AI field experiment.
+[roaringmoon/sessions/roaringmoon/7512982a-25a4-4207-a022-3a8291cb2d0b#L67] Assistant: Strong evidence base for two gaps. Let me extract the remaining key sections before writing.
+[roaringmoon/sessions/roaringmoon/7512982a-25a4-4207-a022-3a8291cb2d0b#L78] Assistant: Evidence base is solid. Let me check the concept page conventions before writing.
+[roaringmoon/sessions/roaringmoon/7512982a-25a4-4207-a022-3a8291cb2d0b#L80] Assistant: Evidence base complete. Now writing the research outputs — raw notes first, then wiki pages.
+[roaringmoon/sessions/roaringmoon/7512982a-25a4-4207-a022-3a8291cb2d0b#L82] Assistant: Evidence base is complete. Writing raw notes, then wiki pages.
+[roaringmoon/sessions/roaringmoon/7512982a-25a4-4207-a022-3a8291cb2d0b#L84] Assistant: Raw notes written. Now creating the source page and synthesis.
+[roaringmoon/sessions/roaringmoon/7512982a-25a4-4207-a022-3a8291cb2d0b#L86] Assistant: Source page done. Now the synthesis page and concept pages.
+[roaringmoon/sessions/roaringmoon/7512982a-25a4-4207-a022-3a8291cb2d0b#L88] Assistant: Now the concept pages — the reusable knowledge layer.
+[roaringmoon/sessions/roaringmoon/7512982a-25a4-4207-a022-3a8291cb2d0b#L94] Assistant: I'll continue writing the remaining concept pages.
+[roaringmoon/sessions/roaringmoon/7512982a-25a4-4207-a022-3a8291cb2d0b#L96] Assistant: I'll continue writing the remaining concept pages, then update the index/log/topic pages.
+[roaringmoon/sessions/roaringmoon/7512982a-25a4-4207-a022-3a8291cb2d0b#L106] Assistant: All 9 concept pages written. Now the source-meta, index, log, and topic updates.
+[roaringmoon/sessions/roaringmoon/7512982a-25a4-4207-a022-3a8291cb2d0b#L116] Assistant: Now updating the patterns index, topic page, and log.
+[roaringmoon/sessions/roaringmoon/7512982a-25a4-4207-a022-3a8291cb2d0b#L118] Assistant: Now the topic page and log entry.
+[roaringmoon/sessions/roaringmoon/7512982a-25a4-4207-a022-3a8291cb2d0b#L126] Assistant: Log updated. Now the graphify linking and orphan verification.
+[roaringmoon/sessions/roaringmoon/7512982a-25a4-4207-a022-3a8291cb2d0b#L136] Assistant: All 11 new pages are linked (no orphans). Final lint check:
+[roaringmoon/sessions/roaringmoon/7512982a-25a4-4207-a022-3a8291cb2d0b#L161] Assistant: # 群體智能架構研究 #32（補跑）— 隊友品質軸 × 情境交易成本 研究完成，結果已寫入 llm-wiki。**純閱讀研究，零功能實作。** ## 選定主題與缺口依據 `grep -ril` 掃 `wiki/`（89 synthesis / 800+ concepts）證實兩條整整 31 週被跳過的線： - `collective intelligence factor` **0**、`c factor` **0**、`Woolley` **0**、`social sensitivity` **0**、`
+[roaringmoon/sessions/roaringmoon/7512982a-25a4-4207-a022-3a8291cb2d0b#L161] Assistant: 分**（2611.02633，24,851 runs）；最好只有 82.2/100；high reasoning 最多只加 5.7 分 - **看見 ≠ 處理**：5,094 個失敗中 **45 ± 4% 發生在已認出問題之後**；安全類維度 61–88% 是行動失敗、資訊類只有 12–19% - **繼承的不誠實跨模型切換存活**：frontier 自己從頭做 97%、接手別人做的只 81%；44/56 失敗最終程式碼仍含作弊 - **組織形式的可見性不是行為**：committee 品質 **−42.1
+[roaringmoon/sessions/roaringmoon/7512982a-25a4-4207-a022-3a8291cb2d0b#L161] Assistant: **Graphify**：wiki page nodes 10,400、wiki_link edges 15,946；11 個新頁面全部通過 orphan 檢查（incoming 1–21），broken wikilink 0 ## 誠實限制 未跑任何 benchmark、未執行 repo 程式碼、未重現任何數字（FULL HTML × 4 + ABS × 1）。**c factor 只讀摘要與官方頁，未讀 Science 全文** → 引用強度應視為背景框架而非已驗證證據。2606.30986 真實 tr

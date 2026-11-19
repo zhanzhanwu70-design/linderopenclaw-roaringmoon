@@ -143,7 +143,8 @@
 - **格式坑**：`event_json` 是 **compact JSON** → SQL LIKE 要寫 `'%"name":"message"%'`（**不能**帶空格），帶空格的 pattern 會得到 0 rows。`message_tool_run_outcomes` 表**不含**送出的文字，只有 run 狀態。
 - **不可用**：跨 agent 的 `message action=read`；`sessions_history` 對該 channel session 可能回空（對方 reset session）。
 - **驗證標準**：把對方實際送出的多則**合併**後，與自己的原文檔做 `EXACT MATCH` **＋ SHA-256 比對 ＋ URL 集合與順序比對** —— 不要只相信對方回報裡的「已送出／逐字相同」。
-- **★ 比對時絕對不可對每段 `.strip()`**（2026-11-18 實測踩到）：分段合併前去掉前後空白，會把**切分邊界的換行**吃掉 → 得到假的「EXACT MATCH = False」與假的 SHA 不符，連「URL 順序不同」都是假的（相鄰兩行黏成同一個 token）。**正解：直接 `''.join(segment_text)` 與 `open(file).read()` 逐字比**；若一定要修空白，只用 `rstrip("\n")` 並補回換行。**看到比對失敗，先懷疑自己的前處理（strip／換行／regex），再懷疑對方 —— 差一個換行就會翻案。**<!-- project: github.com/zhanzhanwu70-design/linderopenclaw-roaringmoon -->
+- **★ 比對時絕對不可對每段 `.strip()`**（2026-11-18 實測踩到）：分段合併前去掉前後空白，會把**切分邊界的換行**吃掉 → 得到假的「EXACT MATCH = False」與假的 SHA 不符，連「URL 順序不同」都是假的（相鄰兩行黏成同一個 token）。**正解：直接 `''.join(segment_text)` 與 `open(file).read()` 逐字比**；若一定要修空白，只用 `rstrip("\n")` 並補回換行。**看到比對失敗，先懷疑自己的前處理（strip／換行／regex），再懷疑對方 —— 差一個換行就會翻案。**
+- **★ 跨 agent 交件協定（2026-11-19 與 Charizard 共同定下）**：交件後**補一句短確認**（「以上 N 則已送出，若未收到請回一聲」）→ 避免 `sessions_send` 的 **`no_reply` 被誤讀成「沒送到」**。對應規則：**收到 `no_reply` 先查對端 sqlite 確認落地**（delivery 與 reply 是兩個狀態）、**不重送**；看到對端有明確送出確認 → **即視為已送達、不再查 sqlite**。<!-- project: github.com/zhanzhanwu70-design/linderopenclaw-roaringmoon --><!-- project: github.com/zhanzhanwu70-design/linderopenclaw-roaringmoon -->
 
 ### 晨間情報 pipeline 的去重與驗證流程（2026-11-17 定型）
 - **派工時直接把「前兩日已發布清單」交給 sub-agent**，讓它在來源端就避開重複 → 11/17 兩邊回 10 條全是新項，零刪除（11/16 曾需刪 1 條）。
@@ -151,7 +152,13 @@
 - **日期易錯處**：InfoQ 文章頁上會有側欄「November 17, 2026」等相關文章日期 → 以頁面的 `"Published": "YYYY-MM-DD..."` 欄位為準，勿抓第一個日期字串。
 - **URL 形式別猜**：InfoQ 文章是 `/articles/<slug>/`（不是 `/news/YYYY/MM/<slug>/`）；GitHub changelog 是 `/changelog/YYYY-MM-DD-<slug>`（無日期前綴、無結尾斜線）→ 猜錯形式會 404。拿不到真實 URL 時，從對方的 web_fetch spill log 反查相對路徑。
 - **Discord 字數與行數（2026-11-17 複驗 docs＋dist 原始碼）**：**字元硬上限 2,000**（`outbound-adapter` → `DISCORD_TEXT_CHUNK_LIMIT = 2e3`），**但另有 17 行行數門檻**（`config-channels.md:339` → `maxLinesPerMessage` default 17；`chunk-*.js` → `DEFAULT_MAX_LINES = 17`，且 `body.length <= hardMaxChars && countLines(body) <= maxLines` → **任一超標就切**）。因此**密集 URL 清單會在字元遠未到 2,000 時就被行數門檻切開**（本輪實測約 1,100 字元處切）→ **驗證投遞時不可只看字元數，必須同時看行數，並用「前綴＋後綴＋內容關鍵字」三重比對找分段**（只比對開頭關鍵字會漏掉後半段）。全文 > 2,000 字元也要切多則；切點選自然邊界（「**架構與開發工具（3）**」前、「**另附**」前），並要求合併後與原文逐字相同。
-- **★ 派工時就要求 sub-agent 附「限定詞＋原文句」**（2026-11-18 實得）：每則至少帶一個**時間限定詞**（當時／現在、會期／發布日）與一個**成熟度／預設值**（public preview／GA、預設開／關），再附 1–2 句**頁面原句**（含數字與出處）。否則濃縮版會把「當時沒有開關」講成「現在沒有開關」，而我自己的驗證也得再繞一圈抓原文。
+- **★ 派工時就要求 sub-agent 附「限定詞＋原文句」**（2026-11-18 實得）：每則至少帶一個**時間限定詞**（當時／現在、會期／發布日）與一個**成熟度／預設值**（public preview／GA、預設開／關），再附 1–2 句**頁面原句**（含數字與出處）。否則濃縮版會把「當時沒有開關」講成「現在沒有開關」，而我自己的驗證也得再繞一圈抓原文。（2026-11-19 已確認 Charizard 與 Rowlet 雙方都採用這條格式。）
+- **★ 派工要給「最晚接受時間」而非只有硬上限**（2026-11-19 採納 Rowlet 提議）：超過 **T+15 分鐘** → **直接用備援集合發布**，晚到的完整版當**補漏材料**落盤備用 → 慢的一方不會讓派工者多付驗證成本。**派工同時就先備好自己的 baseline 候選**（本輪實證：Rowlet 遲到 08:17，備援 3 則在 08:12 前已發出，重疊 2 則各只發一次、內容零缺口）。
+- **★ 選材條件要從口號變成可執行檢查**（2026-11-19 採納 Rowlet 提議）：
+  - **交付層不套 17 行門檻** → 交付層保留完整可稽核版（逐字引文、出處句、頁面日期）；**格式收斂是發布層 pre-flight 腳本的事**。
+  - **排除成本要發生在搜尋期、不是排除期** → 派工即要求「**頁面本身直接印日期**」的一手來源。
+  - **日期存疑的判定順序**：官方 sitemap／RSS → 官方頁面 `Published` 欄位 → 一手 changelog → 才考慮二手；**二手一出現就整則不列**。
+  - **排除也要回報「理由 + 依據」**（讓下一輪 agent 不重複踩坑）：mistral.ai/news RSS 最新一筆停在 11/05、查無對應 blog 頁；Anthropic Economics 掃完 220 個 research slug 仍無 11/18-19 新頁（疑搜尋引擎快取誤導）；Vercel UI SDK 一手 repo 頁面無日期；Google SRE Book 第二版一手日期 2026-10-13。
 - **★ 報告一律自己用 `message(action=send)` 送，不依賴 cron 的 announce**（2026-11-17／11-18 連續兩天實測：cron run 一旦 timeout，`deliveryStatus` = unknown → Linder 的頻道只會收到失敗警報、收不到報告）。**先送報告再收尾**，別等 wrapper 幫忙投遞。
 - **★ `openclaw cron edit` 會順手注入 `staggerMs`**（2026-11-18 實測：改完 timeout 後 `cron show` 變成 `cron 0 8 * * * @ Asia/Taipei (stagger 15m)`，會讓固定時段的排程在 ±15 分鐘內浮動）→ **每次 edit 後一定要 `cron show` 覆核排程**（`--exact` 可設 stagger 為 0 還原精確時段），不要只看「指令成功」。另外 timeout 是整條 run 的牆鐘上限 → 派工＋等回覆＋驗證＋發布要一起算進去。<!-- project: github.com/zhanzhanwu70-design/linderopenclaw-roaringmoon -->
 
