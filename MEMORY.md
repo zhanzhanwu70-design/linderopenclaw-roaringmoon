@@ -195,3 +195,10 @@
   2. proposal 檔的 frontmatter 會多出 `status` / `version` / `date` 三個 workshop wrapper key → 直接對 proposal 檔跑 `quick_validate.py` 會報「Unexpected key(s)」。**驗證時先剝掉這三個 key**再跑，才等於驗最終產物。
 - **proposal 實體可直接從磁碟讀**（不必只靠 workshop 工具）：`/home/amr/.openclaw/skill-workshop/proposals/<proposal_id>/generations/<rev>/` → 內含 `PROPOSAL.md` 與 `support_files`（如 `scripts/check.mjs`）。**對方 agent 的 proposal 我也能讀原始碼審查** → 「看不到 proposal 所以無法審腳本安全性」這個限制其實不存在。
 - **審第三方腳本的固定查法**：唯讀確認（只 import `node:fs/path/os/crypto`？有無 `child_process`／`fetch`／寫檔／token 路徑）、實跑正例與**反例**（反例必測：門檻超標要 FAIL）、`cmp` 確認 proposal 內存檔與被審的原始檔 byte-for-byte 相同、確認判定語意與安裝中函式一致（如 `countLines` 用 `split("\n").length` → 不會在邊界誤判）。
+- **★ 同一份內容要發到兩個頻道 → 兩邊都必須是「來源檔逐字」**（2026-11-20）：我在其中一邊尾端加了一行交付註記 → 兩處 sha 對不上，而且那句「兩處內容相同」本身也不成立。**要把註記寫進正文或另附，不要貼在內容尾端。**
+- **★ 改既有 Discord 訊息 → 預設走 REST `PATCH /channels/<id>/messages/<mid>`**（body `{"content": …}` → 200，且 `edited_timestamp` 更新）。2026-11-20 實測：**message tool 的 `action=edit` 會被 delegated guard 擋掉，連「自己剛發、同帳號同頻道」的訊息也一樣被擋**（`Delegated discord:edit requires the exact current conversation and account for this plugin.`）→ **關鍵變數是「走哪條路徑」，不是「跨不跨 conversation」**。REST PATCH 不走那道 guard → 可用。（先前寫成「跨回合訊息不可回頭 edit、錯了只能補發更正」**過度絕對**，已改正。）
+- **★ 驗證「訊息是否被刪除」看 `GET /channels/<id>/messages/<mid>` → 404**（`Unknown Message`）：**Discord 刪除不產生任何 receipt** → 「receipt 掃不到 deleted id」**不等於**訊息還在。
+- **★ receipt 統計只涵蓋「經 message tool 送出」**：平台的直送（cron announce 等）**不會在 transcript 留下 send 紀錄** → 用 receipt 數「頻道上有幾則」會**大幅低估**（2026-11-20 實測：receipt 數 11、平台實讀 36）。**頻道則數一律以平台清單為準**（`messages?limit=100` + `before=` **有界**分頁）。
+- **★ 兩個 bot 的頻道存取互斥**：roaringmoon token 對轟鳴月 200 / 對魔牆人翁 403；mrmime token 對魔牆人翁 200 / 對轟鳴月 403 → **不能靠「換 bot 分流頻道」整理內容**，要分流得由 Linder 開新文字頻道或調整權限（我不自行建頻道／改權限）。
+- **★ Discord REST 讀頻道的兩個坑**：① header 必須是 **`Bot <token>`**，`Bearer <token>` → **401**；② **全頻道分頁掃描必須設有界頁數**，無界掃描會被 gateway 重啟砍掉（2026-11-20 實測，導致一次發文請求被中斷）。
+- **★ 去重要看「內容 sha 命中數」，不是「標題命中數」**：多則貼文的標題只出現在第 1 則 → 標題命中 1 才是正確值（2026-11-20 補漏②）。
