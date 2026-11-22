@@ -1,11 +1,11 @@
 {
- "fetched_utc": "2026-11-20T16:06:49Z",
+ "fetched_utc": "2026-11-21T15:04:13Z",
  "source": "https://artificialanalysis.ai/leaderboards/models",
  "index": "Intelligence Index v5.0.1",
  "index_prev": "Intelligence Index v5.0.1",
  "index_version_changed": false,
- "slugs_parsed": 381,
- "active_scored": 125,
+ "slugs_parsed": 382,
+ "active_scored": 126,
  "baseline": "memory/leaderboard/snapshot-2026-11-20.json",
  "top20": [
   {
@@ -18,8 +18,8 @@
    "creator": "Anthropic",
    "price_in": 8,
    "price_out": 40,
-   "tok_s": 108.716037748628,
-   "ttft": 262.532140070061,
+   "tok_s": 108.231553544064,
+   "ttft": 250.742642535984,
    "cost_per_task": 26.53855780398091
   },
   {
@@ -32,8 +32,8 @@
    "creator": "OpenAI",
    "price_in": 8,
    "price_out": 40,
-   "tok_s": 48.0851010411381,
-   "ttft": 204.483841703931,
+   "tok_s": 48.2223432836973,
+   "ttft": 186.986424718357,
    "cost_per_task": 3.9979061566801852
   },
   {
@@ -46,8 +46,8 @@
    "creator": "Google",
    "price_in": 3,
    "price_out": 15,
-   "tok_s": 109.855965065801,
-   "ttft": 56.5075242235555,
+   "tok_s": 105.970378681329,
+   "ttft": 60.0648267336361,
    "cost_per_task": 6.444838101104699
   },
   {
@@ -60,8 +60,8 @@
    "creator": "Google",
    "price_in": 4,
    "price_out": 20,
-   "tok_s": 51.305019909628,
-   "ttft": 74.505837551791,
+   "tok_s": 55.8966579036316,
+   "ttft": 68.1818569198643,
    "cost_per_task": 7.755545745286556
   },
   {
@@ -74,8 +74,8 @@
    "creator": "Anthropic",
    "price_in": 4,
    "price_out": 20,
-   "tok_s": 112.525266145127,
-   "ttft": 368.857135467293,
+   "tok_s": 112.743919202085,
+   "ttft": 356.950276760277,
    "cost_per_task": 10.036409719512749
   },
   {
@@ -88,8 +88,8 @@
    "creator": "OpenAI",
    "price_in": 2,
    "price_out": 10,
-   "tok_s": 70.3642922026446,
-   "ttft": 83.9225880948841,
+   "tok_s": 69.2736742419208,
+   "ttft": 82.0256331051129,
    "cost_per_task": 1.014379970300768
   },
   {
@@ -102,8 +102,8 @@
    "creator": "Anthropic",
    "price_in": 2,
    "price_out": 10,
-   "tok_s": 144.467090049462,
-   "ttft": 275.15632001638,
+   "tok_s": 146.769001343023,
+   "ttft": 268.03139811776,
    "cost_per_task": 10.020621343395753
   },
   {
@@ -116,8 +116,8 @@
    "creator": "Google",
    "price_in": 1.5,
    "price_out": 7.5,
-   "tok_s": 163.757407846916,
-   "ttft": 51.3601107860523,
+   "tok_s": 161.895520406838,
+   "ttft": 49.2139387158018,
    "cost_per_task": 3.1601590757006157
   },
   {
@@ -130,8 +130,8 @@
    "creator": "OpenAI",
    "price_in": 1,
    "price_out": 5,
-   "tok_s": 62.1204412986627,
-   "ttft": 178.16934799927,
+   "tok_s": 62.7212518403227,
+   "ttft": 167.723713197229,
    "cost_per_task": 0.961108031081634
   },
   {
@@ -142,11 +142,11 @@
    "ow": false,
    "rank": 10,
    "creator": "Google",
-   "price_in": 2,
-   "price_out": 10,
-   "tok_s": 68.292914724116,
-   "ttft": 45.9590220384733,
-   "cost_per_task": 4.973304355775267
+   "price_in": 4,
+   "price_out": 20,
+   "tok_s": 73.4205462044362,
+   "ttft": 45.042011065327,
+   "cost_per_task": 9.946608711550533
   },
   {
    "slug": "muse-wonder-full",
@@ -172,8 +172,8 @@
    "creator": "Kimi",
    "price_in": 2,
    "price_out": 10,
-   "tok_s": 30.4740337781037,
-   "ttft": 3.61223375740006,
+   "tok_s": 30.7787883922357,
+   "ttft": 3.43522412389636,
    "cost_per_task": 3.6812002895742055
   },
   {
@@ -186,8 +186,8 @@
    "creator": "Meta",
    "price_in": 4,
    "price_out": 20,
-   "tok_s": 113.966114430966,
-   "ttft": 21.0710894099169,
+   "tok_s": 110.49538988414,
+   "ttft": 22.3506219580404,
    "cost_per_task": 6.9520364786062245
   },
   {
@@ -200,8 +200,8 @@
    "creator": "Alibaba",
    "price_in": 1.5,
    "price_out": 4.5,
-   "tok_s": 58.7271996779688,
-   "ttft": 5.74412663564339,
+   "tok_s": 61.2847710565592,
+   "ttft": 5.69563839131917,
    "cost_per_task": 3.2681327300897323
   },
   {
@@ -214,8 +214,8 @@
    "creator": "Anthropic",
    "price_in": 0.1,
    "price_out": 0.5,
-   "tok_s": 251.694630771865,
-   "ttft": 180.942043097435,
+   "tok_s": 254.438218491409,
+   "ttft": 176.457102311761,
    "cost_per_task": 0.41100741536816304
   },
   {
@@ -228,8 +228,8 @@
    "creator": "Meta",
    "price_in": 0.1,
    "price_out": 0.5,
-   "tok_s": 460.888727909225,
-   "ttft": 5.16730735801035,
+   "tok_s": 461.301114253909,
+   "ttft": 5.52976180315678,
    "cost_per_task": 0.1359356168986363
   },
   {
@@ -242,8 +242,8 @@
    "creator": "SpaceXAI",
    "price_in": 2,
    "price_out": 6,
-   "tok_s": 68.704355627092,
-   "ttft": 59.1126310169305,
+   "tok_s": 69.807130024116,
+   "ttft": 62.9388222093655,
    "cost_per_task": 7.771539401587139
   },
   {
@@ -251,13 +251,13 @@
    "variant": "tencent-hy4",
    "name": "Tencent Hy4",
    "idx": 34.5552385392508,
-   "ow": false,
+   "ow": true,
    "rank": 18,
    "creator": "Tencent",
    "price_in": 0.834,
    "price_out": 2.501,
-   "tok_s": 93.1978302590922,
-   "ttft": 2.609374654783,
+   "tok_s": 91.9758669741913,
+   "ttft": 2.62582500509263,
    "cost_per_task": 1.0311060706397974
   },
   {
@@ -270,8 +270,8 @@
    "creator": "DeepSeek",
    "price_in": 0.3,
    "price_out": 1.2,
-   "tok_s": 160.631334153574,
-   "ttft": 1.49549934396444,
+   "tok_s": 162.936076647995,
+   "ttft": 1.35778376285861,
    "cost_per_task": 0.60210514783598
   },
   {
@@ -284,8 +284,8 @@
    "creator": "Z AI",
    "price_in": 1.4,
    "price_out": 4.4,
-   "tok_s": 73.0893423761818,
-   "ttft": 3.10681889607849,
+   "tok_s": 73.1701075611226,
+   "ttft": 2.99369616173875,
    "cost_per_task": 5.009264601719954
   }
  ],
@@ -513,17 +513,17 @@
   ],
   "aa-briefcase": [
    [
-    1815.14,
+    1813.08,
     "claude-sonnet-5-5-max",
     "Claude Sonnet 5.5 (max)"
    ],
    [
-    1799.88,
+    1797.44,
     "claude-opus-5-5-max",
     "Claude Opus 5.5 (max)"
    ],
    [
-    1784.66,
+    1783.12,
     "claude-fable-5-2-max",
     "Claude Fable 5.2 (max)"
    ]
@@ -644,9 +644,9 @@
     "GLM-5.3 (max)"
    ],
    [
-    0.3485,
-    "mimo-v2-6-pro",
-    "MiMo-V2.6-Pro"
+    0.3737,
+    "tencent-hy4",
+    "Tencent Hy4"
    ]
   ],
   "hle-diamond": [
@@ -656,14 +656,14 @@
     "Kimi K3.1 Pro"
    ],
    [
+    0.327,
+    "tencent-hy4",
+    "Tencent Hy4"
+   ],
+   [
     0.287,
     "inkling-2-small",
     "Inkling 2 Small"
-   ],
-   [
-    0.281,
-    "minimax-m3-1-flash",
-    "MiniMax-M3.1-Flash"
    ]
   ],
   "gpqa-diamond": [
@@ -702,6 +702,11 @@
   ],
   "frontiercode-2-0": [
    [
+    0.3145,
+    "tencent-hy4",
+    "Tencent Hy4"
+   ],
+   [
     0.2847,
     "deepseek-v4-1-flash-1017-max",
     "DeepSeek V4.1 Flash 1017 (max)"
@@ -710,11 +715,6 @@
     0.2714,
     "qwen3-8-flash-next",
     "Qwen3.8-Flash-Next"
-   ],
-   [
-    0.2545,
-    "kimi-k3-1-pro",
-    "Kimi K3.1 Pro"
    ]
   ],
   "humanitys-last-exam": [
@@ -741,14 +741,14 @@
     "Kimi K3.1 Pro"
    ],
    [
-    1571.51,
-    "qwen3-8-flash-next",
-    "Qwen3.8-Flash-Next"
-   ],
-   [
     1570.42,
     "deepseek-v4-1-flash-1017-max",
     "DeepSeek V4.1 Flash 1017 (max)"
+   ],
+   [
+    1568.49,
+    "qwen3-8-flash-next",
+    "Qwen3.8-Flash-Next"
    ]
   ]
  },
@@ -831,6 +831,7 @@
   "grok-4-7-high",
   "grok-4-7-low",
   "grok-4-7-xhigh",
+  "inkling-2-mini",
   "inkling-2-small",
   "inkling-high",
   "inkling-xhigh",
