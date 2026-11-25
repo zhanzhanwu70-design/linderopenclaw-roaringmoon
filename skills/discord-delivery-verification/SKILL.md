@@ -16,6 +16,8 @@ Use this when an OpenClaw Discord send must be proven delivered: after a long or
 2. Record what the send reported, and treat it as a claim. Capture `primaryPlatformMessageId`, `deliveryStatus`, and `payloadOutcomes.resultCount` for every part. Done when each reported part has an id you can search for in the channel.
    - `resultCount` above 1 means the platform posted more than one message for a single send; one tool response does not imply one platform message.
    - A peer's "published, deliveryStatus sent" report is also a claim. Verify it independently instead of forwarding it as proof.
+   - **A call without a platform receipt is an attempt, not a delivery.** Count deliveries by distinct `primaryPlatformMessageId` values, never by the number of send calls: an interrupted call keeps its full arguments in the transcript but produces no receipt, so counting calls reports a duplicate that does not exist.
+   - **Receipts are not a complete census of a channel.** A delivery the platform made directly, such as a cron announce, leaves no send record at all, so receipt counts can understate how many messages are really there. Use receipts to decide whether *your own* sends landed; use the platform list to state how many messages a channel holds.
 
 3. Read the target channel's actual message list with the sending account's token, through the Discord REST endpoint `channels/<id>/messages?limit=N`. Keep the token inside the script and never print it; print only id, timestamp, character count, and the first ~80 characters. Done when you hold the real messages posted around the send time.
    - Reading another agent's channel through the message tool is unavailable; the REST read is the reliable path.
